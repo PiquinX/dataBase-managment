@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import { users } from '../constants'
-import Post from './Post'
+import { Post } from './Post'
 
 export const Posts = () => {
   const postsRef = useRef(null)
@@ -21,7 +21,7 @@ export const Posts = () => {
   const loadPosts = async (num) => {
     observer.current.disconnect()
 
-    await setContador((prevContador) => prevContador + 1)
+    setContador((prevContador) => prevContador + 1)
 
     const DFragment = document.createDocumentFragment()
 
@@ -30,14 +30,13 @@ export const Posts = () => {
         const newPost = document.createElement('section')
         newPost.className = 'post'
 
-        ReactDOM.render(
+        ReactDOM.createRoot(newPost).render(
           <Post
-            userName={users[contador - 1].userName}
-            photo={users[contador - 1].photo}
-            userPhoto={users[contador - 1].userPhoto}
-            description={users[contador - 1].desc}
-          />,
-          newPost
+            userName={users[contador].userName}
+            photo={users[contador].photo}
+            userPhoto={users[contador].userPhoto}
+            description={users[contador].desc}
+          />
         )
 
         DFragment.appendChild(newPost)
