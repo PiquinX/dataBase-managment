@@ -1,34 +1,42 @@
-export const createPostsCode = ({ userName, desc, photo, userPhoto }) => {
-  const section = document.createElement('section')
+export function post ({ userName, userPhoto, photo, description }) {
+  const newPost = document.createElement('section')
+  newPost.className = 'post'
 
   const postHeader = document.createElement('div')
-  const postContent = document.createElement('div')
-  const postBottom = document.createElement('div')
+  postHeader.className = 'post-header'
+
+  const userImg = document.createElement('img')
+  userImg.src = userPhoto
+  postHeader.appendChild(userImg)
 
   const nombreDeUsuario = document.createElement('h3')
   nombreDeUsuario.textContent = userName
-
-  const fotoDePerfil = document.createElement('img')
-  fotoDePerfil.setAttribute('src', userPhoto)
-
   postHeader.appendChild(nombreDeUsuario)
-  postHeader.appendChild(fotoDePerfil)
 
-  const foto = document.createElement('img')
-  foto.setAttribute('src', photo)
+  newPost.appendChild(postHeader)
 
-  postContent.appendChild(foto)
+  const postContent = document.createElement('div')
+  postContent.className = 'post-content'
 
-  const description = document.createElement('p')
-  description.textContent = desc
+  const postImg = document.createElement('img')
+  postImg.src = photo
+  postContent.appendChild(postImg)
 
-  const comentario = document.createElement('input')
-  comentario.setAttribute('type', 'text')
+  newPost.appendChild(postContent)
 
-  postBottom.appendChild(description)
-  postBottom.appendChild(comentario)
+  const postBottom = document.createElement('div')
+  postBottom.className = 'post-bottom'
 
-  section.appendChild(postHeader)
-  section.appendChild(postContent)
-  section.appendChild(postBottom)
+  const postDesc = document.createElement('p')
+  postDesc.textContent = description
+  postBottom.appendChild(postDesc)
+
+  const commentInput = document.createElement('input')
+  commentInput.placeholder = 'Write a comment'
+  commentInput.type = 'text'
+  postBottom.appendChild(commentInput)
+
+  newPost.appendChild(postBottom)
+
+  return newPost
 }
