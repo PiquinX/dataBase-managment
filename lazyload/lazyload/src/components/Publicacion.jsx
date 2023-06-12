@@ -1,4 +1,4 @@
-function Post ({ userName, userPhoto, photo, description }) {
+export function Post ({ userName, userPhoto, photo, description }) {
   return (
     <section className='post'>
       <div className='post-header'>
@@ -15,5 +15,3 @@ function Post ({ userName, userPhoto, photo, description }) {
     </section>
   )
 }
-
-export default Post
