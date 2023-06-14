@@ -90,3 +90,9 @@
 .eye:hover{
     background-color: #0000009c;
 }
+
+.bad-entries{
+    color: #f00b;
+    text-align: left;
+    width: 100%;
+}

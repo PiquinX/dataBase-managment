@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function InputPassword ({placeholder, nameId, tabIndex}){
+export function InputPassword ({placeholder, nameId, tabIndex, exportValue}){
     const [isVisible, setIsVisible] = useState(false)
     const type = isVisible ? 'text' : 'password'
     const icon = isVisible ? 'fa-eye-slash' : 'fa-eye'
@@ -11,7 +11,7 @@ export function InputPassword ({placeholder, nameId, tabIndex}){
 
     return(
         <div className='input-container'>
-            <input placeholder={placeholder} type={type} id={nameId} name={nameId} minLength='4' maxLength='40' className='inputs' tabIndex={tabIndex[0]} />
+            <input placeholder={placeholder} type={type} id={nameId} name={nameId} minLength='4' maxLength='40' className='inputs' tabIndex={tabIndex[0]} onChange={exportValue} />
             <label className='input-label' htmlFor={nameId} >
                 {placeholder}
             </label>

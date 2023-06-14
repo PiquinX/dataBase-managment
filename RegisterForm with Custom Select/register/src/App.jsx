@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './styles/Form.css'
 import './styles/Inputs.css'
+import './styles/select.css'
 import { Title } from './components/Title'
 import { brandName, addMeessage } from './constants'
 import { Form } from './components/Form'
