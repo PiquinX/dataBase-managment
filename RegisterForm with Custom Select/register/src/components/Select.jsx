@@ -1,20 +1,23 @@
 import { Option } from './Option'
 import { useState } from 'react'
 
-export function Select ({ nameId, tabIndex, values, initialValue }){
+export function Select ({ nameId, tabIndex, values, initialValue, active }){
     const [selectValue, setSelectValue] = useState(initialValue)
+    const classSelect = active ? 'select-curso active': 'select-curso'
 
     const selectivity = (event) => {
-        const option = event.target;
-        setSelectValue(option.value)
+        const option = event.target
+        setSelectValue(option.textContent)
     }
 
     const clickHandle = event => {
         selectivity(event)
+
+        
     }
 
     return (
-            <div className='select-curso' data-dropdown>
+            <div className={classSelect} data-dropdown>
                 <div className="select" tabIndex={tabIndex} id={nameId} data-dropdown-button>{selectValue}</div>
                 <input name={nameId} value={selectValue} className='input-select' />
 

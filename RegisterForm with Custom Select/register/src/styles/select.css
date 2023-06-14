@@ -103,10 +103,6 @@
     background-color: #1c0e8a;
 }
 
-[name="modalidad"] ~ .options{
-    display: none;
-}
-
 .input-select{
     display: none;
 }
