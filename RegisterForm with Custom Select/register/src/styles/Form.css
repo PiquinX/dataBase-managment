@@ -143,3 +143,21 @@ body{
       padding: 3rem 0rem;
   }
 }
+
+@media (max-width : 650px){
+  HTML{
+    font-size: 13px;
+  }
+}
+
+@media (max-width : 450px){
+  HTML{
+    font-size: 11px;
+  }
+}
+
+@media (max-width : 300px){
+  HTML{
+    font-size: 9px;
+  }
+}

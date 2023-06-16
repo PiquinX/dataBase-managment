@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import './styles/Form.css'
 import './styles/Inputs.css'
 import './styles/select.css'
@@ -7,7 +6,6 @@ import { brandName, addMeessage } from './constants'
 import { Form } from './components/Form'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className='register-container'>
