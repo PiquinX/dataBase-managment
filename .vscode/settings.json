@@ -1,0 +1,8 @@
+{
+    "eslint.execArgv": null,
+    "eslint.nodePath": "",
+    "eslint.nodeEnv": "",
+    "eslint.notebooks.rules.customizations": [],
+    "eslint.onIgnoredFiles": "warn",
+    "eslint.rules.customizations": []
+}

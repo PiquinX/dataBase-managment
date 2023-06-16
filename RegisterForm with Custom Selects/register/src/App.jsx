@@ -5,8 +5,7 @@ import { Title } from './components/Title'
 import { brandName, addMeessage } from './constants'
 import { Form } from './components/Form'
 
-function App() {
-
+function App () {
   return (
     <div className='register-container'>
       <Title brandName={brandName} addMeessage={addMeessage} />
