@@ -1,7 +1,7 @@
 import { Option } from './Option'
 import { useState } from 'react'
 
-export function Select ({ nameId, tabIndex, values, initialValue, active }){
+export function Select ({ nameId, tabIndex, values, initialValue, active, returnValue }){
     const [selectValue, setSelectValue] = useState(initialValue)
     const classSelect = active ? 'select-curso active': 'select-curso'
 
@@ -13,7 +13,7 @@ export function Select ({ nameId, tabIndex, values, initialValue, active }){
     const clickHandle = event => {
         selectivity(event)
 
-        
+        if(returnValue !== undefined) returnValue(event)
     }
 
     return (

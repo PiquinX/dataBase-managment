@@ -1,11 +1,12 @@
-import { Input } from './Input'
-import { InputPassword } from './InputPassword'
-import { useValueInput1, useValueInput2 } from '../hooks/upgradeInputsValue'
-import { SelectContainer } from './SelectContainer'
+import { Input } from './input/Input'
+import { InputPassword } from './input/InputPassword'
+import { useValueInput } from '../hooks/upgradeInputsValue'
+import { SelectContainer } from './select/SelectContainer'
+import { Politics } from './Politics'
 
 export function Form (){
-    const {updateInputValue1, valorInput1} = useValueInput1()
-    const {updateInputValue2, valorInput2} = useValueInput2()
+    const [updateInputValue1, valorInput1] = useValueInput()
+    const [updateInputValue2, valorInput2] = useValueInput()
     console.log(valorInput1,valorInput2)
 
     return (
@@ -20,6 +21,13 @@ export function Form (){
             }
 
             <SelectContainer tabIndex={[8, 9, 10]}/>
+            <Politics tabIndex={[11, 12, 13]}/>
+
+            <button type="submit" className="boton-registrarse" tabIndex="14">Registrate</button>
+
+            <div className="links-container">
+                <p>Si ya tenes cuenta <a tabIndex="15" href="{% url 'login' %}">Inicia Sesion.</a></p>
+            </div>
         </form> 
     )
 }

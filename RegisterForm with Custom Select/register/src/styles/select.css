@@ -14,15 +14,6 @@
 .select-curso{
     position: relative;
 }
-.select-curso:nth-child(1){ 
-    width: 4.4rem;
-}
-.select-curso:nth-child(2){
-    width: 6.5rem;
-}
-.select-curso:nth-child(3){
-    width: 7.8rem;
-}
 .select{
     border: 2px solid var(--neon-color);
     padding: .4rem 1.8rem .4rem .7rem;
@@ -33,6 +24,7 @@
     cursor: pointer;
     transition: box-shadow 150ms ease-in-out;
     position: relative;
+    box-sizing: border-box;
 }
 .select:hover,
 .select:focus{
@@ -105,4 +97,16 @@
 
 .input-select{
     display: none;
+}
+
+#ano{
+    width: 4.4rem;
+}
+
+#turno{
+    width: 6.5rem;
+}
+
+#modalidad{
+    width: 7.8rem;
 }
