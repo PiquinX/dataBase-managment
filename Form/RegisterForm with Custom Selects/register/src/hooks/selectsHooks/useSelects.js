@@ -10,7 +10,7 @@ export function useSelects () {
     return () => {
       document.removeEventListener('click', functinalitySelect)
     }
-  }, [])
+    }, [])
 
   const functinalitySelect = (e) => {
     const isSelectButton = e.target.matches('[data-dropdown-button]')

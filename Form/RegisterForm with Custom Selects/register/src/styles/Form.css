@@ -1,0 +1,163 @@
+HTML{
+  --background-left-color:#4f51ad;
+  --background-right-color:#df3f4f;
+  --logo-color-red:#cb0f20ff;
+  --logo-color-blue:#22247cff;
+  --grey-text-color: #696767;
+  --neon-color: #250BDF;
+  --background:hsl(228, 20%, 5%);
+  font-size: 15px;
+  font-family: system-ui;
+}
+
+*{
+  margin: 0;
+  text-decoration: none;
+}
+body{
+  background: linear-gradient(to right,  var(--background-left-color),var(--background-left-color),var(--background-right-color),var(--background-right-color));
+}
+
+.container{
+  background: linear-gradient(to right,  var(--background-left-color),var(--background-left-color),var(--background-right-color),var(--background-right-color));
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-container{
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 22.5rem;
+  height: max-content;
+  padding: 2.2rem;
+  gap: 1.8rem;
+  border-radius: 2px;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1.2rem;
+}
+
+.form-container > input{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border: 1px solid var(--neon-color);
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 3px var(--neon-color), 0 0 3px var(--neon-color);
+  border-radius: 2px;
+  padding: .4rem;
+  color: #b4b4b4;
+  text-shadow:0px 0px 2px  var(--neon-color),0px 0px 1px #fff5;
+}
+.form-container > input:focus{
+  background-color: var(--neon-color);
+  box-shadow: 0 0 2px var(--neon-color),
+              0 0 10px var(--neon-color);
+  text-shadow: none;
+}
+
+.titles-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--grey-text-color);
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+
+.brandname-container{
+  font-size: 1.3rem;
+  width: max-content;
+  background: linear-gradient(to right, var(--logo-color-red), var(--logo-color-red),var(--logo-color-red),var(--logo-color-blue),var(--logo-color-blue),var(--logo-color-blue));
+  margin: auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.links-container > p{
+  margin: 3px;
+  color: var(--grey-text-color);
+}
+.links-container > p > a{
+  color: var(--neon-color);
+  text-shadow: 0px 0px 1px  var(--neon-color);
+  cursor: pointer;
+}
+.links-container > p > a:hover{
+  color: var(--neon-color);
+  text-shadow: 0px 0px 4px  var(--neon-color),0px 0px 1px #fff3;
+}
+.links-container{
+  text-align: center;
+  width: 100%;
+}
+
+.boton-registrarse{
+  font-size: 1.2rem;
+  background-color: transparent;
+  font-weight: bold;
+  color: var(--neon-color);
+  border: 1px solid var(--neon-color);
+  padding: .5rem .8rem;
+  border-radius: 2px;
+  transition: background 50ms, box-shadow 50ms;
+  cursor: pointer;
+  text-shadow: 0px 0px 2px  var(--neon-color),0px 0px 1px #fff5;
+  box-shadow: inset 0 0 3px var(--neon-color), 0 0 3px var(--neon-color);
+  position: relative;
+}
+
+.boton-registrarse:hover,
+.boton-registrarse:focus{
+  background-color: var(--neon-color);
+  color: var(--back-ground);
+  box-shadow: 0 0 5px var(--neon-color),
+              0 0 25px var(--neon-color),
+              0 0 50px var(--neon-color),
+              0 0 200px var(--neon-color);
+  text-shadow: none;
+  /* -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); */
+}
+
+
+@media (max-height: 720px) {
+  .container{
+      height: auto;
+      padding: 3rem 0rem;
+  }
+}
+
+@media (max-width : 650px){
+  HTML{
+    font-size: 13px;
+  }
+}
+
+@media (max-width : 450px){
+  HTML{
+    font-size: 11px;
+  }
+}
+
+@media (max-width : 300px){
+  HTML{
+    font-size: 9px;
+  }
+}
