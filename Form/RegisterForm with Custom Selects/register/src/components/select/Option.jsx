@@ -4,9 +4,7 @@ export function Option ({ span, value, clickHandle }) {
       <p className='option' onClick={clickHandle}>
         {value}
       </p>
-      {
-                span && <span />
-            }
+      { span && <span /> }
     </>
   )
 }

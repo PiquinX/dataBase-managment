@@ -16,9 +16,8 @@ export function Form () {
       <Input placeholder='Nombre de usuario' type='text' nameId='username' tabIndex={3} />
       <InputPassword placeholder='Contraseña' nameId='password1' tabIndex={[4, 5]} exportValue={updateInputValue1} />
       <InputPassword placeholder='Confirmar Contraseña' nameId='password2' tabIndex={[6, 7]} exportValue={updateInputValue2} />
-      {
-                valorInput1 !== valorInput2 && <p className='bad-entries'>Las dos contraseñas deben ser iguales.</p>
-            }
+
+      { valorInput1 !== valorInput2 && <p className='bad-entries'>Las dos contraseñas deben ser iguales.</p> }
 
       <SelectContainer tabIndex={[8, 9, 10]} />
       <Politics tabIndex={[11, 12, 13]} />
