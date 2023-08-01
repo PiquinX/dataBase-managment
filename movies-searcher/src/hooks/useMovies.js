@@ -1,21 +1,25 @@
-import withResponse from '../API Response/withResponse.json'
-import { useState, useRef } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { searchMovies } from '../services/searchMovies'
+import { sortMovies } from '../services/sortMovies'
 
-export function useMovies () {
+export function useMovies ({selectValue}) {
   const [movies, setMovies] = useState(null)
   const isBeforeSearch = useRef(true)
   const [isSearching, setIsSearching] = useState(false)
 
-  async function getMovies ({ search }) {
-    isBeforeSearch.current = false
-    setIsSearching(true)
+  const getMovies = useCallback(async ({ search }) =>  {
+      isBeforeSearch.current = false
+      setIsSearching(true)
+  
+      const formatedMovies = await searchMovies(search)
+  
+      setIsSearching(false)
+  
+      setMovies(formatedMovies)
+  }, [])
 
-    const formatedMovies = await searchMovies(search)
+  const sortedMovies = useCallback(sortMovies(selectValue, movies), [selectValue, movies])
+  
 
-    setIsSearching(false)
-    setMovies(formatedMovies)
-  }
-
-  return { movies, getMovies, isBeforeSearch: isBeforeSearch.current, isSearching }
+  return { movies: sortedMovies, getMovies, isBeforeSearch: isBeforeSearch.current, isSearching }
 }

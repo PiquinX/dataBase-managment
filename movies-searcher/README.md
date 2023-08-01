@@ -24,16 +24,14 @@ Requerimientos:
 
 ✅ Generar algo que muestre que esta cargando ej: cargando..., una animacion, etc.
 
- Haz que las películas se muestren en un grid responsive.
-
 Primera iteración:
 
- Evitar que se haga la misma búsqueda dos veces seguidas.
+✅ Haz que la búsqueda se haga automáticamente al escribir.
 
- Crea un check box para ordenar las peliculas alfabeticamente.
+✅ Evita que se haga la búsqueda continuamente al escribir (debounce)
 
- Haz que la búsqueda se haga automáticamente al escribir.
+✅ Crea un select para ordenar las peliculas ya sea por titulo o default(por ano no se podia ya que habia peliculas y series y las series tenian mas de un numero).
 
- Evita que se haga la búsqueda continuamente al escribir (debounce)
+✅ Optimizar app.
 
  Hacer unos lindos estilos con el queridisimo tailwind
