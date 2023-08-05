@@ -11,8 +11,8 @@ export default {
         responsive: 'repeat(auto-fit, minmax(350px, 1fr))'
       },
       boxShadow: {
-        'movies': '0 0 2px #172335, 0 0 5px #172335, 0 0 10px #172335, 0 0 20px #172335',
-        'select': '1px 1px 2px #172335, 1px 1px 5px #172335',
+        movies: '0 0 2px #172335, 0 0 5px #172335, 0 0 10px #172335, 0 0 20px #172335',
+        select: '1px 1px 2px #172335, 1px 1px 5px #172335'
       }
     }
   },

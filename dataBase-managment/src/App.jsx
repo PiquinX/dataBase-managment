@@ -6,10 +6,16 @@ import { Select } from './components/select'
 import debounce from 'just-debounce-it'
 
 function App () {
+  // Estado que contiene la busqueda
   const [search, setSearch] = useState('')
+
+  // Estado que contiene el valor del select
   const [selectValue, setSelectValue] = useState('Default')
+
+  // Hook que devuelve la funcion que hace la busqueda de peliculas(fetch), si esta en cargando, si es antes de hacer la primera busqueda y las peliculas.
   const { movies, getMovies, isBeforeSearch, isSearching } = useMovies({ selectValue })
 
+  // Llama a la funcion que busca las peliculas pero de manera controlada(espera 350ms para saber si ya dejaste de teclear).
   const debouncedGetMovies = useCallback(
     debounce(search => {
       getMovies({ search })
@@ -18,12 +24,16 @@ function App () {
 
   const handleChange = (event) => {
     const newSearch = event.target.value
+
+    // si se ingresa un espacio si un caracter antes no carga el valor al input.
     if (newSearch === ' ') return
 
+    // Actualiza el valor del input (la busqueda) y llama a la busqueda de peliculas controlada.
     setSearch(newSearch)
     debouncedGetMovies(newSearch)
   }
 
+  // reinicia la busqueda
   const restartSearch = () => {
     setSearch('')
   }
@@ -51,8 +61,8 @@ function App () {
       <main className='flex bg-[#545c6c] justify-center w-full min-h-4/5 h-max py-10 px-10'>
         {
           isSearching
-          
-            ? <div className='grid h-full place-items-center'><i className="fa-solid fa-arrow-rotate-right text-8xl animate-spin"></i></div>
+
+            ? <div className='grid h-full place-items-center'><i className='fa-solid fa-arrow-rotate-right text-8xl animate-spin' /></div>
             : <Movies movies={movies} isBeforeSearch={isBeforeSearch} />
         }
       </main>

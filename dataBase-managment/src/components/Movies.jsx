@@ -6,7 +6,7 @@ export function Movies ({ movies, isBeforeSearch }) {
                   ? (
                       movies
                         ? (
-                          <ul className='grid w-[90%] max-w-80% overflow-y-hidden'>
+                          <ul className='grid max-w-80% overflow-y-hidden'>
                             <li className='grid gap-0 grid-cols-responsive duration-75 bg-[#172335]'>
                               <p className='w-full col-start-2 px-2 py-1 border'>ID de usuario</p>
                               <p className='w-full px-2 py-1 border h-9'>Estado</p>
@@ -27,7 +27,7 @@ export function Movies ({ movies, isBeforeSearch }) {
                             {
                               movies?.map(movie => (
                                 <li className='grid grid-cols-responsive duration-75 bg-[#172335]' key={movie.id}>
-                                  <p className='w-full col-start-2 px-2 py-1 border' >5u28572</p>
+                                  <p className='w-full col-start-2 px-2 py-1 border'>5u28572</p>
                                   <p className='px-2 py-1 border h-9'>Activo</p>
                                   <p className='px-2 py-1 border h-9'>Socio</p>
                                   <p className='px-2 py-1 border h-9'>46491945</p>

@@ -6,6 +6,7 @@ export const searchMovies = async (search) => {
     const response = await res.json()
     const movies = response.Search
 
+    // devuelve las peliculas formateadas (para tener un objeto custom en vez del que no da la API).
     return movies?.map(movie => ({
       id: movie.imdbID,
       title: movie.Title,

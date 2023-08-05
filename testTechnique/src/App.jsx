@@ -4,7 +4,10 @@ import { useCocktail } from './hooks/useCocktail'
 
 
 function App () {
+  // Este hook se encarga de hacer el fetch para obtener el fact. Tiene el valor del fact y una funcion para actualizarlo.
   const { fact, refreshFact } = useCatFact()
+
+  // Este hook se encarga de hacer el fetch para obtener el cocktail (el cocktail se actualiza cuando el fact cambia).
   const { cocktail } = useCocktail({ fact })
 
   const handleClick = () => {

@@ -11,34 +11,44 @@ function App() {
   useEffect(() => {
     let intervalId
 
+    // si esta corriendo agrega tiempo, sino lo no elimina el intervalo.
     if (corriendo) {
       intervalId = setInterval(() => {
         setTiempo(tiempo + 0.01)
       }, 10)
+    }else if (!corriendo){ 
+      clearInterval(intervalId)
     }
+
+    // si el tiempo supera los 10 segundo termina.
     if (tiempo > 10) detenerCronometro()
 
+    // cuando se desmonta el componente se limpia el intervalo para evitar que se sobrepongan los intervalos.
     return () => {
       clearInterval(intervalId)
     }
-  })
+  }, [tiempo, corriendo])
 
+  // inicia el cronometro.
   const iniciarCronometro = () => {
     setCorriendo(true)
   }
 
+  // resetea los estados que se encargan de la metrica cronometro.
   const detenerCronometro = () => {
     setCorriendo(false)
     setTiempo(0)
     setClickable(false)
   }
 
+  // actualiza el contador.Si el cronometro no esta activo lo activa.
   const clickCounter = () => {
     if (corriendo !== true) iniciarCronometro()
 
     setContador(contador + 1)
   }
 
+  // resetea todos los estados, como si recargaras la pagina.
   const resetStates = () => {
     setClickable(true)
     setContador(0)

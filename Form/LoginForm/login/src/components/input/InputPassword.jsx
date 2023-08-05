@@ -1,11 +1,15 @@
 import { useState } from 'react'
 
 export function InputPassword ({ placeholder, nameId, tabIndex, exportValue }) {
+  // Este estado es para saber si el input de tipo contrasenia se puede esta visible o no.
   const [isVisible, setIsVisible] = useState(false)
+
+  // Seguno si esta visible o no se le aplica una clase u otra.
   const type = isVisible ? 'text' : 'password'
   const icon = isVisible ? 'fa-eye-slash' : 'fa-eye'
 
   const clickHandle = () => {
+    // Cambia el estado de visibilidad del input
     setIsVisible(!isVisible)
   }
 

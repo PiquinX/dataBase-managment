@@ -3,11 +3,14 @@ import { useGetSelectValue } from './useGetSelectValue'
 import { allValues } from '../../constants'
 
 export function useUpdateConditionalSelect () {
+  // useGetSelectValue hook tiene el valor del select y la funcion para actualizarlo. Esto para poder tener el control de sus valores.
   const [getSelectValue1, selectValue1] = useGetSelectValue()
   const [getSelectValue2, selectValue2] = useGetSelectValue()
 
+  // estado que contiene las opciones de el tercer select.
   const [selectOptions3, setSelectOptions3] = useState([])
 
+  // efecto que cada vez que se actualiza un select se ejecuta para asignarle un valor al select3(condicional) segun los valores de los 2 primeros.
   useEffect(() => {
     const anoNum = parseInt(selectValue1)
 

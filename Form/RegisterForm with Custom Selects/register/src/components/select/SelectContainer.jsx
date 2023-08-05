@@ -4,7 +4,10 @@ import { useSelects } from '../../hooks/selectsHooks/useSelects'
 import { useUpdateConditionalSelect } from '../../hooks/selectsHooks/useUpdateConditionalSelect'
 
 export function SelectContainer ({ tabIndex }) {
+  // Se encarga de saber si los inputs estan abiertos o cerrados y generar la interactividad con un event listener al documento.
   const { select1, select2, select3 } = useSelects()
+
+  // HOOK  que se encarga comparar el select ano y modalidad para asignarle un valor a el select turno.
   const { selectValue1, getSelectValue1, getSelectValue2, selectOptions3 } = useUpdateConditionalSelect()
 
   return (
