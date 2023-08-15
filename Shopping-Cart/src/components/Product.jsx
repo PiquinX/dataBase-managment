@@ -44,7 +44,7 @@ export function ImagesProduct ({ imgs }) {
   }
 
   const handleIncrease = ()=>{
-    if (image === imgs.length) return
+    if (image === imgs.length - 1) return
     setImage(image + 1)
   }
   
@@ -53,6 +53,10 @@ export function ImagesProduct ({ imgs }) {
       <button onClick={handleDecrease} className='absolute z-50 left-5 top-[44%]'>
         <i className="fa-regular fa-circle-left"></i>
       </button>
+      <button onClick={handleIncrease} className='absolute z-50 right-5 top-[44%]'>
+        <i className="fa-regular fa-circle-right"></i>
+      </button>
+      
       <div className='relative grid w-full h-56 px-10 overflow-hidden bg-white rounded place-content-center'>
         {
           imgs.map((img, index) => {
@@ -60,16 +64,23 @@ export function ImagesProduct ({ imgs }) {
             ? '-translate-x-1/2'
             : index > image 
             ? 'translate-x-1/2'
-            : '-translate-x-98'
+            : '-translate-x-96'
             return(
               <img key={index} src={img} className={`${imgClass} duration-75 absolute -translate-x-1/2 -translate-y-1/2 max-h-48 top-1/2 left-1/2`} />
             )
           })
         }
       </div>
-      <button onClick={handleIncrease} className='absolute z-50 right-5 top-[44%]'>
-        <i className="fa-regular fa-circle-right"></i>
-      </button>
+      <div className='flex justify-center gap-3 mb-10'>
+        {
+          imgs.map((img, index) => {
+            const buttonColor = index === image ? 'bg-slate-500' : 'bg-slate-300'
+            return(
+              <button key={index} onClick={()=> setImage(index)} className={`${buttonColor} w-3 h-3 rounded-full`}></button>
+            )
+          })
+        }
+      </div>
     </div>
   )
 }
