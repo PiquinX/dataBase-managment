@@ -7,10 +7,9 @@ export const CART_FUNCTION_NAMES = {
 }
 
 // We declare the Initial value, if its in the localStorage we get it, and if's not we make an empty array.
-export const InitialCart = localStorage.getItem('cart') || []
+export const InitialCart = JSON.parse(localStorage.getItem('Cart')) || []
 
 export const CartReducer = (state, action) => {
-  console.log(action)
   // We get both values, the one that dictates which funcion will be excecuted(type) and the other which is kind of a prop (in this case the product that will be updated).
   const { type, payload } = action
 
@@ -26,7 +25,7 @@ export const CartReducer = (state, action) => {
         const newState = structuredClone(state)
 
         // We update the quantity of the product founded.
-        newState[productIndex].quantity = +1
+        newState[productIndex].quantity += 1
 
         return newState
       }
@@ -35,7 +34,7 @@ export const CartReducer = (state, action) => {
       return [
         ...state,
         {
-          payload,
+          ...payload,
           quantity: 1
         }
       ]
@@ -48,7 +47,7 @@ export const CartReducer = (state, action) => {
       const newState = structuredClone(state)
 
       // We delete the item from the state(carte).
-      newState.slice(productIndex, 1)
+      newState.splice(productIndex, 1)
 
       return newState
     }
@@ -60,10 +59,10 @@ export const CartReducer = (state, action) => {
       const newState = structuredClone(state)
 
       // We update the quantity of the product founded.
-      newState[productIndex].quantity = -1
+      newState[productIndex].quantity -= 1
 
       // If the quantity of the product is equal to 0 it means that this items is no longer in the cart, so we delete it from the state(carte).
-      if (newState[productIndex].quantity === 0) newState.slice(productIndex, 1)
+      if (newState[productIndex].quantity <= 0) newState.splice(productIndex, 1)
 
       return newState
     }

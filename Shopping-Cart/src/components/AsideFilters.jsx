@@ -25,7 +25,7 @@ export function AsideFilters () {
   return (
     <aside>
       <div>
-        <Select value={selectValue} id={categoryFilterID} changeValue={handleChangeCategory} options={['all', 'laptops', 'smartphones', 'home-decoration', 'fragrances', 'skincare', 'groceries']} />
+        <Select value={selectValue} id={categoryFilterID} changeValue={handleChangeCategory} options={['all', 'laptops', 'smartphones', 'fragrances', 'skincare', 'groceries']} />
       </div>
     </aside>
   )

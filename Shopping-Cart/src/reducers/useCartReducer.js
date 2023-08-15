@@ -31,7 +31,8 @@ export function useCartReducer () {
 
   // An Effect to save the cart in the localStorage.
   useEffect(() => {
-    localStorage.setItem('Cart', state)
+    console.log(state)
+    localStorage.setItem('Cart', JSON.stringify(state))
   }, [state])
 
   return { state, addToCart, removeFromCart, removeOneFromCart, clearCart }
