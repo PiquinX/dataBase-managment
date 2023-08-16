@@ -1,5 +1,5 @@
 import { AsideFilters } from './AsideFilters'
-import { Products } from './Product'
+import { Products } from './product/Product'
 
 export function Main () {
   return (
