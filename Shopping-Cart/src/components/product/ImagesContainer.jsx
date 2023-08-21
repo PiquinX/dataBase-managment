@@ -1,13 +1,16 @@
 import { useState } from "react"
 
 export function ImagesProduct ({ imgs }) {
+    // We set the state that contains which image will be displayed
     const [image, setImage] = useState(0)
   
+    // This functions updates the image state by decreasing the number.
     const handleDecrease = ()=>{
       if(image === 0) return
       setImage(image - 1)
     }
   
+    // This functions updates the image state by increasing the number.
     const handleIncrease = ()=>{
       if (image === imgs.length - 1) return
       setImage(image + 1)

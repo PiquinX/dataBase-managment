@@ -8,16 +8,17 @@ import { Rating } from './Rating'
 export function Products () {
   // We call the customHook to get the function which Filters the products.
   const { filterProducts } = useFilters()
+  // We call the function addToCart from the useCart custom Hook.
   const { addToCart } = useCart()
 
   // We filter the products.
   const filteredProducts = filterProducts(allProducts.products)
 
   return (
-    <div className='grid gap-10 px-96 grid-cols-responsive'>
+    <div className='grid gap-10 grid-cols-responsive'>
       {
                 filteredProducts.map(product => (
-                  <div key={product.id} className='flex flex-col justify-center gap-2 px-5 pb-3 bg-white border rounded'>
+                  <div key={product.id} className='flex flex-col justify-center gap-2 px-5 pb-3 bg-white border rounded max-w-[500px]'>
                       <ImagesProduct imgs={product.images} />
                       <p className='font-bold text-green-400'>{Math.round(product.discountPercentage)}% OFF</p>
                       <Rating rating={product.rating}/>

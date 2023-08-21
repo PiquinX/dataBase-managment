@@ -1,82 +1,81 @@
 import { useCart } from "../Hooks/useCart"
-import { useEffect, useState } from "react"
+import { useTotalPrice } from "../Hooks/useTotalPrice"
+import { useSideBar } from "../Hooks/useSideBar"
 
 export function Cart (){
+    // we call the custom hook useCart to get the cart state and the functions to handle it.
     const { cart, addToCart, removeFromCart, removeOneFromCart } = useCart()
-    const [show, setShow] = useState(false)
-    const[totalPrice, setTotalPrice] = useState()
+    // We call the custom hook useTotalPrice to get the totalPrice state. We must pass the cart.
+    const { totalPrice } = useTotalPrice({ cart })
+    const {show, setShow, sideBarData} = useSideBar()
+    
+    // We apply styles depending on the show state. 
+    const cartContainerClass = show ? 'right-0' : 'translate-x-full delay-300'
+    const cartBarClass = show ? 'right-0' : 'translate-x-full'
 
-    const cartContainerClass = show ? '' : 'translate-x-full'
-    const cartBarClass = show ? '' : 'translate-x-full'
-
+    // To handle the show state on click.
     const handleClick = ()=> setShow(!show)
-
-    const updateTotalPrice = (cart) =>{
-      let totalPrice = 0
-      for (let i = 0; i < cart.length; i++) {
-        const item = cart[i]
-
-        totalPrice += Math.round( ( item.price - (item.price * item.discountPercentage) /100 ) * 100 ) /100
-      }
-
-      setTotalPrice(Math.round(totalPrice*100) / 100) 
-    }
-
-    useEffect(()=>{
-      updateTotalPrice(cart)
-    },[cart])
 
     return(
       <>
-        <div onClick={handleClick} className="absolute z-50 text-3xl text-white cursor-pointer right-10 top-6"><i className="fa-solid fa-cart-shopping"></i></div>
+        <div onClick={handleClick} className="absolute z-50 text-3xl text-white cursor-pointer right-10 top-6">
+          <i className="fa-solid fa-cart-shopping"></i>
+          <div className="rounded-[50%] bg-red-600 flex justify-center items-center text-sm w-4 h-4 absolute -top-1 -right-2">{cart.length}</div>
+        </div>
 
-        <div className={`${cartContainerClass} flex justify-end fixed z-[1000] h-full w-full bg-[#0006]`}>
+        <section className={`${cartContainerClass} flex justify-end fixed z-[500] backdrop-blur-sm h-full w-full bg-[#0006]`}>
+          <div data-side-bar={`${sideBarData}`} className="z-[1000] flex-grow"></div>
 
-          <div className={`${cartBarClass} w-[25%] delay-75 duration-200 left-full bg-white h-full pb-10 overflow-hidden`}>
-            <header className="flex items-center justify-between w-full pl-10 border-b">
+          <div className={`${cartBarClass} grid grid-rows-cart sm:w-[500px] w-[90%] delay-75 duration-200 bg-white h-full overflow-hidden`}>
+            <header className="flex items-center justify-around w-full h-full pl-4 pr-5 border-b sm:justify-between sm:pl-10">
               <h3 className="">SHOPPING CART</h3>
               <div onClick={handleClick} className="grid text-2xl text-black cursor-pointer group place-content-center w-14 h-14"><i className="duration-150 group-hover:rotate-180 fa-solid fa-xmark"></i></div>
             </header>
-            <main className="h-[90%] flex flex-col justify-center items-center pl-10 pr-5">
+            <main className="flex flex-col items-center justify-center w-full h-full">
             {
                cart.length === 0 
                ? <p>The Cart is empty.</p>
-               : <div className="h-full overflow-x-auto bar">{
+               : <div className="w-full h-full overflow-x-auto bar">{
                       cart.map(item => (
-                          <div key={item.id}>
-                            <h3>{item.title}</h3>
-                            <img src={item.thumbnail} />
-                            {/*
-                                      <p>description</p>
-                                      <p>{discountPercentage}</p>
-                                      <p>{rating}</p>
-                                      <p>{stock}</p>
-                                      <p>{brand}</p>
-                                      <p>{category}</p>
-                                  */}
-                            <p className='flex gap-3'>
-                              <span className='font-bold text-blue-700'>{Math.round( ( item.price - (item.price * item.discountPercentage) /100 ) * 100 ) /100}$</span>
-                              <span className='text-gray-600 line-through'>{item.price},00$</span>
-                            </p>
-                            <div className="flex border rounded">
-                              <button onClick={()=> removeOneFromCart(item)} > - </button>
-                              <p>{item.quantity}</p>
-                              <button onClick={()=> addToCart(item)} > + </button>
+                          <div key={item.id} className="flex w-full gap-4 py-3 pl-4 pr-5 border-b sm:pl-10 h-max">
+                            <div className="w-32 h-full border">
+                              <img src={item.thumbnail} className="w-full h-36" />
                             </div>
-                            <button onClick={()=> removeFromCart(item)} >
-                              <i className="fa-solid fa-trash"></i>
-                            </button>
+                            
+                            <div className="flex flex-col gap-3 grow">
+                              <h3>{item.title}</h3>
+                              {/*
+                                        <p>description</p>
+                                        <p>{discountPercentage}</p>
+                                        <p>{rating}</p>
+                                        <p>{stock}</p>
+                                        <p>{brand}</p>
+                                        <p>{category}</p>
+                                    */}
+                              <p className='flex justify-between w-[85%]'>
+                                <span className='font-bold text-blue-700'>{Math.round( ( (item.price * item.quantity ) - ( (item.price * item.quantity) * item.discountPercentage) /100 ) * 100 ) /100}$</span>
+                                <span className='text-gray-600 line-through'>{item.price * item.quantity},00$</span>
+                              </p>
+                              <div className="flex items-center gap-2 border border-black rounded-3xl w-max">
+                                <button onClick={()=> removeOneFromCart(item)} className="px-2 pt-0.5 pb-1 text-2xl font-bold" > - </button>
+                                <p className="w-8 px-2 text-center">{item.quantity}</p>
+                                <button onClick={()=> addToCart(item)} className="px-2 pt-0.5 pb-1 text-2xl font-bold" > + </button>
+                              </div>
+                              <button className="m-auto w-max" onClick={()=> removeFromCart(item)} >
+                                <i className="fa-regular fa-trash-can"></i>
+                              </button>
+                            </div>
                           </div>
                       ))
                     }
                 </div>
             }
             </main>
-            <footer className="h-full pl-10 border-t shadow-md shadow-black">
-              TOTAL: {totalPrice}$
+            <footer className="flex items-start justify-center h-full pl-4 min-[500px]:pt-3 min-[900px]:pt-6 min-[1440px]:pt-10  sm:pl-10 border-t-2 shadow-md">
+              <p className="font-bold">TOTAL: {totalPrice}$</p>
             </footer>
           </div>
-        </div>
+        </section>
       </>
     )
 }
