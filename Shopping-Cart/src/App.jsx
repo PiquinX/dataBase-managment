@@ -1,7 +1,7 @@
 import { Main } from './components/Main'
 import './App.css'
 import { FiltersProvider } from './contexts/filterContext'
-import { Header } from "./components/Header"
+import { Header } from './components/Header'
 
 function App () {
   return (

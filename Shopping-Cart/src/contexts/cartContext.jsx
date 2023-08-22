@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { useCartReducer } from '../reducers/useCartReducer'
+import { useCartReducer } from '../reducers/Cart/useCartReducer'
 
 // We create the context, this one is used to be called with the useContext().
 export const CartContext = createContext()
