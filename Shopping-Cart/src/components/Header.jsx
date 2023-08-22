@@ -2,7 +2,7 @@ import { Cart } from './Cart'
 import { useFilters } from '../Hooks/useFilters'
 
 export function Header () {
-  const { filters, setFilters } = useFilters()
+  const { filters, changeSearch } = useFilters()
 
   const handleChange = (event) => {
     const newSearch = event.target.value
@@ -11,21 +11,13 @@ export function Header () {
     if (newSearch === ' ') return
 
     // Actualiza el valor del input (la busqueda).
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      search: newSearch
-    }))
+    changeSearch(newSearch)
   }
 
   // reinicia la busqueda
   const restartSearch = () => {
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      search: ''
-    }))
+    changeSearch('')
   }
-
-  console.log(filters)
 
   const inputClass = filters.search.length > 0 ? 'w-44 pl-10 pr-7 border-white' : 'w-6 pl-6 border-transparent'
   const xmarkClass = filters.search.length > 0 ? 'block' : 'hidden'

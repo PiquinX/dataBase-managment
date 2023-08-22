@@ -9,6 +9,7 @@ export const CART_FUNCTION_NAMES = {
 // We declare the Initial value, if its in the localStorage we get it, and if's not we make an empty array.
 export const InitialCart = JSON.parse(localStorage.getItem('Cart')) || []
 
+// this function contains all the functions of the context. 'State' is the state, and action contains the prop and the function that will be executed.
 export const CartReducer = (state, action) => {
   // We get both values, the one that dictates which funcion will be excecuted(type) and the other which is kind of a prop (in this case the product that will be updated).
   const { type, payload } = action

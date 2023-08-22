@@ -6,7 +6,7 @@ export function AsideFilters () {
   // This customs hook allows us to make a side navBar but we must use the attribute data-side-bar.
   const { show, setShow, sideBarData } = useSideBar()
 
-  const { setFilters } = useFilters()
+  const { clearFilters } = useFilters()
 
   // We apply styles depending on the show state.
   const cartContainerClass = show ? '' : '-translate-x-full delay-300'
@@ -15,14 +15,7 @@ export function AsideFilters () {
   // To handle the show state on click.
   const handleClick = () => setShow(!show)
 
-  const handleClearFilters = () => setFilters(
-    {
-      category: 'all',
-      minPrice: 0,
-      maxPrice: 2000,
-      search: ''
-    }
-  )
+  const handleClearFilters = () => clearFilters()
 
   return (
     <>

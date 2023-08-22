@@ -4,7 +4,7 @@ import { useFilters } from '../../Hooks/useFilters'
 
 export function Filters () {
   // we recover the filter state and the function to change it
-  const { filters, setFilters } = useFilters()
+  const { filters, changeMaxPrice, changeMinPrice, changeCategory } = useFilters()
 
   // we apply the category value to the initial value of the state
   const [selectValue, setSelectValue] = useState(filters.category)
@@ -13,30 +13,17 @@ export function Filters () {
   const handleChangeCategory = (value) => {
     setSelectValue(value)
 
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      category: value
-    }))
+    changeCategory(value)
   }
 
   const handleChangeMinPrice = event => {
     const newValue = event.target.value
-    if (parseInt(newValue) < filters.maxPrice) {
-      setFilters(prevFilters => ({
-        ...prevFilters,
-        minPrice: newValue
-      }))
-    }
+    if (parseInt(newValue) < filters.maxPrice) changeMinPrice(newValue)
   }
 
   const handleChangeMaxPrice = event => {
     const newValue = event.target.value
-    if (parseInt(newValue) > filters.minPrice) {
-      setFilters(prevFilters => ({
-        ...prevFilters,
-        maxPrice: newValue
-      }))
-    }
+    if (parseInt(newValue) > filters.minPrice) changeMaxPrice(newValue)
   }
 
   return (
