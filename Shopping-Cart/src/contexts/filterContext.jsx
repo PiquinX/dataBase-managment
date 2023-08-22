@@ -12,6 +12,7 @@ export function FiltersProvider ({ children }) {
       category: 'all',
       minPrice: 0,
       maxPrice: 2000,
+      search: '',
     }
   })
 
