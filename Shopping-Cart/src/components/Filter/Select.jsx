@@ -1,19 +1,17 @@
 import { useSelect } from '../../hooks/useSelect'
 
 export function Select ({ options, changeValue, value, id }) {
-  // estado que contiene si el select se muesta o no.
+  // The states contains if the select it's shown or not.
   const { isShowing, setIsShowing } = useSelect()
 
-  // clases que demuestran si esta visible o no.
+  // We apply styles depending on the isShowing state.
   const selectClass = isShowing ? 'block' : 'hidden'
   const buttonClass = isShowing ? 'before:rotate-[-135deg] before:top-[.78rem] text-white before:border-white bg-blue-700' : 'text-blue-700 before:border-blue-700 font-bold before:rotate-45 before:top-[.55rem]'
 
-  // cambia el estado isShowing
-  const clickHandle = () => {
-    setIsShowing(!isShowing)
-  }
+  // It changes the state of isShowing.
+  const clickHandle = () => setIsShowing(!isShowing)
 
-  // Actualiza el valor del select
+  // Updates the selectValue and closes the select.
   const optionHandle = (e) => {
     setIsShowing(false)
     changeValue(e.target.textContent)

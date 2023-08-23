@@ -2,23 +2,24 @@ import { Cart } from './Cart'
 import { useFilters } from '../Hooks/useFilters'
 
 export function Header () {
+  // We call the useFilters to get the filters state and the changeSearch to update only the search.
   const { filters, changeSearch } = useFilters()
 
+  // This function updates the search filter.
   const handleChange = (event) => {
     const newSearch = event.target.value
 
-    // si se ingresa un espacio si un caracter antes no carga el valor al input.
+    // If the user types an space the value won't be updated.
     if (newSearch === ' ') return
 
-    // Actualiza el valor del input (la busqueda).
+    // Updates the value of the input (the search).
     changeSearch(newSearch)
   }
 
-  // reinicia la busqueda
-  const restartSearch = () => {
-    changeSearch('')
-  }
+  // Resets the search
+  const restartSearch = () => changeSearch('')
 
+  // We apply styles depending on the length of the search.
   const inputClass = filters.search.length > 0 ? 'w-44 pl-10 pr-7 border-white' : 'w-6 pl-6 border-transparent'
   const xmarkClass = filters.search.length > 0 ? 'block' : 'hidden'
 

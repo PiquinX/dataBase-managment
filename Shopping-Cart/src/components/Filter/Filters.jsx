@@ -10,17 +10,20 @@ export function Filters () {
   const [selectValue, setSelectValue] = useState(filters.category)
 
   // This function updates the both states the selectValue and the Filters.
-  const handleChangeCategory = (value) => {
-    setSelectValue(value)
+  const handleChangeCategory = (value) => changeCategory(value)
 
-    changeCategory(value)
-  }
+  // This Effect updates the select value each time the category filter changes (this is especially for the clear filters function).
+  useEffect(() => {
+    setSelectValue(filters.category)
+  }, [filters.category])
 
+  // This function updates the minPrice filter only if it is lower than the maxPrice.
   const handleChangeMinPrice = event => {
     const newValue = event.target.value
     if (parseInt(newValue) < filters.maxPrice) changeMinPrice(newValue)
   }
 
+  // This function updates the maxPrice filter only if it is higher than the minPrice.
   const handleChangeMaxPrice = event => {
     const newValue = event.target.value
     if (parseInt(newValue) > filters.minPrice) changeMaxPrice(newValue)

@@ -7,6 +7,7 @@ export function Cart () {
   const { cart, addToCart, removeFromCart, removeOneFromCart } = useCart()
   // We call the custom hook useTotalPrice to get the totalPrice state. We must pass the cart.
   const { totalPrice } = useTotalPrice({ cart })
+  // This customs hook allows us to make a side navBar but we must use the attribute data-side-bar.
   const { show, setShow, sideBarData } = useSideBar()
 
   // We apply styles depending on the show state.

@@ -2,8 +2,8 @@ import { useContext } from 'react'
 import { FiltersContext } from '../contexts/filterContext'
 
 export function useFilters () {
-  // We call the FiltersContext to get the filters state and the function to change it.
-  const { filters, setFilters } = useContext(FiltersContext)
+  // We call the FiltersContext to get the filters state and the functions to change it.
+  const { clearFilters, changeCategory, changeMinPrice, changeMaxPrice, changeSearch, filters } = useContext(FiltersContext)
 
   // This function filters the products using the filters state as reference.
   const filterProducts = (products) => {
@@ -14,5 +14,5 @@ export function useFilters () {
     })
   }
 
-  return { filters, setFilters, filterProducts }
+  return { clearFilters, changeCategory, changeMinPrice, changeMaxPrice, changeSearch, filters, filterProducts }
 }
