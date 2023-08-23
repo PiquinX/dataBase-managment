@@ -1,4 +1,4 @@
-import { Cart } from './Cart'
+import { Cart } from './Cart/Cart'
 import { useFilters } from '../Hooks/useFilters'
 
 export function Header () {
@@ -20,13 +20,14 @@ export function Header () {
   const restartSearch = () => changeSearch('')
 
   // We apply styles depending on the length of the search.
-  const inputClass = filters.search.length > 0 ? 'w-44 pl-10 pr-7 border-white' : 'w-6 pl-6 border-transparent'
+  const inputClass = filters.search.length > 0 ? 'w-44 pl-10 pr-7 border-white z-[400] shadow' : 'w-6 pl-6 border-transparent'
   const xmarkClass = filters.search.length > 0 ? 'block' : 'hidden'
 
   return (
     <header className='sticky top-0 z-40 h-24 bg-blue-700'>
-      <div className='absolute right-0 mr-24 top-[1.65rem] group'>
-        <input id='search' onChange={handleChange} value={filters.search} placeholder='Search' className={`${inputClass} outline-0 px-3 py-1 duration-100 bg-transparent text-white border-2 rounded focus:w-44 focus:border-white focus:pl-10`} />
+      <h1 className='text-3xl py-[1.65rem] font-bold text-white sm:text-4xl ml-10 lg:ml-24 2xl:ml-44 select-none absolute'>PIQUIN SHOP</h1>
+      <div className='absolute right-0 top-[1.65rem] group mr-24 2xl:mr-44'>
+        <input id='search' onChange={handleChange} value={filters.search} placeholder='Search' className={`${inputClass} outline-0 px-3 py-1 duration-100 bg-blue-700 text-white border-2 rounded focus:w-44 focus:z-[400] shadow-white focus:border-white focus:pl-10`} />
         <label htmlFor='search'>
           <i className='text-white absolute top-0 left-0 px-[.56rem] py-[0.15rem] text-2xl fa-solid fa-magnifying-glass cursor-pointer' htmlFor='search' />
         </label>

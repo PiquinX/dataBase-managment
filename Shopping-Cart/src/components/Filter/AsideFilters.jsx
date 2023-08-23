@@ -31,11 +31,11 @@ export function AsideFilters () {
             <h3 className=''>FILTER</h3>
             <div onClick={handleClick} className='grid text-2xl text-black cursor-pointer group place-content-center w-14 h-14'><i className='duration-150 group-hover:rotate-180 fa-solid fa-xmark' /></div>
           </header>
-          <main className='h-full '>
+          <main className='h-full overflow-y-scroll'>
             <Filters />
           </main>
-          <footer>
-            <button onClick={handleClearFilters} className='py-3 text-blue-700 duration-75 border-2 border-blue-700 rounded-lg hover:text-white hover:bg-blue-700'>Clear Filters</button>
+          <footer className='flex items-center justify-center border-t'>
+            <button onClick={handleClearFilters} className='px-5 py-2 text-blue-700 duration-75 border-2 border-blue-700 rounded-lg hover:text-white hover:bg-blue-700'>Clear Filters</button>
           </footer>
         </section>
       </aside>

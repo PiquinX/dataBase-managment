@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext } from 'react'
 import { useFilterReducer } from '../reducers/Filter/useFilterReducer'
 
 // We create the context, this one is used to be called with the useContext().

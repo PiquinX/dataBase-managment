@@ -1,11 +1,18 @@
 import { AsideFilters } from '../components/Filter/AsideFilters'
 import { Products } from './product/Product'
+import { SortProvider } from '../contexts/sortContext'
+import { Sort } from './Sort'
 
 export function Main () {
   return (
-    <main className='px-10 lg:px-24 2xl:px-44'>
-      <AsideFilters />
-      <Products />
-    </main>
+    <SortProvider>
+      <main className='px-10 lg:px-24 2xl:px-44'>
+        <div className='flex justify-between'>
+          <AsideFilters />
+          <Sort />
+        </div>
+        <Products />
+      </main>
+    </SortProvider>
   )
 }
