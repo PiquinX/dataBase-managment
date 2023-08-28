@@ -20,10 +20,10 @@ export function Cart () {
 
   return (
     <>
-      <div onClick={handleClick} className='absolute z-50 text-3xl text-white cursor-pointer right-10 2xl:right-24 top-[1.68rem]'>
+      <button tabIndex={2} onClick={handleClick} className='absolute z-50 text-3xl text-white cursor-pointer right-10 2xl:right-24 top-[1.68rem]'>
         <i className='fa-solid fa-cart-shopping' />
         <div className='rounded-[50%] bg-red-600 flex justify-center items-center text-sm w-4 h-4 absolute -top-1 -right-2'>{cart.length}</div>
-      </div>
+      </button>
 
       <section className={`${cartContainerClass} flex justify-end fixed z-[500] backdrop-blur-sm h-full w-full bg-[#0006]`}>
         <div data-side-bar={`${sideBarData}`} className='z-[1000] flex-grow' />

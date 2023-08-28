@@ -33,7 +33,7 @@ export function Products () {
                 <span className='text-gray-600 line-through'>{product.price},00$</span>
               </p>
               <p className=''>{product.title}</p>
-              <button className='py-3 text-blue-700 duration-75 border-2 border-blue-700 rounded-lg hover:text-white hover:bg-blue-700' onClick={() => addToCart(product)}>Add to Cart <i className='fa-solid fa-cart-shopping' /></button>
+              <button className='py-3 text-blue-700 duration-75 border-2 border-blue-700 rounded-lg hover:text-white hover:bg-blue-700 focus:text-white focus:bg-blue-700' onClick={() => addToCart(product)}>Add to Cart <i className='fa-solid fa-cart-shopping' /></button>
             </div>
           ))
       }

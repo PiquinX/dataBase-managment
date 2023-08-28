@@ -21,7 +21,7 @@ export function AsideFilters () {
 
   return (
     <>
-      <div onClick={handleClick} className='my-6 cursor-pointer w-max'><i className='text-blue-700 fa-solid fa-filter' /> Filter</div>
+      <button tabIndex={3} onClick={handleClick} className='my-6 cursor-pointer w-max'><i className='text-blue-700 fa-solid fa-filter' /> Filter</button>
 
       <aside className={`${cartContainerClass} flex justify-start fixed top-0 left-0 z-[500] backdrop-blur-sm h-full w-full bg-[#0006]`}>
         <div data-side-bar={`${sideBarData}`} className='order-2 z-[1000] flex-grow' />
@@ -31,10 +31,10 @@ export function AsideFilters () {
             <h3 className=''>FILTER</h3>
             <div onClick={handleClick} className='grid text-2xl text-black cursor-pointer group place-content-center w-14 h-14'><i className='duration-150 group-hover:rotate-180 fa-solid fa-xmark' /></div>
           </header>
-          <main className='h-full overflow-y-scroll'>
+          <main className='h-full overflow-y-scroll bar'>
             <Filters />
           </main>
-          <footer className='flex items-center justify-center border-t'>
+          <footer className='flex items-center justify-center py-1 border-t'>
             <button onClick={handleClearFilters} className='px-5 py-2 text-blue-700 duration-75 border-2 border-blue-700 rounded-lg hover:text-white hover:bg-blue-700'>Clear Filters</button>
           </footer>
         </section>

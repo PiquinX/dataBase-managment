@@ -18,7 +18,7 @@ export default {
         responsive: 'repeat(auto-fit, minmax(270px, 1fr))'
       },
       gridTemplateRows: {
-        cart: '10% 80% 10%'
+        cart: '11% 74% 15%'
       }
     }
   },

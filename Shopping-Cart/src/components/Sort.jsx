@@ -18,6 +18,7 @@ export function Sort () {
     <>
       <div className='z-20 my-6 w-max'>
         <Select
+          tabIndex={4}
           value={selectValue}
           changeValue={handleChangeCategory}
           options={sortOptionsArray}
