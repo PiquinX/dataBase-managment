@@ -25,7 +25,7 @@ export function Header () {
 
   return (
     <header className='sticky top-0 z-40 h-24 bg-blue-700'>
-      <h1 className='text-3xl py-[1.65rem] font-bold text-white sm:text-4xl ml-10 lg:ml-24 2xl:ml-44 select-none absolute'>PIQUIN SHOP</h1>
+      <h1 className='text-2xl py-[1.65rem] font-bold text-white xs:text-3xl sm:text-4xl ml-6 xs:ml-10 lg:ml-24 2xl:ml-44 select-none absolute'>PIQUIN SHOP</h1>
       <div className='absolute right-0 top-[1.65rem] group mr-24 2xl:mr-44'>
         <input id='search' onChange={handleChange} value={filters.search} placeholder='Search' className={`${inputClass} outline-0 px-3 py-1 duration-100 bg-blue-700 text-white border-2 rounded focus:w-44 focus:z-[400] shadow-white focus:border-white focus:pl-10`} />
         <label htmlFor='search'>

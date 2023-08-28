@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     screens: {
+      xs: { min: '380px'},
       sm: { min: '500px' },
       md: { min: '768px' },
       lg: { min: '1024px' },
@@ -14,7 +15,7 @@ export default {
     },
     extend: {
       gridTemplateColumns: {
-        responsive: 'repeat(auto-fit, minmax(320px, 1fr))'
+        responsive: 'repeat(auto-fit, minmax(270px, 1fr))'
       },
       gridTemplateRows: {
         cart: '10% 80% 10%'

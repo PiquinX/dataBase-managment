@@ -6,7 +6,7 @@ import { Sort } from './Sort'
 export function Main () {
   return (
     <SortProvider>
-      <main className='px-10 lg:px-24 2xl:px-44'>
+      <main className='px-6 xs:px-10 lg:px-24 2xl:px-44'>
         <div className='flex justify-between'>
           <AsideFilters />
           <Sort />

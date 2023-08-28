@@ -45,14 +45,14 @@ export function Filters () {
         </div>
         <div className=''>
           <div className='flex px-2'>
-            <p className='w-[130px] text-center'>min: {filters.minPrice}</p>
+            <p className='w-[50%] xs:w-[130px] text-center'>min: {filters.minPrice}</p>
             <span> - </span>
-            <p className='w-[130px] text-center'>max: {filters.maxPrice}</p>
+            <p className='w-[50%] xs:w-[130px] text-center'>max: {filters.maxPrice}</p>
           </div>
 
           <div className='flex gap-2 px-2'>
-            <input onChange={handleChangeMinPrice} type='range' min={0} max={2000} value={filters.minPrice} />
-            <input onChange={handleChangeMaxPrice} type='range' min={0} max={2000} value={filters.maxPrice} />
+            <input className='w-[50%] xs:w-[130px]' onChange={handleChangeMinPrice} type='range' min={0} max={2000} value={filters.minPrice} />
+            <input className='w-[50%] xs:w-[130px]' onChange={handleChangeMaxPrice} type='range' min={0} max={2000} value={filters.maxPrice} />
           </div>
         </div>
       </div>
