@@ -7,9 +7,11 @@ import { Footer } from './components/footer'
 function App () {
   return (
     <FiltersProvider>
-      <Header />
-      <Main />
-      <Footer />
+      <div className='flex flex-col min-h-screen'>
+        <Header />
+        <Main />
+        <Footer />
+      </div>
     </FiltersProvider>
   )
 }
