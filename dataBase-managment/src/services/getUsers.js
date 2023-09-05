@@ -4,7 +4,7 @@ export const getUsers = async () => {
     const response = await res.json()
     const users = response.Search
 
-    return users?.map(movie => ({
+    return users?.map(user => ({
       id : '',
       estado: '',
       tipo: '',

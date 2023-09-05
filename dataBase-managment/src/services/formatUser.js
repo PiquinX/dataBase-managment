@@ -1,0 +1,72 @@
+export function formatUser(user){
+    return {
+        data1: {
+            id : '',
+            estado: '',
+            tipo: '',
+            dni: '',
+            nacimiento: '',
+            apellido: '', 
+            nombre: '',
+            mail: '',
+            cuil: '',
+            movil: '',
+            fijo: '',
+            referente: '',
+            ocupcacion: '',
+            fechaDeAlta: '',
+            firma: ''
+          },
+          data2: {
+            id : '',
+            estado: '',
+            tipo: '',
+            dni: '',
+            nacimiento: '',
+            apellido: '', 
+            nombre: '',
+            mail: '',
+            cuil: '',
+            movil: '',
+            fijo: '',
+            referente: '',
+            ocupcacion: '',
+            fechaDeAlta: '',
+            firma: ''
+          },
+          data3: {
+            id : '',
+            estado: '',
+            tipo: '',
+            dni: '',
+            nacimiento: '',
+            apellido: '', 
+            nombre: '',
+            mail: '',
+            cuil: '',
+            movil: '',
+            fijo: '',
+            referente: '',
+            ocupcacion: '',
+            fechaDeAlta: '',
+            firma: ''
+          },
+          data4: {
+            id : '',
+            estado: '',
+            tipo: '',
+            dni: '',
+            nacimiento: '',
+            apellido: '', 
+            nombre: '',
+            mail: '',
+            cuil: '',
+            movil: '',
+            fijo: '',
+            referente: '',
+            ocupcacion: '',
+            fechaDeAlta: '',
+            firma: ''
+          }
+    }
+}
