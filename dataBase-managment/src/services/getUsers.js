@@ -5,12 +5,12 @@ export const getUsers = async () => {
     const users = response.Search
 
     return users?.map(user => ({
-      id : '',
+      id: '',
       estado: '',
       tipo: '',
       dni: '',
       nacimiento: '',
-      apellido: '', 
+      apellido: '',
       nombre: '',
       mail: '',
       cuil: '',

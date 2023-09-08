@@ -13,7 +13,6 @@ function App () {
 
   const filteredUsers = filterUsers({ users, search })
 
-
   const handleChange = (event) => {
     const newSearch = event.target.value
 
@@ -47,7 +46,7 @@ function App () {
       </header>
 
       <main className='flex bg-[#545c6c] justify-center w-full min-h-4/5 h-max py-10 px-10'>
-          <Users users={filteredUsers} />
+        <Users users={filteredUsers} />
       </main>
     </div>
   )
