@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { SaveModal } from './SaveModal'
 import { CancelModal } from './CancelModal'
+import { useUserInfo } from '../../hooks/useUserInfo'
 
-export function Modal ({ handleClick }) {
+export function Modal ({ handleClick, ID }) {
+  const { userInfo, changeInfo, isInfoChanged, resetInfo } = useUserInfo(ID)
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
@@ -49,10 +51,10 @@ export function Modal ({ handleClick }) {
           5:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
         </div>
       </main>
-      <bottom className='flex justify-around px-6 py-6'>
+      <footer className='flex justify-around px-6 py-6'>
         <CancelModal handleClose={handleClick} />
         <SaveModal handleClose={handleClick} />
-      </bottom>
+      </footer>
     </div>
   )
 }

@@ -1,12 +1,14 @@
 import { formatUser } from './formatUser'
 
 export const getUserInfo = async (ID) => {
+  parseInt(ID)
   try {
-    const res = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=1c74998f&s=${search}`)
-    const response = await res.json()
-    const user = response.Search
+    const res = await fetch(`http://127.0.0.1:5000/get_all_by_ID/${ID}`)
+    console.log(res)
+    const userInfo = await res.json()
+    console.log(userInfo)
 
-    return formatUser(user)
+    return formatUser(userInfo)
   } catch (e) {
     throw new Error('No user found')
   }

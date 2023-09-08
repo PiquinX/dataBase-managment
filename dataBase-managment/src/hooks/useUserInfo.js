@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react'
 import { getUserInfo } from '../services/getUserInfo'
 
-export function useUserInfo ({ ID }) {
-  const [userInfo, setUserInfo] = useState(getUserInfo(ID))
+export function useUserInfo (ID) {
+  const  InitialUserInfo = getUserInfo(ID)
+  
+  const [userInfo, setUserInfo] = useState(InitialUserInfo)
   const originalUserInfo = useRef(userInfo)
 
   const changeInfo = (newValue, whichTable, whichValue) => {
