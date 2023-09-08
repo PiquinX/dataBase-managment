@@ -1,7 +1,6 @@
 import { formatUser } from './formatUser'
 
 export const getUserInfo = async (ID) => {
-  parseInt(ID)
   try {
     const res = await fetch(`http://127.0.0.1:5000/get_all_by_ID/${ID}`)
     console.log(res)
