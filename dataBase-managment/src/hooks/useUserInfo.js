@@ -1,11 +1,16 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getUserInfo } from '../services/getUserInfo'
 
 export function useUserInfo (ID) {
-  const  InitialUserInfo = getUserInfo(ID)
-  
-  const [userInfo, setUserInfo] = useState(InitialUserInfo)
+  const [userInfo, setUserInfo] = useState()
   const originalUserInfo = useRef(userInfo)
+
+  useEffect(() => {
+    getUserInfo(ID).then(newUserInfo => {
+      setUserInfo(newUserInfo)
+      originalUserInfo.current = newUserInfo
+    })
+  }, [])
 
   const changeInfo = (newValue, whichTable, whichValue) => {
     const newUserInfo = structuredClone(userInfo)

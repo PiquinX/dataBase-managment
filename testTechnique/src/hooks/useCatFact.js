@@ -10,6 +10,8 @@ export function useCatFact (){
       getFact().then(newFact => setFact(newFact))
     }
 
+    console.log(fact)
+    
     useEffect(refreshFact,[])
 
 
