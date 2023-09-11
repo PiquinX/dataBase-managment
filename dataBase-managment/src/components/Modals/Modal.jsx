@@ -5,16 +5,9 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function Modal ({ handleClick, ID }) {
-  const { userInfo, changeInfo, isInfoChanged, resetInfo } = useUserInfo(ID)
+  const { userInfo, changeInfo, isInfoChanged, resetInfo, changeInfoUsuarios } = useUserInfo(ID)
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
-
-  // This decide which part of the code will be displayed.
-  const data1Style = whichData === 0 ? 'block' : 'hidden'
-  const data2Style = whichData === 1 ? 'block' : 'hidden'
-  const data3Style = whichData === 2 ? 'block' : 'hidden'
-  const data4Style = whichData === 3 ? 'block' : 'hidden'
-  const data5Style = whichData === 4 ? 'block' : 'hidden'
 
   // This styles the header option depending on which data is displayed.
   const option1Style = whichData === 0 ? 'bg-[#375786] h-full border-transparent' : ''
@@ -38,31 +31,31 @@ export function Modal ({ handleClick, ID }) {
       {
           userInfo &&
             <main className='grid place-items-center h-[80%] overflow-hiiden'>
-              <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} />
+              <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} updateInfo={changeInfoUsuarios} />
               {/* <div className={`${data1Style} text-8xl overflow-auto h-full px-6`}>
               1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataAdressSection isDisplayed={whichData === 1} data={userInfo.direcciones} />
+              <DataAdressSection isDisplayed={whichData === 1} data={userInfo.direcciones} updateInfo={changeInfo} />
               {/* <div className={`${data2Style} text-8xl overflow-auto h-full px-6`}>
               2:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataDonationsSection isDisplayed={whichData === 2} data={userInfo.donaciones} />
+              <DataDonationsSection isDisplayed={whichData === 2} data={userInfo.donaciones} updateInfo={changeInfo} />
               {/* <div className={`${data3Style} text-8xl overflow-auto h-full px-6`}>
               3:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataFinancialSection isDisplayed={whichData === 3} data={userInfo.financieros} />
+              <DataFinancialSection isDisplayed={whichData === 3} data={userInfo.financieros} updateInfo={changeInfo} />
               {/* <div className={`${data4Style} text-8xl overflow-auto h-full px-6`}>
               4:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataObservationsSection isDisplayed={whichData === 4} data={userInfo.observaciones} />
+              <DataObservationsSection isDisplayed={whichData === 4} data={userInfo.observaciones} updateInfo={changeInfo} />
               {/* <div className={`${data5Style} text-8xl overflow-auto h-full px-6`}>
               5:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
             </main>
         }
       <footer className='flex justify-around px-6 py-6'>
-        <CancelModal handleClose={handleClick} />
-        <SaveModal handleClose={handleClick} />
+        <CancelModal handleClose={handleClick} isInfoChanged={isInfoChanged} />
+        <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} />
       </footer>
     </div>
   )
