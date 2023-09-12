@@ -1,9 +1,12 @@
 import { useRef } from "react"
 
 export function DataUserSection ({ isDisplayed, updateInfo, data }) {
+  // this ref contains the full name of the user in case, the we change it.
   const userName = useRef(`${data.nombre} ${data.apellido}`)
+  
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
+  // changing the value depending on the field and value
   const handleChange = (value, field) => {
     updateInfo({ newValue: value, whichField: field })
   }
@@ -39,6 +42,7 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
 export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
+  // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'direcciones', index, whichField: field })
   }
@@ -76,6 +80,7 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
 export function DataDonationsSection ({ isDisplayed, updateInfo, data }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
+  // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'donaciones', index, whichField: field })
   }
@@ -108,8 +113,8 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data }) {
 export function DataFinancialSection ({ isDisplayed, updateInfo, data }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
+  // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
-    console.log(index)
     updateInfo({ newValue: value, whichTable: 'financieros', index, whichField: field })
   }
 
@@ -143,6 +148,7 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data }) {
 export function DataObservationsSection ({ isDisplayed, updateInfo, data }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
+  // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'observaciones', index, whichField: field })
   }

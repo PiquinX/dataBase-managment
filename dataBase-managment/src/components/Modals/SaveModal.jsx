@@ -1,12 +1,15 @@
 import { useState } from 'react'
 
 export function SaveModal ({ handleClose, isInfoChanged }) {
+  // the state of the modal.
   const [modal, setModal] = useState(false)
 
+  // To open and close the modal.
   const handleModal = () => setModal(!modal)
 
   const saveModalStyles = modal ? 'block' : 'hidden'
 
+  // This function close all the modals and also saves the changes.
   const handleSave = () => {
     handleModal()
     handleClose()
