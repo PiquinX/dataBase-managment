@@ -8,12 +8,14 @@ export function useUserInfo (ID) {
   const originalUserInfo = useRef(userInfo)
 
   useEffect(() => {
+    // We get the info of the user by passing the ID.
     getUserInfo(ID).then(newUserInfo => {
       setUserInfo(newUserInfo)
       originalUserInfo.current = newUserInfo
     })
   }, [])
 
+  // This changes the value of the user, depending on the Field passed.
   const changeInfoUsuarios = ({ newValue, whichField }) => {
     const newUserInfo = structuredClone(userInfo)
 
@@ -21,6 +23,8 @@ export function useUserInfo (ID) {
     setUserInfo(newUserInfo)
   }
 
+  
+  // This changes the value of the user, depending on the Field, and table passed.
   const changeInfo = ({ newValue, whichTable, index, whichField }) => {
     const newUserInfo = structuredClone(userInfo)
 
@@ -28,13 +32,13 @@ export function useUserInfo (ID) {
     setUserInfo(newUserInfo)
   }
 
-  const resetInfo = () => setUserInfo(originalUserInfo)
-
+  // This save changes and also refresh the Users to be displayed on the table.
   // const saveInfo = ()=> {
-  //     saveUserInfo(userInfo)
+  //   saveUserInfo(userInfo)
+  //   refreshUsers()
   // }
 
   const isInfoChanged = originalUserInfo.current !== userInfo
 
-  return ({ userInfo, changeInfo, isInfoChanged, resetInfo, changeInfoUsuarios })
+  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuarios })
 }

@@ -10,6 +10,7 @@ const InitialState = await getUsers()
 export function UsersProvider ({ children }) {
   const [users, setUsers] = useState(InitialState)
 
+  // This gets the all the users.
   const updateUsers = () => getUsers().then(newUsers => setUsers(newUsers))
 
   return (
