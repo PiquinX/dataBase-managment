@@ -3,22 +3,24 @@ export const getUsers = async () => {
     const res = await fetch('http://127.0.0.1:5000/get_all_users')
     const users = await res.json()
 
-    return users?.map(user => ({
-      id: user.id,
-      estado: user.estado,
-      tipo: user.tipo,
-      dni: user.dni,
-      nacimiento: user.nacimiento,
-      apellido: user.apellido,
-      nombre: user.nombre,
-      mail: user.mail,
-      cuil: user.cuil,
-      movil: user.movil,
-      fijo: user.fijo,
-      referente: user.referente,
-      ocupcacion: user.ocupacion,
-      fechaDeAlta: user.fechaDeAlta,
-      firma: user.firma
+    console.log(users)
+
+    return users[0]?.map(user => ({
+      id: user.USUARIO_ID,
+      estado: user.ESTADO_DE_USUARIO,
+      tipo: user.TIPO_DE_USUARIO,
+      dni: user.DNI,
+      nacimiento: user.FECHA_DE_NACIMIENTO,
+      apellido: user.APELLIDO,
+      nombre: user.NOMBRE,
+      mail: user.MAIL,
+      cuil: user.CUIL_CUIT,
+      movil: user.TELEFONO_MOVIL,
+      fijo: user.TELEFONO_FIJO,
+      referente: user.REFERENTE,
+      ocupcacion: user.OCUPACION,
+      fechaDeAlta: user.DIA_DE_ALTA,
+      firma: user.FIRMA
     }))
   } catch (e) {
     throw new Error('No users found')
