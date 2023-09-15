@@ -10,7 +10,6 @@ function App () {
 
   // Hook que devuelve la funcion que hace la busqueda de peliculas(fetch), si esta en cargando, si es antes de hacer la primera busqueda y las peliculas.
   const { users } = useUsers()
-  console.log(users)
 
   const filteredUsers = filterUsers({ users, search })
 

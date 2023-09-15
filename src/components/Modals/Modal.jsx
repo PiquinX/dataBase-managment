@@ -5,7 +5,7 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function Modal ({ handleClick, ID }) {
-  const { userInfo, changeInfo, isInfoChanged, resetInfo, changeInfoUsuarios } = useUserInfo(ID)
+  const { userInfo, changeInfo, isInfoChanged, changeInfoUsuarios, saveInfo } = useUserInfo(ID)
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
@@ -55,7 +55,7 @@ export function Modal ({ handleClick, ID }) {
         }
       <footer className='flex justify-around px-6 py-6'>
         <CancelModal handleClose={handleClick} isInfoChanged={isInfoChanged} />
-        <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} />
+        <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} saveInfo={saveInfo} />
       </footer>
     </div>
   )

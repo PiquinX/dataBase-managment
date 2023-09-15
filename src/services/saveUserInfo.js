@@ -1,4 +1,4 @@
-export const getUserInfo = async (userInfo) => {
+export const saveUserInfo = async (userInfo) => {
   try {
     const res = await fetch(`http://127.0.0.1:5000/update_data/${userInfo.usuario.id}`, {
         method: 'PUT',
@@ -7,7 +7,9 @@ export const getUserInfo = async (userInfo) => {
       },
       body: JSON.stringify(userInfo),
     })
+    console.log(res.message)
     const resul = await res.json()
+    console.log(resul.message)
 
     return resul
   } catch (e) {

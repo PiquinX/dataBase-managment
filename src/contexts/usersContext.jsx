@@ -11,12 +11,12 @@ export function UsersProvider ({ children }) {
   const [users, setUsers] = useState(InitialState)
 
   // This gets the all the users.
-  const updateUsers = () => getUsers().then(newUsers => setUsers(newUsers))
+  const refreshUsers = () => getUsers().then(newUsers => setUsers(newUsers))
 
   return (
     <UsersContext.Provider value={{
       users,
-      updateUsers
+      refreshUsers
     }}
     >
       {children}

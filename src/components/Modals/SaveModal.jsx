@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function SaveModal ({ handleClose, isInfoChanged }) {
+export function SaveModal ({ handleClose, isInfoChanged, saveInfo }) {
   // the state of the modal.
   const [modal, setModal] = useState(false)
 
@@ -11,6 +11,7 @@ export function SaveModal ({ handleClose, isInfoChanged }) {
 
   // This function close all the modals and also saves the changes.
   const handleSave = () => {
+    saveInfo()
     handleModal()
     handleClose()
   }

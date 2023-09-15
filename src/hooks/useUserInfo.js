@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { getUserInfo } from '../services/getUserInfo'
 import { useUsers } from './useUsers'
+import { saveUserInfo } from '../services/saveUserInfo'
 
 export function useUserInfo (ID) {
   const { refreshUsers } = useUsers()
@@ -33,12 +34,12 @@ export function useUserInfo (ID) {
   }
 
   // This save changes and also refresh the Users to be displayed on the table.
-  // const saveInfo = ()=> {
-  //   saveUserInfo(userInfo)
-  //   refreshUsers()
-  // }
+  const saveInfo = () => {
+    saveUserInfo(userInfo)
+    refreshUsers()
+  }
 
   const isInfoChanged = originalUserInfo.current !== userInfo
 
-  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuarios })
+  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuarios, saveInfo })
 }
