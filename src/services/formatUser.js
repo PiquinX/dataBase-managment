@@ -33,7 +33,7 @@ export function formatUser (user) {
   formatedUser['donaciones'] = user.donaciones.map(donacion => ({
     'cantidad': donacion.DONACION,
     'donacion_id': donacion.DONACIONES_ID,
-    'estado': donacion.ESTADO_DE_DONACION,
+    'estado_donacion': donacion.ESTADO_DE_DONACION,
     'fecha': donacion.FECHA_DE_DONACION,
     'metodoDePago': donacion.FROMA_DE_PAGO,
     'tipo': donacion.TIPO_DE_DONACION
