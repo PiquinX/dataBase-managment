@@ -6,7 +6,7 @@ export function Users ({ users }) {
       {
         users
           ? (
-            <ul className='grid max-w-80% overflow-y-hidden'>
+            <ul className='grid max-w-[90%] max-h-[80%] h-max overflow-auto'>
               <li className='grid gap-0 grid-cols-responsive duration-75 bg-[#172335]'>
                 <Campo styles='col-start-2'>ID</Campo>
                 <Campo>Estado</Campo>
@@ -52,7 +52,7 @@ export function Users ({ users }) {
               }
             </ul>
             )
-          : <h3 className='text-xl font-bold'>No se encontro ninguna pelicula</h3>
+          : <h3 className='text-xl font-bold'>No se encontro ningun usuario</h3>
             }
     </>
   )
