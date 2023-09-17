@@ -17,7 +17,7 @@ export default {
     },
     screens: {
       xs: { min: '380px' },
-      sm: { min: '500px' },
+      sm: { min: '600px' },
       md: { min: '1000px' },
       lg: { min: '1150px' },
       xl: { min: '1350px' },

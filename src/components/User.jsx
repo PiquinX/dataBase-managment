@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Modal } from './Modals/Modal'
+import { Campo } from './Campo'
 
 export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupcacion, fechaDeAlta, firma }) {
   const [modal, setModal] = useState(false)
@@ -36,11 +37,5 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
           </div>
       }
     </>
-  )
-}
-
-function Campo ({ children, styles }) {
-  return (
-    <p className={`${styles} bg-[#172335] cursor-default w-full px-2 py-1 border h-9 overflow-hidden duration-75 hover:min-w-max hover:z-30 hover:bg-[#3f577c]`}>{children}</p>
   )
 }

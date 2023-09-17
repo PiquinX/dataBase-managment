@@ -13,6 +13,6 @@ export const saveUserInfo = async (userInfo) => {
 
     return resul
   } catch (e) {
-    throw new Error('No user found')
+    throw new Error(e)
   }
 }

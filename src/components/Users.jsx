@@ -1,4 +1,5 @@
 import { User } from './User'
+import { Campo } from './Campo'
 
 export function Users ({ users }) {
   return (
@@ -55,11 +56,5 @@ export function Users ({ users }) {
           : <h3 className='text-xl font-bold'>No se encontro ningun usuario</h3>
             }
     </>
-  )
-}
-
-function Campo ({ children, styles }) {
-  return (
-    <p className={`${styles} bg-[#172335] cursor-default w-full px-2 py-1 border max-h-9 overflow-hidden duration-75 hover:min-w-max hover:relative hover:z-30`}>{children}</p>
   )
 }

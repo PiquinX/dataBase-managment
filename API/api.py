@@ -53,7 +53,7 @@ def update_data(id):
                WHERE USUARIO_ID = {id}""",
             f"""UPDATE direccion SET CALLE = {values['calle']}, NUM = {values['numero']}, PISO = {values['piso']}, DEPTO = {values['depto']}, LOCALIDAD = {values['localidad']}, CODIGO_POSTAL = {values['codigoPostal']}, PROVINCIA = {values['provincia']}
                WHERE USUARIO_ID = {id}""",
-            f"""UPDATE datos_financiero SET DBTO = {values['debito']}, VTO = {values['vto']}, COD_SEG = {values['codigoSeguridad']}, BANCO = {values['banco']}, SUCURSAL = {values['sucursal']}, TIPO_CTA = {values['tipoCTA']}, ESTADO = {values['estado']}
+            f"""UPDATE datos_financiero SET DBTO = {values['debito']}, VTO = {values['vto']}, COD_SEG = {values['codigoSeguridad']}, BANCO = {values['banco']}, SUCURSAL = {values['sucursal']}, TIPO_CTA = {values['tipoCTA']}, ESTADO = {values['estado_financiero']}
                WHERE USUARIO_ID = {id}"""
         ]
 

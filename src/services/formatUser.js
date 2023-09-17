@@ -45,7 +45,7 @@ export function formatUser (user) {
     'codigoSeguridad': financiero.COD_SEG,
     'financiero_id': financiero.DATOS_FINANCIEROS_ID,
     'debito': financiero.DBTO,
-    'estado': financiero.ESTADO,
+    'estado_financiero': financiero.ESTADO,
     'sucursal': financiero.SUCURSAL,
     'tipoCTA': financiero.TIPO_CTA,
     'vto': financiero.VTO
