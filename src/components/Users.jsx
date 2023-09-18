@@ -2,6 +2,7 @@ import { User } from './User'
 import { Campo } from './Campo'
 
 export function Users ({ users }) {
+  console.log(users)
   return (
     <>
       {

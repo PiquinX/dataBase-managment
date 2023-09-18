@@ -43,43 +43,127 @@ def get_all_by_ID(id):
 def update_data(id):
     with sqlite3.connect('data_base.db') as conn:
         values = request.get_json()
+        print(values['donaciones'])
         cursor = conn.cursor()
-        queries = [
-            f"""UPDATE usuarios SET ESTADO_DE_USUARIO = {values['estado']}, TIPO_DE_USUARIO = {values['tipo']}, DNI = {values['dni']}, APELLIDO = {values['apellido']}, NOMBRE = {values['nombre']}, 
-               MAIL = {values['mail']}, CUIL_CUIT = {values['cuil']}, TELEFONO_MOVIL = {values['movil']}, TELEFONO_FIJO = {values['fijo']}, REFERENTE = {values['referente']}, OCUPACION = {values['ocupcacion']},
-               FIRMA = {values['firma']} WHERE USUARIO_ID = {id}""",
-            f"""UPDATE observaciones SET OBSERVACIONES = {values['observacion']} WHERE USUARIO_ID = {id}""",
-            f"""UPDATE donaciones SET DONACION = {values['cantidad']}, ESTADO_DE_DONACION = {values['estado_donacion']}, TIPO_DE_DONACION = {values['tipo']}, FORMA_DE_PAGO = {values['metodoDePago']}
-               WHERE USUARIO_ID = {id}""",
-            f"""UPDATE direccion SET CALLE = {values['calle']}, NUM = {values['numero']}, PISO = {values['piso']}, DEPTO = {values['depto']}, LOCALIDAD = {values['localidad']}, CODIGO_POSTAL = {values['codigoPostal']}, PROVINCIA = {values['provincia']}
-               WHERE USUARIO_ID = {id}""",
-            f"""UPDATE datos_financiero SET DBTO = {values['debito']}, VTO = {values['vto']}, COD_SEG = {values['codigoSeguridad']}, BANCO = {values['banco']}, SUCURSAL = {values['sucursal']}, TIPO_CTA = {values['tipoCTA']}, ESTADO = {values['estado_financiero']}
-               WHERE USUARIO_ID = {id}"""
-        ]
+        query_usuario = """UPDATE usuarios SET 
+                            ESTADO_DE_USUARIO = ?,
+                            TIPO_DE_USUARIO = ?,
+                            DNI = ?,
+                            APELLIDO = ?,
+                            NOMBRE = ?,
+                            MAIL = ?,
+                            CUIL_CUIT = ?,
+                            TELEFONO_MOVIL = ?,
+                            TELEFONO_FIJO = ?,
+                            REFERENTE = ?,
+                            OCUPACION = ?,
+                            FIRMA = ?
+                            WHERE USUARIO_ID = ?"""
+            # Resto de tus consultas
 
-        #  queries = [
-        #     """UPDATE usuarios SET ESTADO_DE_USUARIO = ?, TIPO_DE_USUARIO = ?, DNI = ?, FECHA_DE_NACIMIENTO = ?, APELLIDO = ?, NOMBRE = ?, 
-        #        MAIL = ?, CUIL_CUIT = ?, TELEFONO_MOVIL = ?, TELEFONO_FIJO = ?, REFERENTE = ?, OCUPACION = ?, DIA_DE_ALTA = ?, FIRMA = ?
-        #        WHERE USUARIO_ID = ?""",
-        #     """UPDATE observaciones SET OBSERVACIONES = ? WHERE USUARIO_ID = ?""",
-        #     """UPDATE donaciones SET DONACION = ?, FECHA_DE_DONACION = ?, ESTADO_DE_DONACION = ?, TIPO_DE_DONACION = ?, FORMA_DE_PAGO = ?
-        #        WHERE USUARIO_ID = ?""",
-        #     """UPDATE direccion SET CALLE = ?, NUM = ?, PISO = ?, DEPTO = ?, LOCALIDAD = ?, CODIGO_POSTAL = ?, PROVINCIA = ?
-        #        WHERE USUARIO_ID = ?""",
-        #     """UPDATE datos_financiero SET DBTO = ?, VTO = ?, COD_SEG = ?, BANCO = ?, SUCURSAL = ?, TIPO_CTA = ?, #_CUENTA = ?, ESTADO = ?
-        #        WHERE USUARIO_ID = ?"""
-        # ]
+        query_observaciones = """UPDATE observaciones SET
+                                OBSERVACIONES = ?
+                                WHERE USUARIO_ID = ? AND OBSERVACIONES_ID = ?"""
+
+        query_donaciones = """UPDATE donaciones SET
+                                DONACION = ?,
+                                FECHA_DE_DONACION = ?,
+                                ESTADO_DE_DONACIÓN = ?,
+                                TIPO_DE_DONACIÓN = ?,
+                                FORMA_DE_PAGO = ?
+                                WHERE USUARIO_ID = ? AND DONACIONES_ID = ?"""   
+
+        query_direcciones = """UPDATE direccion SET
+                                CALLE = ?,
+                                NUM = ?,
+                                PISO = ?,
+                                DEPTO = ?,
+                                LOCALIDAD = ?,
+                                CODIGO_POSTAL = ?,
+                                PROVINCIA = ?
+                                WHERE USUARIO_ID = ? AND DIRECCION_ID = ?"""
+
+        query_financieros = """UPDATE datos_financieros SET
+                                DBTO = ?,
+                                VTO = ?,
+                                COD_SEG = ?,
+                                BANCO = ?,
+                                SUCURSAL = ?,
+                                TIPO_CTA = ?,
+                                ESTADO = ?
+                                WHERE USUARIO_ID = ? AND DATOS_FINANCIEROS_ID = ?"""
 
         try:
-            for query in queries:
-                cursor.execute(query)
+            cursor.execute(query_usuario, (
+                values['usuario']['estado'],
+                values['usuario']['tipo'],
+                values['usuario']['dni'],
+                values['usuario']['apellido'],
+                values['usuario']['nombre'],
+                values['usuario']['mail'],
+                values['usuario']['cuil'],
+                values['usuario']['movil'],
+                values['usuario']['fijo'],
+                values['usuario']['referente'],
+                values['usuario']['ocupacion'],
+                values['usuario']['firma'],
+                id  # El ID debería estar aquí
+            ))
             conn.commit()
-        except Exception as e:
-            print(e)
-            return jsonify({"message": f"Error del tipo {e}"})
+            for value in values['donaciones']:
+                cursor.execute(query_donaciones,(
+                    value['cantidad'],
+                    value['fecha'],
+                    value['estado_donacion'],
+                    value['tipo'],
+                    value['metodoDePago'],
+                    id,
+                    value['donacion_id']
+                ))
+                conn.commit()
+
+            for value in values['observaciones']:
+                cursor.execute(query_observaciones,(
+                    value['observacion'],
+                    id,
+                    value['observacion_id']
+                ))
+                conn.commit()
+
+            for value in values['direcciones']:
+                cursor.execute(query_direcciones,(
+                    value['calle'],
+                    value['numero'],
+                    value['piso'],
+                    value['depto'],
+                    value['localidad'],
+                    value['codigoPostal'],
+                    value['provincia'],
+                    id,
+                    value['direccion_id']
+                ))
+                conn.commit()
+
+            for value in values['financieros']:
+                cursor.execute(query_financieros,(
+                    value['debito'],
+                    value['vto'],
+                    value['codigoSeguridad'],
+                    value['banco'],
+                    value['sucursal'],
+                    value['tipoCTA'],
+                    value['estado_financiero'],
+                    id,
+                    value['financiero_id']
+                ))
+                conn.commit()
+
         
-        return jsonify({"message": "Datos actualizados correctamente"})
-    
+
+        except Exception as e:
+            return jsonify({"message": f" {e}"})
+        
+        return jsonify({"message": "Datos actualizados correctamente"})    
 if __name__ == "__main__":
     app.run()
     
