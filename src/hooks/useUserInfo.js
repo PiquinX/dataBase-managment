@@ -34,8 +34,8 @@ export function useUserInfo (ID) {
   }
 
   // This save changes and also refresh the Users to be displayed on the table.
-  const saveInfo = () => {
-    saveUserInfo(userInfo)
+  const saveInfo = async () => {
+    await saveUserInfo(userInfo)
     refreshUsers()
   }
 

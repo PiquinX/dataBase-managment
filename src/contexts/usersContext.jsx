@@ -9,9 +9,11 @@ export function UsersProvider ({ children }) {
   const [users, setUsers] = useState()
 
   // This gets the all the users.
-  const refreshUsers = () => getUsers().then(newUsers => setUsers(newUsers))
+  const refreshUsers = async () => getUsers().then(newUsers => setUsers(newUsers))
 
-  useEffect(()=> refreshUsers(), [])
+  useEffect(()=>{
+    getUsers().then(newUsers => setUsers(newUsers))
+  }, [])
 
   return (
     <UsersContext.Provider value={{

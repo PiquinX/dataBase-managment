@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 
 export function DataUserSection ({ isDisplayed, updateInfo, data }) {
   // this ref contains the full name of the user in case, the we change it.
@@ -41,6 +41,14 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
 
 export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
+  const direccionesCompletas = useRef([])
+
+  useEffect(()=>{
+    for(let i = 0; i < data.length; i++){
+      console.log(`${data[i].calle} ${data[i].numero}`)
+      direccionesCompletas.current.push(`${data[i].calle} ${data[i].numero}`)
+    }
+  },[])
 
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
@@ -58,7 +66,7 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
                 : (
                     data.map((direccion, index) => (
                       <div key={direccion.direccion_id} className="flex flex-col gap-4">
-                        <h4 className="text-xl">{direccion.calle} {direccion.numero} - id: {direccion.direccion_id}</h4>
+                        <h4 className="text-xl">{direccionesCompletas.current[index]} - id: {direccion.direccion_id}</h4>
                         <div className='flex flex-col gap-3 text-black'>
                           <InfoInputs defaultValue={direccion.calle} placeHolder={'Calle'} onChange={(e)=> handleChange(e.target.value, index, 'calle')} />
                           <InfoInputs defaultValue={direccion.numero} placeHolder={'Numero'} onChange={(e)=> handleChange(e.target.value, index, 'numero')} />

@@ -7,8 +7,9 @@ export const saveUserInfo = async (userInfo) => {
       },
       body: JSON.stringify(userInfo),
     })
-    console.log(res)
+
     const resul = await res.json()
+    
     console.log(resul.message)
 
     return resul
