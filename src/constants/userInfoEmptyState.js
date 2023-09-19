@@ -43,5 +43,9 @@ export const userInfoEmptyState = {
         'sucursal': '',
         'tipoCTA': '',
         'vto': ''
+    }],
+    'observaciones':[{
+        'observacion': '',
+        'observacion_id': ''
     }]
 }

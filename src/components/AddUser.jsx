@@ -19,7 +19,7 @@ export function AddUsers (){
                 // remember to implement this code to the rest of the modals
                 modal &&
                 <div className='fixed grid place-items-center w-[100vw] overflow-hidden h-[100vh] z-[1000] top-0 left-0 backdrop-blur bg-[#0000004f]'>
-                    <AddUserModal handleClick={handleClick} ID={id} />
+                    <AddUserModal handleClick={handleClick} />
                 </div>
             }
         </>

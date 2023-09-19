@@ -10,7 +10,7 @@ export function useAddUser () {
   const [newUser, setNewUser] = useState(userInfoEmptyState)
 
   // This changes the value of the user, depending on the Field passed.
-  const changeInfoUsuarios = ({ newValue, whichField }) => {
+  const changeInfoUsuario = ({ newValue, whichField }) => {
     const newUserCopy = structuredClone(newUser)
 
     newUserCopy['usuario'][whichField] = newValue
@@ -26,7 +26,7 @@ export function useAddUser () {
     setNewUser(newUserCopy)
   }
 
-  const addInfo = ({ whichField }) => {
+  const addInfo = (whichField) => {
     const newUserCopy = structuredClone(newUser)
 
     newUserCopy[whichField].push(...userInfoEmptyState[whichField])
@@ -42,5 +42,5 @@ export function useAddUser () {
 
   const isInfoChanged = userInfoEmptyState !== newUser
 
-  return ({ newUser, changeInfo, changeInfoUsuarios, isInfoChanged })
+  return ({ newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo })
 }

@@ -36,7 +36,7 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
   )
 }
 
-export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
+export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
   // changing the value depending on the field and value
@@ -44,12 +44,14 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
     updateInfo({ newValue: value, whichTable: 'direcciones', index, whichField: field })
   }
 
+  const handleClick = ()=> addInfo('direcciones')
+
   return (
     <>
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              <div>
+              <div className="flex flex-col gap-5">
                 {
                   data.map((direccion, index) => (
                     <div key={index} className="flex flex-col gap-4">
@@ -66,16 +68,16 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
                   ))
                 }
               </div>
-              <div>
-                <button>Añadir dirección</button>
-              </div>
+              <Button handleClick={handleClick} >
+                Añadir dirección
+              </Button>
             </div>
         }
     </>
   )
 }
 
-export function DataDonationsSection ({ isDisplayed, updateInfo, data }) {
+export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
   // changing the value depending on the field and value
@@ -83,12 +85,14 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data }) {
     updateInfo({ newValue: value, whichTable: 'donaciones', index, whichField: field })
   }
 
+  const handleClick = ()=> addInfo('donaciones')
+
   return (
     <>
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              <div>
+              <div className="flex flex-col gap-5">
                 {
                   data.map((donacion, index) => (
                     <div key={index} className="flex flex-col gap-4">
@@ -104,16 +108,16 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data }) {
                   ))
                 }
               </div>
-              <div>
-                <button>Añadir donación</button>
-              </div>
+              <Button handleClick={handleClick} >
+                Añadir donación
+              </Button>
             </div>
         }
     </>
   )
 }
 
-export function DataFinancialSection ({ isDisplayed, updateInfo, data }) {
+export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
   // changing the value depending on the field and value
@@ -121,12 +125,14 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data }) {
     updateInfo({ newValue: value, whichTable: 'financieros', index, whichField: field })
   }
 
+  const handleClick = ()=> addInfo('donaciones')
+
   return (
     <>
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              <div>
+              <div className="flex flex-col gap-5">
                 {
                   data.map((financiero, index) => (
                     <div key={index} className="flex flex-col gap-4">
@@ -144,29 +150,31 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data }) {
                   ))
                 }
               </div>
-              <div>
-                <button>Añadir financiero</button>
-              </div>
+              <Button handleClick={handleClick} >
+                Añadir Financiero
+              </Button>
             </div>
         }
     </>
   )
 }
 
-export function DataObservationsSection ({ isDisplayed, updateInfo, data }) {
+export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInfo }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'observaciones', index, whichField: field })
   }
+  
+  const handleClick = ()=> addInfo('observaciones')
 
   return (
     <>
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              <div>
+              <div className="flex flex-col gap-5">
                 {
                   data.map((observacion, index) => (
                     <div key={index} className="flex flex-col gap-4">
@@ -181,9 +189,9 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data }) {
                   ))
                 }
               </div>
-              <div>
-                <button>Añadir observación</button>
-              </div>
+              <Button handleClick={handleClick} >
+                Añadir Observación
+              </Button>
             </div>
         }
     </>
@@ -196,6 +204,14 @@ function InfoInputs({ placeHolder, defaultValue = '', onChange }){
     <div className="relative w-64 h-10" >
       <label className="absolute bg-[#375786] text-white left-2 -top-3 px-1">{placeHolder}</label>
       <input defaultValue={defaultValue} onChange={onChange} className="w-full h-full pl-2 font-bold text-white bg-transparent border-2 rounded outline-none" />
+    </div>
+  )
+}
+
+function Button({ children, handleClick }){
+  return(
+    <div className="w-full py-2">
+      <button onClick={handleClick} className="w-full py-2 font-bold text-green-500 border-2 border-green-500 rounded">{children}</button>
     </div>
   )
 }

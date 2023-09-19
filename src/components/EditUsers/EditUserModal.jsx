@@ -5,7 +5,7 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function EditUserModal ({ handleClick, ID }) {
-  const { userInfo, changeInfo, isInfoChanged, changeInfoUsuarios, saveInfo } = useUserInfo(ID)
+  const { userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo } = useUserInfo(ID)
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
@@ -31,7 +31,7 @@ export function EditUserModal ({ handleClick, ID }) {
       {
           userInfo &&
             <main className='grid place-items-center min-h-max h-[80%] overflow-auto pt-3 pb-6 bar'>
-              <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} updateInfo={changeInfoUsuarios} />
+              <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} updateInfo={changeInfoUsuario} />
               {/* <div className={`${data1Style} text-8xl overflow-auto h-full px-6`}>
               1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}

@@ -17,7 +17,7 @@ export function useUserInfo (ID) {
   }, [])
 
   // This changes the value of the user, depending on the Field passed.
-  const changeInfoUsuarios = ({ newValue, whichField }) => {
+  const changeInfoUsuario = ({ newValue, whichField }) => {
     const newUserInfo = structuredClone(userInfo)
 
     newUserInfo['usuario'][whichField] = newValue
@@ -41,5 +41,5 @@ export function useUserInfo (ID) {
 
   const isInfoChanged = originalUserInfo.current !== userInfo
 
-  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuarios, saveInfo })
+  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo })
 }

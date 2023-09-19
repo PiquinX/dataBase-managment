@@ -5,7 +5,7 @@ import { useAddUser } from '../../hooks/useAddUser'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function AddUserModal ({ handleClick }) {
-  const { changeInfo, changeInfoUsuarios, isInfoChanged } = useAddUser()
+  const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo } = useAddUser()
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
@@ -32,23 +32,23 @@ export function AddUserModal ({ handleClick }) {
         // I left this because I want to save it in the local storage in order to edit it later.
           true &&
             <main className='grid place-items-center min-h-max h-[80%] overflow-auto pt-3 pb-6 bar'>
-              <DataUserSection isDisplayed={whichData === 0}  updateInfo={changeInfoUsuarios} />
+              <DataUserSection isDisplayed={whichData === 0}  updateInfo={changeInfoUsuario} data={newUser.usuario} />
               {/* <div className={`${data1Style} text-8xl overflow-auto h-full px-6`}>
               1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} />
+              <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} data={newUser.direcciones} addInfo={addInfo} />
               {/* <div className={`${data2Style} text-8xl overflow-auto h-full px-6`}>
               2:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} />
+              <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} data={newUser.donaciones} addInfo={addInfo} />
               {/* <div className={`${data3Style} text-8xl overflow-auto h-full px-6`}>
               3:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} />
+              <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} data={newUser.financieros} addInfo={addInfo} />
               {/* <div className={`${data4Style} text-8xl overflow-auto h-full px-6`}>
               4:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} />
+              <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} data={newUser.observaciones} addInfo={addInfo} />
               {/* <div className={`${data5Style} text-8xl overflow-auto h-full px-6`}>
               5:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}

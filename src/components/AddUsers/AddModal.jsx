@@ -24,7 +24,7 @@ export function SaveModal ({ handleClose, isInfoChanged, addUser }) {
               <h3 className='text-xl'>Estas seguro de los cambios?</h3>
               <div className="flex justify-around w-full">
                 <button onClick={handleModal} className="px-3 py-1 text-lg bg-red-500 rounded-lg" >Cancelar</button>
-                <button onClick={handleAdd} className="px-3 py-1 text-lg bg-green-400 rounded-lg">Confirmar</button>
+                <button onClick={handleAdd} className="px-3 py-1 text-lg bg-green-400 rounded-lg" >Confirmar</button>
               </div>
           </div>
         </div>
