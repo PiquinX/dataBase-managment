@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Modal } from './Modals/Modal'
+import { EditUserModal } from './EditUsers/EditUserModal'
 import { Campo } from './Campo'
 
 export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupcacion, fechaDeAlta, firma }) {
@@ -33,7 +33,7 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
         // remember to implement this code to the rest of the modals
         modal &&
           <div className='fixed grid place-items-center w-[100vw] overflow-hidden h-[100vh] z-[1000] top-0 left-0 backdrop-blur bg-[#0000004f]'>
-            <Modal handleClick={handleClick} ID={id} />
+            <EditUserModal handleClick={handleClick} ID={id} />
           </div>
       }
     </>

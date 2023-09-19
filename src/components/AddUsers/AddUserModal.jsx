@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { SaveModal } from './SaveModal'
+import { SaveModal } from './AddModal'
 import { CancelModal } from './CancelModal'
-import { useUserInfo } from '../../hooks/useUserInfo'
+import { useAddUser } from '../../hooks/useAddUser'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
-export function Modal ({ handleClick, ID }) {
-  const { userInfo, changeInfo, isInfoChanged, changeInfoUsuarios, saveInfo } = useUserInfo(ID)
+export function AddUserModal ({ handleClick }) {
+  const { changeInfo, changeInfoUsuarios, isInfoChanged } = useAddUser()
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
@@ -29,33 +29,34 @@ export function Modal ({ handleClick, ID }) {
         <div className='flex items-center justify-end flex-grow px-5'><i onClick={handleClick} className='text-lg font-bold cursor-pointer hover:text-red-500 fa-solid fa-x' /></div>
       </header>
       {
-          userInfo &&
+        // I left this because I want to save it in the local storage in order to edit it later.
+          true &&
             <main className='grid place-items-center min-h-max h-[80%] overflow-auto pt-3 pb-6 bar'>
-              <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} updateInfo={changeInfoUsuarios} />
+              <DataUserSection isDisplayed={whichData === 0}  updateInfo={changeInfoUsuarios} />
               {/* <div className={`${data1Style} text-8xl overflow-auto h-full px-6`}>
               1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataAdressSection isDisplayed={whichData === 1} data={userInfo.direcciones} updateInfo={changeInfo} />
+              <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} />
               {/* <div className={`${data2Style} text-8xl overflow-auto h-full px-6`}>
               2:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataDonationsSection isDisplayed={whichData === 2} data={userInfo.donaciones} updateInfo={changeInfo} />
+              <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} />
               {/* <div className={`${data3Style} text-8xl overflow-auto h-full px-6`}>
               3:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataFinancialSection isDisplayed={whichData === 3} data={userInfo.financieros} updateInfo={changeInfo} />
+              <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} />
               {/* <div className={`${data4Style} text-8xl overflow-auto h-full px-6`}>
               4:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
-              <DataObservationsSection isDisplayed={whichData === 4} data={userInfo.observaciones} updateInfo={changeInfo} />
+              <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} />
               {/* <div className={`${data5Style} text-8xl overflow-auto h-full px-6`}>
               5:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
             </div> */}
             </main>
         }
       <footer className='flex justify-around items-center max-h-[20%] flex-grow border-t-2 border-[#2f4a72]'>
-        <CancelModal handleClose={handleClick} isInfoChanged={isInfoChanged} />
-        <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} saveInfo={saveInfo} />
+        <CancelModal handleClose={handleClick} />
+        <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} />
       </footer>
     </div>
   )

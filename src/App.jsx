@@ -3,6 +3,7 @@ import './App.css'
 import { Users } from './components/Users'
 import { useUsers } from './hooks/useUsers'
 import { filterUsers } from './services/filterUsers'
+import { AddUsers } from './components/AddUser'
 
 function App () {
   // Estado que contiene la busqueda
@@ -45,7 +46,8 @@ function App () {
         </div>
       </header>
 
-      <main className='flex bg-[#545c6c] text-xs sm:text-sm md:text-base justify-center w-full h-full py-10 px-10'>
+      <main className='flex flex-col bg-[#545c6c] text-xs sm:text-sm md:text-base items-center w-full h-full gap-4 py-4 px-8'>
+        <AddUsers />
         <Users users={filteredUsers} />
       </main>
     </div>

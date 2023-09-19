@@ -1,9 +1,6 @@
 import { useEffect, useRef } from "react"
 
 export function DataUserSection ({ isDisplayed, updateInfo, data }) {
-  // this ref contains the full name of the user in case, the we change it.
-  const userName = useRef(`${data.nombre} ${data.apellido}`)
-  
   const dataStyle = isDisplayed ? 'block' : 'hidden'
 
   // changing the value depending on the field and value
@@ -16,7 +13,7 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
       {
           data &&
             <div className={`${dataStyle} h-full px-6 flex flex-col gap-4`} >
-              <h4 className="text-xl">{userName.current} - {data.id}</h4>
+              <h4 className="text-xl">Info general</h4>
               <div className='flex flex-col gap-3 text-black'>
                 <InfoInputs defaultValue={data.nombre} placeHolder={'Nombre'} onChange={(e)=> handleChange(e.target.value, 'nombre')} />
                 <InfoInputs defaultValue={data.apellido} placeHolder={'Apellido'} onChange={(e)=> handleChange(e.target.value, 'apellido')} />
@@ -41,14 +38,6 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
 
 export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
   const dataStyle = isDisplayed ? 'block' : 'hidden'
-  const direccionesCompletas = useRef([])
-
-  useEffect(()=>{
-    for(let i = 0; i < data.length; i++){
-      console.log(`${data[i].calle} ${data[i].numero}`)
-      direccionesCompletas.current.push(`${data[i].calle} ${data[i].numero}`)
-    }
-  },[])
 
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
@@ -60,25 +49,26 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data }) {
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              {
-              (data[0].numero === null || data[0].numero === undefined)
-                ? <h4 className="text-xl">Este usuario no tiene direcciones</h4>
-                : (
-                    data.map((direccion, index) => (
-                      <div key={direccion.direccion_id} className="flex flex-col gap-4">
-                        <h4 className="text-xl">{direccionesCompletas.current[index]} - id: {direccion.direccion_id}</h4>
-                        <div className='flex flex-col gap-3 text-black'>
-                          <InfoInputs defaultValue={direccion.calle} placeHolder={'Calle'} onChange={(e)=> handleChange(e.target.value, index, 'calle')} />
-                          <InfoInputs defaultValue={direccion.numero} placeHolder={'Numero'} onChange={(e)=> handleChange(e.target.value, index, 'numero')} />
-                          <InfoInputs defaultValue={direccion.piso} placeHolder={'Piso'} onChange={(e)=> handleChange(e.target.value, index, 'piso')} />
-                          <InfoInputs defaultValue={direccion.localidad} placeHolder={'Localidad'} onChange={(e)=> handleChange(e.target.value, index, 'localidad')} />
-                          <InfoInputs defaultValue={direccion.codigoPostal} placeHolder={'Codigo Postal'} onChange={(e)=> handleChange(e.target.value, index, 'codigoPostal')} />
-                          <InfoInputs defaultValue={direccion.provincia} placeHolder={'Provincia'} onChange={(e)=> handleChange(e.target.value, index, 'provincia')} />
-                        </div>
+              <div>
+                {
+                  data.map((direccion, index) => (
+                    <div key={index} className="flex flex-col gap-4">
+                      <h4 className="text-xl">Direccion {index + 1}</h4>
+                      <div className='flex flex-col gap-3 text-black'>
+                        <InfoInputs defaultValue={direccion.calle} placeHolder={'Calle'} onChange={(e)=> handleChange(e.target.value, index, 'calle')} />
+                        <InfoInputs defaultValue={direccion.numero} placeHolder={'Numero'} onChange={(e)=> handleChange(e.target.value, index, 'numero')} />
+                        <InfoInputs defaultValue={direccion.piso} placeHolder={'Piso'} onChange={(e)=> handleChange(e.target.value, index, 'piso')} />
+                        <InfoInputs defaultValue={direccion.localidad} placeHolder={'Localidad'} onChange={(e)=> handleChange(e.target.value, index, 'localidad')} />
+                        <InfoInputs defaultValue={direccion.codigoPostal} placeHolder={'Codigo Postal'} onChange={(e)=> handleChange(e.target.value, index, 'codigoPostal')} />
+                        <InfoInputs defaultValue={direccion.provincia} placeHolder={'Provincia'} onChange={(e)=> handleChange(e.target.value, index, 'provincia')} />
                       </div>
-                    ))
-                  )
-            }
+                    </div>
+                  ))
+                }
+              </div>
+              <div>
+                <button>Añadir dirección</button>
+              </div>
             </div>
         }
     </>
@@ -98,10 +88,11 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data }) {
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              {
+              <div>
+                {
                   data.map((donacion, index) => (
-                    <div key={donacion.donacion_id} className="flex flex-col gap-4">
-                      <h4 className="text-xl">Donacion - {donacion.donacion_id}</h4>
+                    <div key={index} className="flex flex-col gap-4">
+                      <h4 className="text-xl">Donacion {index + 1}</h4>
                       <div className='flex flex-col gap-3 text-black'>
                         <InfoInputs defaultValue={`${donacion.cantidad}`} placeHolder={'Cantidad'} onChange={(e)=> handleChange(e.target.value, index, 'cantidad')} />
                         <InfoInputs defaultValue={donacion.estado_donacion} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_donacion')} />
@@ -111,7 +102,11 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data }) {
                       </div>
                     </div>
                   ))
-            }
+                }
+              </div>
+              <div>
+                <button>Añadir donación</button>
+              </div>
             </div>
         }
     </>
@@ -131,10 +126,11 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data }) {
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              {
+              <div>
+                {
                   data.map((financiero, index) => (
-                    <div key={financiero.financiero_id} className="flex flex-col gap-4">
-                      <h4 className="text-xl">Financiero - {financiero.financiero_id}</h4>
+                    <div key={index} className="flex flex-col gap-4">
+                      <h4 className="text-xl">Financiero {index + 1}</h4>
                       <div className='flex flex-col gap-3 text-black'>
                         <InfoInputs defaultValue={financiero.banco} placeHolder={'Banco'} onChange={(e)=> handleChange(e.target.value, index, 'banco')} />
                         <InfoInputs defaultValue={financiero.codigoSeguridad} placeHolder={'Codigo de seguridad'} onChange={(e)=> handleChange(e.target.value, index, 'codigoSeguridad')} />
@@ -146,7 +142,11 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data }) {
                       </div>
                     </div>
                   ))
-            }
+                }
+              </div>
+              <div>
+                <button>Añadir financiero</button>
+              </div>
             </div>
         }
     </>
@@ -166,10 +166,11 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data }) {
       {
           data &&
             <div className={`${dataStyle} h-full px-6`}>
-              {
+              <div>
+                {
                   data.map((observacion, index) => (
-                    <div key={observacion.observacion_id} className="flex flex-col gap-4">
-                      <h4 className="text-xl">Observacion - {observacion.observacion_id}</h4>
+                    <div key={index} className="flex flex-col gap-4">
+                      <h4 className="text-xl">Observacion {index + 1}</h4>
                       <div className='flex flex-col gap-3 text-black'>
                         <textarea 
                           defaultValue={observacion.observacion} 
@@ -178,7 +179,11 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data }) {
                       </div>
                     </div>
                   ))
-            }
+                }
+              </div>
+              <div>
+                <button>Añadir observación</button>
+              </div>
             </div>
         }
     </>
@@ -186,7 +191,7 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data }) {
 }
 
 
-function InfoInputs({ placeHolder, defaultValue, onChange }){
+function InfoInputs({ placeHolder, defaultValue = '', onChange }){
   return(
     <div className="relative w-64 h-10" >
       <label className="absolute bg-[#375786] text-white left-2 -top-3 px-1">{placeHolder}</label>
