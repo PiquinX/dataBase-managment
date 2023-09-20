@@ -17,6 +17,7 @@ export function useAddUser () {
     setNewUser(newUserCopy)
   }
 
+  // This sets the newUsers to its default value
   const clearNewUser = () => {
     setNewUser(userInfoEmptyState)
     localStorage.removeItem('newUser')
