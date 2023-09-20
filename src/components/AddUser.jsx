@@ -10,7 +10,7 @@ export function AddUsers (){
     
     return(
         <>
-            <div className='flex flex-row items-center justify-end w-full h-8'>
+            <div className='flex flex-row items-center justify-end w-full max-w-[1694px] h-8'>
                 <button onClick={handleClick}>
                     <i className="p-2 bg-green-400 rounded fa-solid fa-plus"></i>
                 </button>

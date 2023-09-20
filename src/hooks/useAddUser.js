@@ -7,7 +7,7 @@ import { userInfoEmptyState } from '../constants/userInfoEmptyState'
 
 export function useAddUser () {
   // const { refreshUsers } = useUsers()
-  const [newUser, setNewUser] = useState(userInfoEmptyState)
+  const [newUser, setNewUser] = useState(()=> JSON.parse(localStorage.getItem('newUser')) || userInfoEmptyState )
 
   // This changes the value of the user, depending on the Field passed.
   const changeInfoUsuario = ({ newValue, whichField }) => {
@@ -15,6 +15,11 @@ export function useAddUser () {
 
     newUserCopy['usuario'][whichField] = newValue
     setNewUser(newUserCopy)
+  }
+
+  const clearNewUser = () => {
+    setNewUser(userInfoEmptyState)
+    localStorage.removeItem('newUser')
   }
 
   
@@ -35,12 +40,16 @@ export function useAddUser () {
   }
 
   // This save changes and also refresh the Users to be displayed on the table.
-//   const addUser = async () => {
-//     await saveUserInfo(userInfo)
-//     refreshUsers()
-//   }
+  // const addUser = async () => {
+  //   await saveUserInfo(userInfo)
+  //   refreshUsers()
+  // }
+
+  useEffect(()=>{
+    localStorage.setItem('newUser', JSON.stringify(newUser))
+  },[newUser])
 
   const isInfoChanged = userInfoEmptyState !== newUser
 
-  return ({ newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo })
+  return ({ newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser })
 }

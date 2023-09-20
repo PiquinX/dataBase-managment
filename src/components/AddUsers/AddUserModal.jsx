@@ -5,9 +5,13 @@ import { useAddUser } from '../../hooks/useAddUser'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function AddUserModal ({ handleClick }) {
-  const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo } = useAddUser()
+  const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser } = useAddUser()
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
+
+  const handleClear = () => {
+    clearNewUser()
+  }
 
   // This styles the header option depending on which data is displayed.
   const option1Style = whichData === 0 ? 'bg-[#375786] h-full border-transparent' : ''
@@ -28,32 +32,16 @@ export function AddUserModal ({ handleClick }) {
         </div>
         <div className='flex items-center justify-end flex-grow px-5'><i onClick={handleClick} className='text-lg font-bold cursor-pointer hover:text-red-500 fa-solid fa-x' /></div>
       </header>
-      {
-        // I left this because I want to save it in the local storage in order to edit it later.
-          true &&
-            <main className='grid place-items-center min-h-max h-[80%] overflow-auto pt-3 pb-6 bar'>
+            <main className='grid place-items-center relative min-h-max h-[80%] overflow-y-scroll pt-3 pb-6 bar'>
+              <button className='absolute flex items-center gap-1 px-2 py-1 font-bold duration-75 border-2 rounded left-5 top-5 hover:bg-red-500' onClick={handleClear}>
+                Reset <i className="fa-solid fa-trash"></i>
+              </button>
               <DataUserSection isDisplayed={whichData === 0}  updateInfo={changeInfoUsuario} data={newUser.usuario} />
-              {/* <div className={`${data1Style} text-8xl overflow-auto h-full px-6`}>
-              1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} data={newUser.direcciones} addInfo={addInfo} />
-              {/* <div className={`${data2Style} text-8xl overflow-auto h-full px-6`}>
-              2:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} data={newUser.donaciones} addInfo={addInfo} />
-              {/* <div className={`${data3Style} text-8xl overflow-auto h-full px-6`}>
-              3:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} data={newUser.financieros} addInfo={addInfo} />
-              {/* <div className={`${data4Style} text-8xl overflow-auto h-full px-6`}>
-              4:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} data={newUser.observaciones} addInfo={addInfo} />
-              {/* <div className={`${data5Style} text-8xl overflow-auto h-full px-6`}>
-              5:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
             </main>
-        }
       <footer className='flex justify-around items-center max-h-[20%] flex-grow border-t-2 border-[#2f4a72]'>
         <CancelModal handleClose={handleClick} />
         <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} />

@@ -30,27 +30,12 @@ export function EditUserModal ({ handleClick, ID }) {
       </header>
       {
           userInfo &&
-            <main className='grid place-items-center min-h-max h-[80%] overflow-auto pt-3 pb-6 bar'>
+            <main className='grid place-items-center min-h-max h-[80%] overflow-y-scroll pt-3 pb-6 bar'>
               <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} updateInfo={changeInfoUsuario} />
-              {/* <div className={`${data1Style} text-8xl overflow-auto h-full px-6`}>
-              1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataAdressSection isDisplayed={whichData === 1} data={userInfo.direcciones} updateInfo={changeInfo} />
-              {/* <div className={`${data2Style} text-8xl overflow-auto h-full px-6`}>
-              2:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataDonationsSection isDisplayed={whichData === 2} data={userInfo.donaciones} updateInfo={changeInfo} />
-              {/* <div className={`${data3Style} text-8xl overflow-auto h-full px-6`}>
-              3:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataFinancialSection isDisplayed={whichData === 3} data={userInfo.financieros} updateInfo={changeInfo} />
-              {/* <div className={`${data4Style} text-8xl overflow-auto h-full px-6`}>
-              4:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
               <DataObservationsSection isDisplayed={whichData === 4} data={userInfo.observaciones} updateInfo={changeInfo} />
-              {/* <div className={`${data5Style} text-8xl overflow-auto h-full px-6`}>
-              5:  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, hic beatae. Ex reiciendis eveniet ut eum nisi, perspiciatis quas. Nobis quo laboriosam, veritatis amet possimus expedita fugit molestias non alias.
-            </div> */}
             </main>
         }
       <footer className='flex justify-around items-center max-h-[20%] flex-grow border-t-2 border-[#2f4a72]'>

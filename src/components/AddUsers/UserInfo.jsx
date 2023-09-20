@@ -15,20 +15,20 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
             <div className={`${dataStyle} h-full px-6 flex flex-col gap-4`} >
               <h4 className="text-xl">Info general</h4>
               <div className='flex flex-col gap-3 text-black'>
-                <InfoInputs defaultValue={data.nombre} placeHolder={'Nombre'} onChange={(e)=> handleChange(e.target.value, 'nombre')} />
-                <InfoInputs defaultValue={data.apellido} placeHolder={'Apellido'} onChange={(e)=> handleChange(e.target.value, 'apellido')} />
-                <InfoInputs defaultValue={data.estado} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, 'estado')} />
-                <InfoInputs defaultValue={data.nacimiento} placeHolder={'Nacimiento'} onChange={(e)=> handleChange(e.target.value, 'nacimiento')} />
-                <InfoInputs defaultValue={data.dni} placeHolder={'DNI'} onChange={(e)=> handleChange(e.target.value, 'dni')} type='number' />
-                <InfoInputs defaultValue={data.tipo} placeHolder={'Tipo'} onChange={(e)=> handleChange(e.target.value, 'tipo')} />
-                <InfoInputs defaultValue={data.mail} placeHolder={'Mail'} onChange={(e)=> handleChange(e.target.value, 'mail')} type='email' />
-                <InfoInputs defaultValue={data.cuil} placeHolder={'Cuil/Cuit'} onChange={(e)=> handleChange(e.target.value, 'cuil')} type='number' />
-                <InfoInputs defaultValue={data.movil} placeHolder={'Movil'} onChange={(e)=> handleChange(e.target.value, 'movil')} />
-                <InfoInputs defaultValue={data.fijo} placeHolder={'Fijo'} onChange={(e)=> handleChange(e.target.value, 'fijo')} />
-                <InfoInputs defaultValue={data.referente} placeHolder={'Referente'} onChange={(e)=> handleChange(e.target.value, 'referente')} />
-                <InfoInputs defaultValue={data.ocupcacion} placeHolder={'Ocupacion'} onChange={(e)=> handleChange(e.target.value, 'ocupcacion')} />
-                <InfoInputs defaultValue={data.fechaDeAlta} placeHolder={'Fecha de alta'} onChange={(e)=> handleChange(e.target.value, 'fechaDeAlta')} />
-                <InfoInputs defaultValue={data.firma} placeHolder={'Firma'} onChange={(e)=> handleChange(e.target.value, 'firma')} />
+                <InfoInputs value={data.nombre} placeHolder={'Nombre'} onChange={(e)=> handleChange(e.target.value, 'nombre')} />
+                <InfoInputs value={data.apellido} placeHolder={'Apellido'} onChange={(e)=> handleChange(e.target.value, 'apellido')} />
+                <InfoInputs value={data.estado} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, 'estado')} />
+                <InfoInputs value={data.nacimiento} placeHolder={'Nacimiento'} onChange={(e)=> handleChange(e.target.value, 'nacimiento')} />
+                <InfoInputs value={data.dni} placeHolder={'DNI'} onChange={(e)=> handleChange(e.target.value, 'dni')} type='number' />
+                <InfoInputs value={data.tipo} placeHolder={'Tipo'} onChange={(e)=> handleChange(e.target.value, 'tipo')} />
+                <InfoInputs value={data.mail} placeHolder={'Mail'} onChange={(e)=> handleChange(e.target.value, 'mail')} type='email' />
+                <InfoInputs value={data.cuil} placeHolder={'Cuil/Cuit'} onChange={(e)=> handleChange(e.target.value, 'cuil')} type='number' />
+                <InfoInputs value={data.movil} placeHolder={'Movil'} onChange={(e)=> handleChange(e.target.value, 'movil')} />
+                <InfoInputs value={data.fijo} placeHolder={'Fijo'} onChange={(e)=> handleChange(e.target.value, 'fijo')} />
+                <InfoInputs value={data.referente} placeHolder={'Referente'} onChange={(e)=> handleChange(e.target.value, 'referente')} />
+                <InfoInputs value={data.ocupcacion} placeHolder={'Ocupacion'} onChange={(e)=> handleChange(e.target.value, 'ocupcacion')} />
+                <InfoInputs value={data.fechaDeAlta} placeHolder={'Fecha de alta'} onChange={(e)=> handleChange(e.target.value, 'fechaDeAlta')} />
+                <InfoInputs value={data.firma} placeHolder={'Firma'} onChange={(e)=> handleChange(e.target.value, 'firma')} />
               </div>
             </div>
         }
@@ -57,12 +57,12 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
                     <div key={index} className="flex flex-col gap-4">
                       <h4 className="text-xl">Direccion {index + 1}</h4>
                       <div className='flex flex-col gap-3 text-black'>
-                        <InfoInputs defaultValue={direccion.calle} placeHolder={'Calle'} onChange={(e)=> handleChange(e.target.value, index, 'calle')} />
-                        <InfoInputs defaultValue={direccion.numero} placeHolder={'Numero'} onChange={(e)=> handleChange(e.target.value, index, 'numero')} />
-                        <InfoInputs defaultValue={direccion.piso} placeHolder={'Piso'} onChange={(e)=> handleChange(e.target.value, index, 'piso')} />
-                        <InfoInputs defaultValue={direccion.localidad} placeHolder={'Localidad'} onChange={(e)=> handleChange(e.target.value, index, 'localidad')} />
-                        <InfoInputs defaultValue={direccion.codigoPostal} placeHolder={'Codigo Postal'} onChange={(e)=> handleChange(e.target.value, index, 'codigoPostal')} />
-                        <InfoInputs defaultValue={direccion.provincia} placeHolder={'Provincia'} onChange={(e)=> handleChange(e.target.value, index, 'provincia')} />
+                        <InfoInputs value={direccion.calle} placeHolder={'Calle'} onChange={(e)=> handleChange(e.target.value, index, 'calle')} />
+                        <InfoInputs value={direccion.numero} placeHolder={'Numero'} onChange={(e)=> handleChange(e.target.value, index, 'numero')} />
+                        <InfoInputs value={direccion.piso} placeHolder={'Piso'} onChange={(e)=> handleChange(e.target.value, index, 'piso')} />
+                        <InfoInputs value={direccion.localidad} placeHolder={'Localidad'} onChange={(e)=> handleChange(e.target.value, index, 'localidad')} />
+                        <InfoInputs value={direccion.codigoPostal} placeHolder={'Codigo Postal'} onChange={(e)=> handleChange(e.target.value, index, 'codigoPostal')} />
+                        <InfoInputs value={direccion.provincia} placeHolder={'Provincia'} onChange={(e)=> handleChange(e.target.value, index, 'provincia')} />
                       </div>
                     </div>
                   ))
@@ -98,11 +98,11 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo }
                     <div key={index} className="flex flex-col gap-4">
                       <h4 className="text-xl">Donacion {index + 1}</h4>
                       <div className='flex flex-col gap-3 text-black'>
-                        <InfoInputs defaultValue={`${donacion.cantidad}`} placeHolder={'Cantidad'} onChange={(e)=> handleChange(e.target.value, index, 'cantidad')} />
-                        <InfoInputs defaultValue={donacion.estado_donacion} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_donacion')} />
-                        <InfoInputs defaultValue={donacion.fecha} placeHolder={'Fecha'} onChange={(e)=> handleChange(e.target.value, index, 'fecha')} />
-                        <InfoInputs defaultValue={donacion.metodoDePago} placeHolder={'Metodo de pago'} onChange={(e)=> handleChange(e.target.value, index, 'metodoDePago')} />
-                        <InfoInputs defaultValue={donacion.tipo} placeHolder={'Tipo'} onChange={(e)=> handleChange(e.target.value, index, 'tipo')} />
+                        <InfoInputs value={`${donacion.cantidad}`} placeHolder={'Cantidad'} onChange={(e)=> handleChange(e.target.value, index, 'cantidad')} />
+                        <InfoInputs value={donacion.estado_donacion} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_donacion')} />
+                        <InfoInputs value={donacion.fecha} placeHolder={'Fecha'} onChange={(e)=> handleChange(e.target.value, index, 'fecha')} />
+                        <InfoInputs value={donacion.metodoDePago} placeHolder={'Metodo de pago'} onChange={(e)=> handleChange(e.target.value, index, 'metodoDePago')} />
+                        <InfoInputs value={donacion.tipo} placeHolder={'Tipo'} onChange={(e)=> handleChange(e.target.value, index, 'tipo')} />
                       </div>
                     </div>
                   ))
@@ -125,7 +125,7 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }
     updateInfo({ newValue: value, whichTable: 'financieros', index, whichField: field })
   }
 
-  const handleClick = ()=> addInfo('donaciones')
+  const handleClick = ()=> addInfo('financieros')
 
   return (
     <>
@@ -138,13 +138,13 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }
                     <div key={index} className="flex flex-col gap-4">
                       <h4 className="text-xl">Financiero {index + 1}</h4>
                       <div className='flex flex-col gap-3 text-black'>
-                        <InfoInputs defaultValue={financiero.banco} placeHolder={'Banco'} onChange={(e)=> handleChange(e.target.value, index, 'banco')} />
-                        <InfoInputs defaultValue={financiero.codigoSeguridad} placeHolder={'Codigo de seguridad'} onChange={(e)=> handleChange(e.target.value, index, 'codigoSeguridad')} />
-                        <InfoInputs defaultValue={financiero.debito} placeHolder={'Debito'} onChange={(e)=> handleChange(e.target.value, index, 'debito')} />
-                        <InfoInputs defaultValue={financiero.estado_financiero} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_financiero')} />
-                        <InfoInputs defaultValue={financiero.sucursal} placeHolder={'Sucursal'} onChange={(e)=> handleChange(e.target.value, index, 'sucursal')} />
-                        <InfoInputs defaultValue={financiero.tipoCTA} placeHolder={'Tipo CTA'} onChange={(e)=> handleChange(e.target.value, index, 'tipoCTA')} />
-                        <InfoInputs defaultValue={financiero.vto} placeHolder={'VTO'} onChange={(e)=> handleChange(e.target.value, index, 'vto')} />
+                        <InfoInputs value={financiero.banco} placeHolder={'Banco'} onChange={(e)=> handleChange(e.target.value, index, 'banco')} />
+                        <InfoInputs value={financiero.codigoSeguridad} placeHolder={'Codigo de seguridad'} onChange={(e)=> handleChange(e.target.value, index, 'codigoSeguridad')} />
+                        <InfoInputs value={financiero.debito} placeHolder={'Debito'} onChange={(e)=> handleChange(e.target.value, index, 'debito')} />
+                        <InfoInputs value={financiero.estado_financiero} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_financiero')} />
+                        <InfoInputs value={financiero.sucursal} placeHolder={'Sucursal'} onChange={(e)=> handleChange(e.target.value, index, 'sucursal')} />
+                        <InfoInputs value={financiero.tipoCTA} placeHolder={'Tipo CTA'} onChange={(e)=> handleChange(e.target.value, index, 'tipoCTA')} />
+                        <InfoInputs value={financiero.vto} placeHolder={'VTO'} onChange={(e)=> handleChange(e.target.value, index, 'vto')} />
                       </div>
                     </div>
                   ))
@@ -181,7 +181,7 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
                       <h4 className="text-xl">Observacion {index + 1}</h4>
                       <div className='flex flex-col gap-3 text-black'>
                         <textarea 
-                          defaultValue={observacion.observacion} 
+                          value={observacion.observacion} 
                           onChange={(e)=> handleChange(e.target.value, index, 'observacion')} 
                           className='resize-none' />
                       </div>
@@ -199,11 +199,11 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
 }
 
 
-function InfoInputs({ placeHolder, defaultValue = '', onChange }){
+function InfoInputs({ placeHolder, value = '', onChange }){
   return(
     <div className="relative w-64 h-10" >
       <label className="absolute bg-[#375786] text-white left-2 -top-3 px-1">{placeHolder}</label>
-      <input defaultValue={defaultValue} onChange={onChange} className="w-full h-full pl-2 font-bold text-white bg-transparent border-2 rounded outline-none" />
+      <input value={value} onChange={onChange} className="w-full h-full pl-2 font-bold text-white bg-transparent border-2 rounded outline-none" />
     </div>
   )
 }
@@ -211,7 +211,7 @@ function InfoInputs({ placeHolder, defaultValue = '', onChange }){
 function Button({ children, handleClick }){
   return(
     <div className="w-full py-2">
-      <button onClick={handleClick} className="w-full py-2 font-bold text-green-500 border-2 border-green-500 rounded">{children}</button>
+      <button onClick={handleClick} className="w-full py-2 font-bold text-white border-2 border-green-500 rounded hover:bg-green-500">{children}</button>
     </div>
   )
 }
