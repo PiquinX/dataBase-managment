@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { saveUserInfo } from '../services/saveUserInfo'
+import { createNewUser } from '../services/createNewUser'
 import { userInfoEmptyState } from '../constants/userInfoEmptyState'
+import {useUsers} from '../hooks/useUsers'
 
 
 export function useAddUser () {
-  // const { refreshUsers } = useUsers()
+  const { refreshUsers } = useUsers()
   const [newUser, setNewUser] = useState(()=> JSON.parse(localStorage.getItem('newUser')) || userInfoEmptyState )
 
   // This changes the value of the user, depending on the Field passed.
@@ -40,10 +41,10 @@ export function useAddUser () {
   }
 
   // This save changes and also refresh the Users to be displayed on the table.
-  // const addUser = async () => {
-  //   await saveUserInfo(userInfo)
-  //   refreshUsers()
-  // }
+   const addUser = async () => {
+     await createNewUser(newUser)
+     refreshUsers()
+   }
 
   useEffect(()=>{
     localStorage.setItem('newUser', JSON.stringify(newUser))
@@ -51,5 +52,5 @@ export function useAddUser () {
 
   const isInfoChanged = userInfoEmptyState !== newUser
 
-  return ({ newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser })
+  return ({ newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser, addUser })
 }

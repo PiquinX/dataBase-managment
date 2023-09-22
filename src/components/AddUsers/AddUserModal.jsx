@@ -5,7 +5,7 @@ import { useAddUser } from '../../hooks/useAddUser'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function AddUserModal ({ handleClick }) {
-  const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser } = useAddUser()
+  const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser, addUser } = useAddUser()
   
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
@@ -46,7 +46,7 @@ export function AddUserModal ({ handleClick }) {
             </main>
       <footer className='flex justify-around items-center max-h-[20%] flex-grow border-t-2 border-[#2f4a72]'>
         <CancelModal handleClose={handleClick} />
-        <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} />
+        <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} addUser={addUser} />
       </footer>
     </div>
   )

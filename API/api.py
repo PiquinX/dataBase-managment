@@ -10,6 +10,7 @@ CORS(app)
 def insert_data():
     with sqlite3.connect('data_base.db') as conn:
         datos = request.get_json()
+        print(datos)
         cursor = conn.cursor()
         query_usuarios = """INSERT INTO usuarios (ESTADO_DE_USUARIO, TIPO_DE_USUARIO, DNI, FECHA_DE_NACIMIENTO, APELLIDO, 
                                                   NOMBRE, MAIL, CUIL_CUIT, TELEFONO_MOVIL, TELEFONO_FIJO,
@@ -17,7 +18,7 @@ def insert_data():
                                             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"""
         try:
             cursor.execute(query_usuarios, 
-                        (datos['usuario']['estado'],
+                        (   datos['usuario']['estado'],
                             datos['usuario']['tipo'],
                             datos['usuario']['dni'],
                             datos['usuario']['nacimiento'],
@@ -49,8 +50,8 @@ def insert_data():
                                                 VALUES(?,?,?,?,?,?,?,?)"""
 
             for dato in datos['direcciones']:
-                cursor.execute(query_direccion, (id, dato['calle'], dato['numero'], dato['piso']), dato['depto'],
-                            dato['localidad'], dato['codigoPostal'], dato['provincia'])
+                cursor.execute(query_direccion, (id, dato['calle'], dato['numero'], dato['piso'], dato['depto'],
+                            dato['localidad'], dato['codigoPostal'], dato['provincia']))
                 conn.commit()
 
             query_donaciones= """INSERT INTO donaciones (USUARIO_ID, DONACION, FECHA_DE_DONACION, ESTADO_DE_DONACION, 
@@ -115,7 +116,6 @@ def get_all_by_ID(id):
 def update_data(id):
     with sqlite3.connect('data_base.db') as conn:
         values = request.get_json()
-        print(values['donaciones'])
         cursor = conn.cursor()
         query_usuario = """UPDATE usuarios SET 
                             ESTADO_DE_USUARIO = ?,
@@ -140,7 +140,7 @@ def update_data(id):
         query_donaciones = """UPDATE donaciones SET
                                 DONACION = ?,
                                 FECHA_DE_DONACION = ?,
-                                ESTADO_DE_DONACIÓN = ?,
+                                ESTADO_DE_DONACION = ?,
                                 TIPO_DE_DONACIÓN = ?,
                                 FORMA_DE_PAGO = ?
                                 WHERE USUARIO_ID = ? AND DONACIONES_ID = ?"""   

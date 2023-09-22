@@ -16,7 +16,8 @@ export function formatUser (user) {
     'referente': user.usuarios[0].REFERENTE,
     'ocupacion': user.usuarios[0].OCUPACION,
     'fechaDeAlta': user.usuarios[0].DIA_DE_ALTA,
-    'firma': user.usuarios[0].FIRMA
+    'firma': user.usuarios[0].FIRMA,
+    'faltaSubirlo': user.usuarios[0].FALTA_SUBIRLO
   }
 
   formatedUser['direcciones'] = user.direcciones.map(direccion => ({
@@ -33,14 +34,14 @@ export function formatUser (user) {
   formatedUser['donaciones'] = user.donaciones.map(donacion => ({
     'cantidad': donacion.DONACION,
     'donacion_id': donacion.DONACIONES_ID,
-    'estado_donacion': donacion.ESTADO_DE_DONACIÓN,
+    'estado_donacion': donacion.ESTADO_DE_DONACION,
     'fecha': donacion.FECHA_DE_DONACION,
     'metodoDePago': donacion.FORMA_DE_PAGO,
-    'tipo': donacion.TIPO_DE_DONACIÓN
+    'tipo': donacion.TIPO_DE_DONACION
   }))
 
   formatedUser['financieros'] = user.financieros.map(financiero => ({
-    // 'cuenta': financiero.#_CUENTA,
+    'cuenta': financiero.NUM_CUENTA,
     'banco': financiero.BANCO,
     'codigoSeguridad': financiero.COD_SEG,
     'financiero_id': financiero.DATOS_FINANCIEROS_ID,

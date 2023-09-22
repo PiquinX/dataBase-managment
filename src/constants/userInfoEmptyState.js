@@ -14,7 +14,8 @@ export const userInfoEmptyState = {
         'referente': '',
         'ocupacion': '',
         'fechaDeAlta': '',
-        'firma': ''
+        'firma': '',
+        'faltaSubirlo': true
     },
     'direcciones': [{
         'calle': '',

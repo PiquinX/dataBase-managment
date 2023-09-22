@@ -9,7 +9,7 @@ export function SaveModal ({ handleClose, isInfoChanged, addUser }) {
 
   // This function close all the modals and also saves the changes.
   const handleAdd = () => {
-    // addUser()
+    addUser()
     handleModal()
     handleClose()
   }
