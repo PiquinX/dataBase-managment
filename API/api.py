@@ -6,6 +6,78 @@ import sqlite3
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/insert_data', methods=['POST'])
+def insert_data():
+    with sqlite3.connect('data_base.db') as conn:
+        datos = request.get_json()
+        cursor = conn.cursor()
+        query_usuarios = """INSERT INTO usuarios (ESTADO_DE_USUARIO, TIPO_DE_USUARIO, DNI, FECHA_DE_NACIMIENTO, APELLIDO, 
+                                                  NOMBRE, MAIL, CUIL_CUIT, TELEFONO_MOVIL, TELEFONO_FIJO,
+                                                  REFERENTE, OCUPACION, DIA_DE_ALTA, FIRMA, FALTA_SUBIRLO)
+                                            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"""
+        try:
+            cursor.execute(query_usuarios, 
+                        (datos['usuario']['estado'],
+                            datos['usuario']['tipo'],
+                            datos['usuario']['dni'],
+                            datos['usuario']['nacimiento'],
+                            datos['usuario']['apellido'],
+                            datos['usuario']['nombre'],
+                            datos['usuario']['mail'],
+                            datos['usuario']['cuil'],
+                            datos['usuario']['movil'],
+                            datos['usuario']['fijo'],
+                            datos['usuario']['referente'],
+                            datos['usuario']['ocupacion'],
+                            datos['usuario']['fechaDeAlta'],
+                            datos['usuario']['firma'],
+                            datos['usuario']['faltaSubirlo']))
+            conn.commit()
+
+            query_id = "SELECT USUARIO_ID FROM usuarios ORDER BY USUARIO_ID DESC"
+            cursor.execute(query_id)
+            id = cursor.fetchone()
+
+            query_observaciones = """INSERT INTO observaciones (USUARIO_ID, OBSERVACIONES)
+                                                        VALUES (?,?)"""
+            
+            for dato in datos['observaciones']:
+                cursor.execute(query_observaciones, (id, dato['observacion']))
+                conn.commit()
+            
+            query_direccion = """INSERT INTO direccion (USUARIO_ID, CALLE, NUM, PISO, DEPTO, LOCALIDAD, CODIGO_POSTAL, PROVINCIA)
+                                                VALUES(?,?,?,?,?,?,?,?)"""
+
+            for dato in datos['direcciones']:
+                cursor.execute(query_direccion, (id, dato['calle'], dato['numero'], dato['piso']), dato['depto'],
+                            dato['localidad'], dato['codigoPostal'], dato['provincia'])
+                conn.commit()
+
+            query_donaciones= """INSERT INTO donaciones (USUARIO_ID, DONACION, FECHA_DE_DONACION, ESTADO_DE_DONACION, 
+                                                        TIPO_DE_DONACION, FORMA_DE_PAGO)
+                                                    VALUES(?,?,?,?,?,?)"""
+            
+            for dato in datos['donaciones']:
+                cursor.execute(query_donaciones, (id, dato['cantidad'], dato['fecha'], dato['estado_donacion'],
+                                                dato['tipo'], dato['metodoDePago']))
+                conn.commit()
+
+            query_financieros = """INSERT INTO datos_financieros (USUARIO_ID, DBTO, VTO, COD_SEG, BANCO, SUCURSAL,
+                                                                TIPO_CTA, ESTADO)
+                                                            VALUES(?,?,?,?,?,?,?,?)"""
+            
+            for dato in datos['financieros']:
+                cursor.execute(query_financieros, (id, dato['debito'], dato['vto'], dato['codigoSeguridad'],
+                                                dato['banco'], dato['sucursal'], dato['tipoCTA'], dato['estado_financiero']))
+                conn.commit()
+            
+            return jsonify({"message": "Datos insertados correctamente"})
+
+        except Exception as e:
+            return jsonify({"message": f"error del tipo: {e}"})
+
+        
+
 @app.route('/get_all_users', methods=['GET'])
 #selecciona todos los datos de la tabla que le pases
 def get_all_users():
