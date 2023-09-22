@@ -1,8 +1,6 @@
 import { useEffect, useRef } from "react"
 
 export function DataUserSection ({ isDisplayed, updateInfo, data }) {
-  const dataStyle = isDisplayed ? 'block' : 'hidden'
-
   // changing the value depending on the field and value
   const handleChange = (value, field) => {
     updateInfo({ newValue: value, whichField: field })
@@ -11,8 +9,8 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
   return (
     <>
       {
-          data &&
-            <div className={`${dataStyle} h-full px-6 flex flex-col gap-4`} >
+          data && isDisplayed &&
+            <div className='flex flex-col h-full gap-4 px-6' >
               <h4 className="text-xl">Info general</h4>
               <div className='flex flex-col gap-3 text-black'>
                 <InfoInputs value={data.nombre} placeHolder={'Nombre'} onChange={(e)=> handleChange(e.target.value, 'nombre')} />
@@ -37,8 +35,6 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
 }
 
 export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
-  const dataStyle = isDisplayed ? 'block' : 'hidden'
-
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'direcciones', index, whichField: field })
@@ -49,8 +45,8 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
   return (
     <>
       {
-          data &&
-            <div className={`${dataStyle} h-full px-6`}>
+          data && isDisplayed && 
+          <div className='h-full px-6'>
               <div className="flex flex-col gap-5">
                 {
                   data.map((direccion, index) => (
@@ -78,8 +74,6 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
 }
 
 export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo }) {
-  const dataStyle = isDisplayed ? 'block' : 'hidden'
-
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'donaciones', index, whichField: field })
@@ -90,36 +84,34 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo }
   return (
     <>
       {
-          data &&
-            <div className={`${dataStyle} h-full px-6`}>
-              <div className="flex flex-col gap-5">
-                {
-                  data.map((donacion, index) => (
-                    <div key={index} className="flex flex-col gap-4">
-                      <h4 className="text-xl">Donacion {index + 1}</h4>
-                      <div className='flex flex-col gap-3 text-black'>
-                        <InfoInputs value={`${donacion.cantidad}`} placeHolder={'Cantidad'} onChange={(e)=> handleChange(e.target.value, index, 'cantidad')} />
-                        <InfoInputs value={donacion.estado_donacion} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_donacion')} />
-                        <InfoInputs value={donacion.fecha} placeHolder={'Fecha'} onChange={(e)=> handleChange(e.target.value, index, 'fecha')} />
-                        <InfoInputs value={donacion.metodoDePago} placeHolder={'Metodo de pago'} onChange={(e)=> handleChange(e.target.value, index, 'metodoDePago')} />
-                        <InfoInputs value={donacion.tipo} placeHolder={'Tipo'} onChange={(e)=> handleChange(e.target.value, index, 'tipo')} />
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-              <Button handleClick={handleClick} >
-                Añadir donación
-              </Button>
-            </div>
-        }
+        data && isDisplayed && 
+        <div className='h-full px-6'>
+          <div className="flex flex-col gap-5">
+            {
+              data.map((donacion, index) => (
+                <div key={index} className="flex flex-col gap-4">
+                  <h4 className="text-xl">Donacion {index + 1}</h4>
+                  <div className='flex flex-col gap-3 text-black'>
+                    <InfoInputs value={`${donacion.cantidad}`} placeHolder={'Cantidad'} onChange={(e)=> handleChange(e.target.value, index, 'cantidad')} />
+                    <InfoInputs value={donacion.estado_donacion} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_donacion')} />
+                    <InfoInputs value={donacion.fecha} placeHolder={'Fecha'} onChange={(e)=> handleChange(e.target.value, index, 'fecha')} />
+                    <InfoInputs value={donacion.metodoDePago} placeHolder={'Metodo de pago'} onChange={(e)=> handleChange(e.target.value, index, 'metodoDePago')} />
+                    <InfoInputs value={donacion.tipo} placeHolder={'Tipo'} onChange={(e)=> handleChange(e.target.value, index, 'tipo')} />
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+          <Button handleClick={handleClick} >
+            Añadir donación
+          </Button>
+        </div>
+      }
     </>
   )
 }
 
 export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }) {
-  const dataStyle = isDisplayed ? 'block' : 'hidden'
-
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'financieros', index, whichField: field })
@@ -130,8 +122,8 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }
   return (
     <>
       {
-          data &&
-            <div className={`${dataStyle} h-full px-6`}>
+          data && isDisplayed && 
+          <div className='h-full px-6'>
               <div className="flex flex-col gap-5">
                 {
                   data.map((financiero, index) => (
@@ -160,8 +152,6 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }
 }
 
 export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInfo }) {
-  const dataStyle = isDisplayed ? 'block' : 'hidden'
-
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'observaciones', index, whichField: field })
@@ -172,8 +162,8 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
   return (
     <>
       {
-          data &&
-            <div className={`${dataStyle} h-full px-6`}>
+          data && isDisplayed && 
+          <div className='h-full px-6'>
               <div className="flex flex-col gap-5">
                 {
                   data.map((observacion, index) => (

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { getUserInfo } from '../services/getUserInfo'
 import { useUsers } from './useUsers'
 import { saveUserInfo } from '../services/saveUserInfo'
+import { userInfoEmptyState } from '../constants/userInfoEmptyState'
 
 export function useUserInfo (ID) {
   const { refreshUsers } = useUsers()
@@ -33,6 +34,15 @@ export function useUserInfo (ID) {
     setUserInfo(newUserInfo)
   }
 
+  // This functions add an array to the selected table.
+  const addInfo = (whichField) => {
+    const userInfoCopy = structuredClone(userInfo)
+
+    userInfoCopy[whichField].push(...userInfoEmptyState[whichField])
+
+    setUserInfo(userInfoCopy)
+  }
+
   // This save changes and also refresh the Users to be displayed on the table.
   const saveInfo = async () => {
     await saveUserInfo(userInfo)
@@ -41,5 +51,5 @@ export function useUserInfo (ID) {
 
   const isInfoChanged = originalUserInfo.current !== userInfo
 
-  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo })
+  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo, addInfo })
 }

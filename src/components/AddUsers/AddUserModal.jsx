@@ -6,9 +6,11 @@ import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancial
 
 export function AddUserModal ({ handleClick }) {
   const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser } = useAddUser()
+  
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
+  // This finction restarts the value of the newUser state.
   const handleClear = () => {
     clearNewUser()
   }
@@ -32,10 +34,10 @@ export function AddUserModal ({ handleClick }) {
         </div>
         <div className='flex items-center justify-end flex-grow px-5'><i onClick={handleClick} className='text-lg font-bold cursor-pointer hover:text-red-500 fa-solid fa-x' /></div>
       </header>
+            <button className='absolute z-40 flex items-center gap-1 px-2 py-1 font-bold duration-75 border-2 rounded left-5 top-20 hover:bg-red-500' onClick={handleClear}>
+              Reset <i className="fa-solid fa-trash"></i>
+            </button>
             <main className='grid place-items-center relative min-h-max h-[80%] overflow-y-scroll pt-3 pb-6 bar'>
-              <button className='absolute flex items-center gap-1 px-2 py-1 font-bold duration-75 border-2 rounded left-5 top-5 hover:bg-red-500' onClick={handleClear}>
-                Reset <i className="fa-solid fa-trash"></i>
-              </button>
               <DataUserSection isDisplayed={whichData === 0}  updateInfo={changeInfoUsuario} data={newUser.usuario} />
               <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} data={newUser.direcciones} addInfo={addInfo} />
               <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} data={newUser.donaciones} addInfo={addInfo} />

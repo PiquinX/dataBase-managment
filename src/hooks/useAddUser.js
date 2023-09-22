@@ -1,6 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
-import { getUserInfo } from '../services/getUserInfo'
-import { useUsers } from './useUsers'
+import { useEffect, useState } from 'react'
 import { saveUserInfo } from '../services/saveUserInfo'
 import { userInfoEmptyState } from '../constants/userInfoEmptyState'
 
@@ -17,7 +15,7 @@ export function useAddUser () {
     setNewUser(newUserCopy)
   }
 
-  // This sets the newUsers to its default value
+  // This sets the newUsers to its default value.
   const clearNewUser = () => {
     setNewUser(userInfoEmptyState)
     localStorage.removeItem('newUser')
@@ -32,6 +30,7 @@ export function useAddUser () {
     setNewUser(newUserCopy)
   }
 
+  // This functions add an array to the selected table.
   const addInfo = (whichField) => {
     const newUserCopy = structuredClone(newUser)
 

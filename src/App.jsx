@@ -6,25 +6,25 @@ import { filterUsers } from './services/filterUsers'
 import { AddUsers } from './components/AddUser'
 
 function App () {
-  // Estado que contiene la busqueda
+  // This state contains the search.
   const [search, setSearch] = useState('')
 
-  // Hook que devuelve la funcion que hace la busqueda de peliculas(fetch), si esta en cargando, si es antes de hacer la primera busqueda y las peliculas.
+  // This custom Hook returns an array with all the users (fetch).
   const { users } = useUsers()
 
+  // This function filters the user with the search as a parameter.
   const filteredUsers = filterUsers({ users, search })
 
   const handleChange = (event) => {
     const newSearch = event.target.value
 
-    // si se ingresa un espacio si un caracter antes no carga el valor al input.
+    // If the user writes a blank space before writing anything else, it won't be updated.
     if (newSearch === ' ') return
 
-    // Actualiza el valor del input (la busqueda) y llama a la busqueda de peliculas controlada.
     setSearch(newSearch)
   }
 
-  // reinicia la busqueda
+  // Function, which restarts the search.
   const restartSearch = () => setSearch('')
 
   const inputClass = search.length > 0 ? 'w-44 pl-10 pr-7' : 'w-6 pl-6'

@@ -5,7 +5,8 @@ import { useUserInfo } from '../../hooks/useUserInfo'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function EditUserModal ({ handleClick, ID }) {
-  const { userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo } = useUserInfo(ID)
+  const { userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo, addInfo } = useUserInfo(ID)
+  
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
@@ -31,11 +32,11 @@ export function EditUserModal ({ handleClick, ID }) {
       {
           userInfo &&
             <main className='grid place-items-center min-h-max h-[80%] overflow-y-scroll pt-3 pb-6 bar'>
-              <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} updateInfo={changeInfoUsuario} />
-              <DataAdressSection isDisplayed={whichData === 1} data={userInfo.direcciones} updateInfo={changeInfo} />
-              <DataDonationsSection isDisplayed={whichData === 2} data={userInfo.donaciones} updateInfo={changeInfo} />
-              <DataFinancialSection isDisplayed={whichData === 3} data={userInfo.financieros} updateInfo={changeInfo} />
-              <DataObservationsSection isDisplayed={whichData === 4} data={userInfo.observaciones} updateInfo={changeInfo} />
+              <DataUserSection isDisplayed={whichData === 0} data={userInfo.usuario} updateInfo={changeInfoUsuario} addInfo={addInfo} />
+              <DataAdressSection isDisplayed={whichData === 1} data={userInfo.direcciones} updateInfo={changeInfo} addInfo={addInfo} />
+              <DataDonationsSection isDisplayed={whichData === 2} data={userInfo.donaciones} updateInfo={changeInfo} addInfo={addInfo} />
+              <DataFinancialSection isDisplayed={whichData === 3} data={userInfo.financieros} updateInfo={changeInfo} addInfo={addInfo} />
+              <DataObservationsSection isDisplayed={whichData === 4} data={userInfo.observaciones} updateInfo={changeInfo} addInfo={addInfo} />
             </main>
         }
       <footer className='flex justify-around items-center max-h-[20%] flex-grow border-t-2 border-[#2f4a72]'>
