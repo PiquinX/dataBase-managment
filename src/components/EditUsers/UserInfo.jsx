@@ -42,7 +42,11 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
 
   useEffect(()=>{
     for(let i = 0; i < data.length; i++){
-      direccionesCompletas.current.push(`${data[i].calle} ${data[i].numero}`)
+      const adress = data[i].calle && data[i].numero 
+      ? `${data[i].calle} ${data[i].numero}` 
+      : 'Sin direccion'
+      
+      direccionesCompletas.current.push(adress)
     }
   },[])
 
