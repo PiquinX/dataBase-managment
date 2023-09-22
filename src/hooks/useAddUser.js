@@ -44,6 +44,7 @@ export function useAddUser () {
    const addUser = async () => {
      await createNewUser(newUser)
      refreshUsers()
+     clearNewUser()
    }
 
   useEffect(()=>{

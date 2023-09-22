@@ -6,12 +6,17 @@ import sqlite3
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/insert_data', methods=['POST'])
-def insert_data():
+@app.route('/insert_full_data', methods=['POST'])
+def insert_full_data():
     with sqlite3.connect('data_base.db') as conn:
         datos = request.get_json()
-        print(datos)
         cursor = conn.cursor()
+
+        if datos['usuario']['faltaSubirlo']:
+            falta_subirlo = "Si"
+        else:
+            falta_subirlo = "No"
+
         query_usuarios = """INSERT INTO usuarios (ESTADO_DE_USUARIO, TIPO_DE_USUARIO, DNI, FECHA_DE_NACIMIENTO, APELLIDO, 
                                                   NOMBRE, MAIL, CUIL_CUIT, TELEFONO_MOVIL, TELEFONO_FIJO,
                                                   REFERENTE, OCUPACION, DIA_DE_ALTA, FIRMA, FALTA_SUBIRLO)
@@ -32,25 +37,26 @@ def insert_data():
                             datos['usuario']['ocupacion'],
                             datos['usuario']['fechaDeAlta'],
                             datos['usuario']['firma'],
-                            datos['usuario']['faltaSubirlo']))
+                            falta_subirlo))
             conn.commit()
 
             query_id = "SELECT USUARIO_ID FROM usuarios ORDER BY USUARIO_ID DESC"
             cursor.execute(query_id)
             id = cursor.fetchone()
+            print(type(id[0]))
 
             query_observaciones = """INSERT INTO observaciones (USUARIO_ID, OBSERVACIONES)
                                                         VALUES (?,?)"""
             
             for dato in datos['observaciones']:
-                cursor.execute(query_observaciones, (id, dato['observacion']))
+                cursor.execute(query_observaciones, (id[0], dato['observacion']))
                 conn.commit()
             
             query_direccion = """INSERT INTO direccion (USUARIO_ID, CALLE, NUM, PISO, DEPTO, LOCALIDAD, CODIGO_POSTAL, PROVINCIA)
                                                 VALUES(?,?,?,?,?,?,?,?)"""
 
             for dato in datos['direcciones']:
-                cursor.execute(query_direccion, (id, dato['calle'], dato['numero'], dato['piso'], dato['depto'],
+                cursor.execute(query_direccion, (id[0], dato['calle'], dato['numero'], dato['piso'], dato['depto'],
                             dato['localidad'], dato['codigoPostal'], dato['provincia']))
                 conn.commit()
 
@@ -59,7 +65,7 @@ def insert_data():
                                                     VALUES(?,?,?,?,?,?)"""
             
             for dato in datos['donaciones']:
-                cursor.execute(query_donaciones, (id, dato['cantidad'], dato['fecha'], dato['estado_donacion'],
+                cursor.execute(query_donaciones, (id[0], dato['cantidad'], dato['fecha'], dato['estado_donacion'],
                                                 dato['tipo'], dato['metodoDePago']))
                 conn.commit()
 
@@ -68,7 +74,7 @@ def insert_data():
                                                             VALUES(?,?,?,?,?,?,?,?)"""
             
             for dato in datos['financieros']:
-                cursor.execute(query_financieros, (id, dato['debito'], dato['vto'], dato['codigoSeguridad'],
+                cursor.execute(query_financieros, (id[0], dato['debito'], dato['vto'], dato['codigoSeguridad'],
                                                 dato['banco'], dato['sucursal'], dato['tipoCTA'], dato['estado_financiero']))
                 conn.commit()
             
@@ -78,6 +84,31 @@ def insert_data():
             return jsonify({"message": f"error del tipo: {e}"})
 
         
+@app.route('/insert_data/<string:table>/<int:id>', methods=['POST'])
+def insert_data(table,id):
+    with sqlite3.connect('data_base.db') as conn:
+        cursor = conn.cursor()
+
+        if table == 'direcciones':
+            query = f"""INSERT INTO direccion (INSERT INTO direccion (USUARIO_ID, CALLE, NUM, PISO, DEPTO, LOCALIDAD, CODIGO_POSTAL, PROVINCIA)
+                                                    VALUES({id},'','','','','','',''))"""
+        elif table == 'donaciones':
+            query = f"""INSERT INTO donaciones (USUARIO_ID, DONACION, FECHA_DE_DONACION, ESTADO_DE_DONACION, 
+                                                            TIPO_DE_DONACION, FORMA_DE_PAGO)
+                                                        VALUES({id},'','','','','')"""
+        elif table == 'financieros':
+            query = f"""INSERT INTO datos_financieros (USUARIO_ID, DBTO, VTO, COD_SEG, BANCO, SUCURSAL,
+                                                                    TIPO_CTA, ESTADO)
+                                                                VALUES({id},'','','','','','','')"""
+        elif table == 'observaciones':
+            query = f"""INSERT INTO observaciones (USUARIO_ID, OBSERVACIONES)
+                                                            VALUES ({id},'')"""
+        
+        cursor.execute(query)
+        conn.commit()
+        return jsonify({"message": "creado correctamente"})
+    
+    
 
 @app.route('/get_all_users', methods=['GET'])
 #selecciona todos los datos de la tabla que le pases

@@ -3,6 +3,7 @@ import { getUserInfo } from '../services/getUserInfo'
 import { useUsers } from './useUsers'
 import { saveUserInfo } from '../services/saveUserInfo'
 import { userInfoEmptyState } from '../constants/userInfoEmptyState'
+import { addUserInfo } from '../services/addUserInfo'
 
 export function useUserInfo (ID) {
   const { refreshUsers } = useUsers()
@@ -35,13 +36,7 @@ export function useUserInfo (ID) {
   }
 
   // This functions add an array to the selected table.
-  const addInfo = (whichField) => {
-    const userInfoCopy = structuredClone(userInfo)
-
-    userInfoCopy[whichField].push(...userInfoEmptyState[whichField])
-
-    setUserInfo(userInfoCopy)
-  }
+  const addInfo = (whichField) => addUserInfo(whichField, userInfo.usuario.id)
 
   // This save changes and also refresh the Users to be displayed on the table.
   const saveInfo = async () => {
