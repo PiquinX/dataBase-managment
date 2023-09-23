@@ -88,10 +88,11 @@ def insert_full_data():
 def insert_data(table,id):
     with sqlite3.connect('data_base.db') as conn:
         cursor = conn.cursor()
+        print(table)
 
         if table == 'direcciones':
-            query = f"""INSERT INTO direccion (INSERT INTO direccion (USUARIO_ID, CALLE, NUM, PISO, DEPTO, LOCALIDAD, CODIGO_POSTAL, PROVINCIA)
-                                                    VALUES({id},'','','','','','',''))"""
+            query = f"""INSERT INTO direccion (USUARIO_ID, CALLE, NUM, PISO, DEPTO, LOCALIDAD, CODIGO_POSTAL, PROVINCIA)
+                                                    VALUES({id},'','','','','','','')"""
         elif table == 'donaciones':
             query = f"""INSERT INTO donaciones (USUARIO_ID, DONACION, FECHA_DE_DONACION, ESTADO_DE_DONACION, 
                                                             TIPO_DE_DONACION, FORMA_DE_PAGO)
@@ -172,7 +173,7 @@ def update_data(id):
                                 DONACION = ?,
                                 FECHA_DE_DONACION = ?,
                                 ESTADO_DE_DONACION = ?,
-                                TIPO_DE_DONACIÓN = ?,
+                                TIPO_DE_DONACION = ?,
                                 FORMA_DE_PAGO = ?
                                 WHERE USUARIO_ID = ? AND DONACIONES_ID = ?"""   
 

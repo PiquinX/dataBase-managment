@@ -34,13 +34,15 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
   )
 }
 
-export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
+export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo, removeInfo }) {
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'direcciones', index, whichField: field })
   }
 
   const handleClick = ()=> addInfo('direcciones')
+
+  const handleRemove = (index) => removeInfo('direcciones', index)
 
   return (
     <>
@@ -51,7 +53,12 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
                 {
                   data.map((direccion, index) => (
                     <div key={index} className="flex flex-col gap-4">
-                      <h4 className="text-xl">Direccion {index + 1}</h4>
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xl">Direccion {index + 1}</h4>
+                        <DeleteButton handleClick={()=> handleRemove(index)}>
+                          Eliminar
+                        </DeleteButton>
+                      </div>
                       <div className='flex flex-col gap-3 text-black'>
                         <InfoInputs value={direccion.calle} placeHolder={'Calle'} onChange={(e)=> handleChange(e.target.value, index, 'calle')} />
                         <InfoInputs value={direccion.numero} placeHolder={'Numero'} onChange={(e)=> handleChange(e.target.value, index, 'numero')} />
@@ -73,13 +80,15 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo }) {
   )
 }
 
-export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo }) {
+export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo, removeInfo }) {
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'donaciones', index, whichField: field })
   }
 
   const handleClick = ()=> addInfo('donaciones')
+
+  const handleRemove = (index) => removeInfo('donaciones', index)
 
   return (
     <>
@@ -90,7 +99,12 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo }
             {
               data.map((donacion, index) => (
                 <div key={index} className="flex flex-col gap-4">
-                  <h4 className="text-xl">Donacion {index + 1}</h4>
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-xl">Donacion {index + 1}</h4>
+                    <DeleteButton handleClick={()=> handleRemove(index)}>
+                      Eliminar
+                    </DeleteButton>
+                  </div>
                   <div className='flex flex-col gap-3 text-black'>
                     <InfoInputs value={`${donacion.cantidad}`} placeHolder={'Cantidad'} onChange={(e)=> handleChange(e.target.value, index, 'cantidad')} />
                     <InfoInputs value={donacion.estado_donacion} placeHolder={'Estado'} onChange={(e)=> handleChange(e.target.value, index, 'estado_donacion')} />
@@ -111,13 +125,15 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo }
   )
 }
 
-export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }) {
+export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, removeInfo }) {
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'financieros', index, whichField: field })
   }
 
   const handleClick = ()=> addInfo('financieros')
+
+  const handleRemove = (index) => removeInfo('financieros', index)
 
   return (
     <>
@@ -128,7 +144,12 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }
                 {
                   data.map((financiero, index) => (
                     <div key={index} className="flex flex-col gap-4">
-                      <h4 className="text-xl">Financiero {index + 1}</h4>
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xl">Financiero {index + 1}</h4>
+                        <DeleteButton handleClick={()=> handleRemove(index)}>
+                          Eliminar
+                        </DeleteButton>
+                      </div>
                       <div className='flex flex-col gap-3 text-black'>
                         <InfoInputs value={financiero.banco} placeHolder={'Banco'} onChange={(e)=> handleChange(e.target.value, index, 'banco')} />
                         <InfoInputs value={financiero.codigoSeguridad} placeHolder={'Codigo de seguridad'} onChange={(e)=> handleChange(e.target.value, index, 'codigoSeguridad')} />
@@ -151,13 +172,15 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo }
   )
 }
 
-export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInfo }) {
+export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInfo, removeInfo }) {
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'observaciones', index, whichField: field })
   }
   
   const handleClick = ()=> addInfo('observaciones')
+
+  const handleRemove = (index) => removeInfo('observaciones', index)
 
   return (
     <>
@@ -168,12 +191,17 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
                 {
                   data.map((observacion, index) => (
                     <div key={index} className="flex flex-col gap-4">
-                      <h4 className="text-xl">Observacion {index + 1}</h4>
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xl">Observacion {index + 1}</h4>
+                        <DeleteButton handleClick={()=> handleRemove(index)}>
+                          Eliminar
+                        </DeleteButton>
+                      </div>
                       <div className='flex flex-col gap-3 text-black'>
                         <textarea 
                           value={observacion.observacion} 
                           onChange={(e)=> handleChange(e.target.value, index, 'observacion')} 
-                          className='resize-none' />
+                          className='w-64 resize-none' />
                       </div>
                     </div>
                   ))
@@ -203,5 +231,13 @@ function Button({ children, handleClick }){
     <div className="w-full py-2">
       <button onClick={handleClick} className="w-full py-2 font-bold text-white border-2 border-green-500 rounded hover:bg-green-500">{children}</button>
     </div>
+  )
+}
+
+function DeleteButton({ children, handleClick }){
+  return(
+    <>
+      <button onClick={handleClick} className="px-2 py-1 text-sm font-bold text-white border-2 border-red-500 rounded hover:bg-red-500">{children}</button>
+    </>
   )
 }

@@ -10,12 +10,14 @@ export function useUserInfo (ID) {
   const [userInfo, setUserInfo] = useState()
   const originalUserInfo = useRef(userInfo)
 
-  useEffect(() => {
-    // We get the info of the user by passing the ID.
-    getUserInfo(ID).then(newUserInfo => {
+  const refreshUserInfo = () => getUserInfo(ID).then(newUserInfo => {
       setUserInfo(newUserInfo)
       originalUserInfo.current = newUserInfo
-    })
+  })
+
+  useEffect(() => {
+    // We get the info of the user by passing the ID.
+    refreshUserInfo()
   }, [])
 
   // This changes the value of the user, depending on the Field passed.
@@ -25,7 +27,6 @@ export function useUserInfo (ID) {
     newUserInfo['usuario'][whichField] = newValue
     setUserInfo(newUserInfo)
   }
-
   
   // This changes the value of the user, depending on the Field, and table passed.
   const changeInfo = ({ newValue, whichTable, index, whichField }) => {
@@ -35,8 +36,11 @@ export function useUserInfo (ID) {
     setUserInfo(newUserInfo)
   }
 
-  // This functions add an array to the selected table.
-  const addInfo = (whichField) => addUserInfo(whichField, userInfo.usuario.id)
+  // This functions add an array to the selected table and refreshes the userInfo.
+  const addInfo = (whichField) => {
+    addUserInfo(whichField, userInfo.usuario.id)
+    refreshUserInfo()
+  }
 
   // This save changes and also refresh the Users to be displayed on the table.
   const saveInfo = async () => {

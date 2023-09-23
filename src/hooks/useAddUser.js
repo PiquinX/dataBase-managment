@@ -40,6 +40,14 @@ export function useAddUser () {
     setNewUser(newUserCopy)
   }
 
+  const removeInfo = (whichField, index) => {
+    const newUserCopy = structuredClone(newUser)
+
+    newUserCopy[whichField].splice(index, 1)
+
+    setNewUser(newUserCopy)
+  }
+
   // This save changes and also refresh the Users to be displayed on the table.
    const addUser = async () => {
      await createNewUser(newUser)
@@ -53,5 +61,5 @@ export function useAddUser () {
 
   const isInfoChanged = userInfoEmptyState !== newUser
 
-  return ({ newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser, addUser })
+  return ({ newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser, addUser, removeInfo })
 }

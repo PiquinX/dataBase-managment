@@ -5,7 +5,7 @@ import { useAddUser } from '../../hooks/useAddUser'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
 
 export function AddUserModal ({ handleClick }) {
-  const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser, addUser } = useAddUser()
+  const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser, addUser, removeInfo } = useAddUser()
   
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
@@ -39,10 +39,10 @@ export function AddUserModal ({ handleClick }) {
             </button>
             <main className='grid place-items-center relative min-h-max h-[80%] overflow-y-scroll pt-3 pb-6 bar'>
               <DataUserSection isDisplayed={whichData === 0}  updateInfo={changeInfoUsuario} data={newUser.usuario} />
-              <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} data={newUser.direcciones} addInfo={addInfo} />
-              <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} data={newUser.donaciones} addInfo={addInfo} />
-              <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} data={newUser.financieros} addInfo={addInfo} />
-              <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} data={newUser.observaciones} addInfo={addInfo} />
+              <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} data={newUser.direcciones} addInfo={addInfo} removeInfo={removeInfo} />
+              <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} data={newUser.donaciones} addInfo={addInfo} removeInfo={removeInfo} />
+              <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} data={newUser.financieros} addInfo={addInfo} removeInfo={removeInfo} />
+              <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} data={newUser.observaciones} addInfo={addInfo} removeInfo={removeInfo} />
             </main>
       <footer className='flex justify-around items-center max-h-[20%] flex-grow border-t-2 border-[#2f4a72]'>
         <CancelModal handleClose={handleClick} />

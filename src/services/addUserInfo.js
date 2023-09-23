@@ -8,6 +8,6 @@ export const addUserInfo = async (whichTable, ID) => {
     
         return resul.message
       } catch (e) {
-        throw new Error('No user found')
+        throw new Error(e)
       }
 }
