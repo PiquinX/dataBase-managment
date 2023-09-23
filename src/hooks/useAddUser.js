@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { createNewUser } from '../services/createNewUser'
+import { createNewUser } from '../services/insert/createNewUser'
 import { userInfoEmptyState } from '../constants/userInfoEmptyState'
-import {useUsers} from '../hooks/useUsers'
+import { useUsers } from '../hooks/useUsers'
 
 
 export function useAddUser () {

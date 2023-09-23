@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
-import { getUsers } from '../services/getUsers'
+import { getUsers } from '../services/get/getUsers'
 
 // We create the context, this one is used to be called with the useContext().
 export const UsersContext = createContext()

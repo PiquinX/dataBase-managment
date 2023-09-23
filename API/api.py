@@ -109,6 +109,25 @@ def insert_data(table,id):
         conn.commit()
         return jsonify({"message": "creado correctamente"})
     
+@app.route('/delete_data/<string:table>/<int:id>', methods=['POST'])
+def delete_data(table,id):
+    with sqlite3.connect('data_base.db') as conn:
+        cursor = conn.cursor()
+        print(table)
+
+        if table == 'direcciones':
+            query = f"""DELETE FROM direccion WHERE DIRECCION_ID = {id}"""
+        elif table == 'donaciones':
+            query = f"""DELETE FROM donaciones WHERE DONACIONES_ID = {id}"""
+        elif table == 'financieros':
+            query = f"""DELETE FROM datos_financieros WHERE DATOS_FINANCIEROS_ID = {id}"""
+        elif table == 'observaciones':
+            query = f"""DELETE FROM observaciones WHERE OBSERVACIONES_ID = {id}"""
+        
+        cursor.execute(query)
+        conn.commit()
+        return jsonify({"message": "creado correctamente"})
+    
     
 
 @app.route('/get_all_users', methods=['GET'])

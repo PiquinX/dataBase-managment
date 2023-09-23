@@ -1,4 +1,4 @@
-import { formatUser } from './formatUser'
+import { formatUser } from '../formatUser'
 
 export const getUserInfo = async (ID) => {
   try {

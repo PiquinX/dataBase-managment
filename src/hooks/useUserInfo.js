@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { getUserInfo } from '../services/getUserInfo'
+import { getUserInfo } from '../services/get/getUserInfo'
 import { useUsers } from './useUsers'
-import { saveUserInfo } from '../services/saveUserInfo'
+import { saveUserInfo } from '../services/update/saveUserInfo'
 import { userInfoEmptyState } from '../constants/userInfoEmptyState'
-import { addUserInfo } from '../services/addUserInfo'
+import { addUserInfo } from '../services/insert/addUserInfo'
+import { removeUserInfo } from '../services/remove/removeUserInfo'
 
 export function useUserInfo (ID) {
   const { refreshUsers } = useUsers()
@@ -37,8 +38,13 @@ export function useUserInfo (ID) {
   }
 
   // This functions add an array to the selected table and refreshes the userInfo.
-  const addInfo = (whichField) => {
-    addUserInfo(whichField, userInfo.usuario.id)
+  const addInfo = async (whichField) => {
+    await addUserInfo(whichField, userInfo.usuario.id)
+    refreshUserInfo()
+  }
+
+  const removeInfo = async (whichField, id) => {
+    await removeUserInfo(whichField, id)
     refreshUserInfo()
   }
 
@@ -50,5 +56,5 @@ export function useUserInfo (ID) {
 
   const isInfoChanged = originalUserInfo.current !== userInfo
 
-  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo, addInfo })
+  return ({ userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo, addInfo, removeInfo })
 }
