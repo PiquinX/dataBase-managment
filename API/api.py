@@ -109,23 +109,43 @@ def insert_data(table,id):
         conn.commit()
         return jsonify({"message": "creado correctamente"})
     
-@app.route('/delete_data/<string:table>/<int:id>', methods=['POST'])
-def delete_data(table,id):
+@app.route('/delete_data', methods=['POST'])
+def delete_data():
     with sqlite3.connect('data_base.db') as conn:
+        values = request.get_json()
         cursor = conn.cursor()
-        print(table)
 
-        if table == 'direcciones':
-            query = f"""DELETE FROM direccion WHERE DIRECCION_ID = {id}"""
-        elif table == 'donaciones':
-            query = f"""DELETE FROM donaciones WHERE DONACIONES_ID = {id}"""
-        elif table == 'financieros':
-            query = f"""DELETE FROM datos_financieros WHERE DATOS_FINANCIEROS_ID = {id}"""
-        elif table == 'observaciones':
-            query = f"""DELETE FROM observaciones WHERE OBSERVACIONES_ID = {id}"""
+        query_donaciones = """DELETE FROM donaciones WHERE DONACIONES_ID = ?"""
+        query_direcciones = """DELETE FROM direccion WHERE DIRECCION_ID = ?"""
+        query_financieros = """DELETE FROM datos_financieros WHERE DATOS_FINANCIEROS_ID = ?"""
+        query_observaciones = """DELETE FROM observaciones WHERE OBSERVACIONES_ID = ?"""
+
+        try:
+            for value in values['donaciones']:
+                print(type(value))
+                cursor.execute(query_donaciones, value)
+                conn.commit()
+
+            for value in values['direcciones']:
+                print(type(value))
+                cursor.execute(query_direcciones, value)
+                conn.commit()
+
+            for value in values['financieros']:
+                print(type(value))
+                cursor.execute(query_financieros, value)
+                conn.commit()
+
+            for value in values['observaciones']:
+                print(type(value))
+                cursor.execute(query_observaciones, value)
+                conn.commit()
+
+
+
+        except Exception as e:
+            return jsonify({"message": f" {e}"})
         
-        cursor.execute(query)
-        conn.commit()
         return jsonify({"message": "creado correctamente"})
     
     
@@ -184,19 +204,24 @@ def update_data(id):
                             WHERE USUARIO_ID = ?"""
             # Resto de tus consultas
 
-        query_observaciones = """UPDATE observaciones SET
+        query_observaciones_update = """UPDATE observaciones SET
                                 OBSERVACIONES = ?
                                 WHERE USUARIO_ID = ? AND OBSERVACIONES_ID = ?"""
+        query_observaciones_insert = """INSERT INTO observaciones (USUARIO_ID, OBSERVACIONES)
+                                                        VALUES (?,?)"""
 
-        query_donaciones = """UPDATE donaciones SET
+        query_donaciones_update = """UPDATE donaciones SET
                                 DONACION = ?,
                                 FECHA_DE_DONACION = ?,
                                 ESTADO_DE_DONACION = ?,
                                 TIPO_DE_DONACION = ?,
                                 FORMA_DE_PAGO = ?
-                                WHERE USUARIO_ID = ? AND DONACIONES_ID = ?"""   
+                                WHERE USUARIO_ID = ? AND DONACIONES_ID = ?"""
+        query_donaciones_insert = """INSERT INTO donaciones (USUARIO_ID, DONACION, FECHA_DE_DONACION, ESTADO_DE_DONACION, 
+                                                        TIPO_DE_DONACION, FORMA_DE_PAGO)
+                                                    VALUES(?,?,?,?,?,?)"""  
 
-        query_direcciones = """UPDATE direccion SET
+        query_direcciones_update = """UPDATE direccion SET
                                 CALLE = ?,
                                 NUM = ?,
                                 PISO = ?,
@@ -205,8 +230,10 @@ def update_data(id):
                                 CODIGO_POSTAL = ?,
                                 PROVINCIA = ?
                                 WHERE USUARIO_ID = ? AND DIRECCION_ID = ?"""
+        query_direcciones_insert = """INSERT INTO direccion (USUARIO_ID, CALLE, NUM, PISO, DEPTO, LOCALIDAD, CODIGO_POSTAL, PROVINCIA)
+                                                VALUES(?,?,?,?,?,?,?,?)"""
 
-        query_financieros = """UPDATE datos_financieros SET
+        query_financieros_update = """UPDATE datos_financieros SET
                                 DBTO = ?,
                                 VTO = ?,
                                 COD_SEG = ?,
@@ -215,6 +242,9 @@ def update_data(id):
                                 TIPO_CTA = ?,
                                 ESTADO = ?
                                 WHERE USUARIO_ID = ? AND DATOS_FINANCIEROS_ID = ?"""
+        query_financieros_insert = """INSERT INTO datos_financieros (USUARIO_ID, DBTO, VTO, COD_SEG, BANCO, SUCURSAL,
+                                                                TIPO_CTA, ESTADO)
+                                                            VALUES(?,?,?,?,?,?,?,?)"""
 
         try:
             cursor.execute(query_usuario, (
@@ -234,52 +264,72 @@ def update_data(id):
             ))
             conn.commit()
             for value in values['donaciones']:
-                cursor.execute(query_donaciones,(
-                    value['cantidad'],
-                    value['fecha'],
-                    value['estado_donacion'],
-                    value['tipo'],
-                    value['metodoDePago'],
-                    id,
-                    value['donacion_id']
-                ))
-                conn.commit()
+                if value['id']:
+                    cursor.execute(query_donaciones_update,(
+                        value['cantidad'],
+                        value['fecha'],
+                        value['estado_donacion'],
+                        value['tipo'],
+                        value['metodoDePago'],
+                        id,
+                        value['id']
+                    ))
+                    conn.commit()
+                else:
+                    cursor.execute(query_donaciones_insert, (id, value['cantidad'], value['fecha'], value['estado_donacion'],
+                                                value['tipo'], value['metodoDePago']))
+                    conn.commit()
 
             for value in values['observaciones']:
-                cursor.execute(query_observaciones,(
-                    value['observacion'],
-                    id,
-                    value['observacion_id']
-                ))
-                conn.commit()
+                if value['id']:
+                    cursor.execute(query_observaciones_update,(
+                        value['observacion'],
+                        id,
+                        value['id']
+                    ))
+                    conn.commit()
+                else:
+                    cursor.execute(query_observaciones_insert, (id, value['observacion']))
+                    conn.commit()
+
 
             for value in values['direcciones']:
-                cursor.execute(query_direcciones,(
-                    value['calle'],
-                    value['numero'],
-                    value['piso'],
-                    value['depto'],
-                    value['localidad'],
-                    value['codigoPostal'],
-                    value['provincia'],
-                    id,
-                    value['direccion_id']
-                ))
-                conn.commit()
+                if value['id']:
+                    cursor.execute(query_direcciones_update,(
+                        value['calle'],
+                        value['numero'],
+                        value['piso'],
+                        value['depto'],
+                        value['localidad'],
+                        value['codigoPostal'],
+                        value['provincia'],
+                        id,
+                        value['id']
+                    ))
+                    conn.commit()
+                else:
+                    cursor.execute(query_direcciones_insert, (id, value['calle'], value['numero'], value['piso'], value['depto'],
+                            value['localidad'], value['codigoPostal'], value['provincia']))
+                    conn.commit()
 
             for value in values['financieros']:
-                cursor.execute(query_financieros,(
-                    value['debito'],
-                    value['vto'],
-                    value['codigoSeguridad'],
-                    value['banco'],
-                    value['sucursal'],
-                    value['tipoCTA'],
-                    value['estado_financiero'],
-                    id,
-                    value['financiero_id']
-                ))
-                conn.commit()
+                if value['id']:
+                    cursor.execute(query_financieros_update,(
+                        value['debito'],
+                        value['vto'],
+                        value['codigoSeguridad'],
+                        value['banco'],
+                        value['sucursal'],
+                        value['tipoCTA'],
+                        value['estado_financiero'],
+                        id,
+                        value['id']
+                    ))
+                    conn.commit()
+                else:
+                    cursor.execute(query_financieros_insert, (id, value['debito'], value['vto'], value['codigoSeguridad'],
+                                                value['banco'], value['sucursal'], value['tipoCTA'], value['estado_financiero']))
+                    conn.commit()
 
         
 

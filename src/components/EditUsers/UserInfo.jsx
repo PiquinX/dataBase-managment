@@ -57,7 +57,7 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo, rem
 
   const handleClick = ()=> addInfo('direcciones')
 
-  const handleRemove = (id)=> removeInfo('direcciones', id)
+  const handleRemove = (value)=> removeInfo('direcciones', value)
 
   return (
     <>
@@ -67,10 +67,10 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo, rem
             <div className="flex flex-col gap-5">
               {
                 data.map((direccion, index) => (
-                  <div key={direccion.direccion_id} className="flex flex-col gap-4">
+                  <div key={direccion.id} className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                       <h4 className="text-xl">{direccionesCompletas.current[index]} - {index + 1}</h4>
-                      <DeleteModal deleteInfo={()=> handleRemove(direccion.direccion_id)}>
+                      <DeleteModal deleteInfo={()=> handleRemove(index)}>
                         Eliminar
                       </DeleteModal>
                     </div>
@@ -103,7 +103,7 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo, 
 
   const handleClick = ()=> addInfo('donaciones')
 
-  const handleRemove = (id)=> removeInfo('donaciones', id)
+  const handleRemove = (value)=> removeInfo('donaciones', value)
 
   return (
     <>
@@ -113,10 +113,10 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo, 
           <div className="flex flex-col gap-5">
             {
                 data.map((donacion, index) => (
-                  <div key={donacion.donacion_id} className="flex flex-col gap-4">
+                  <div key={donacion.id} className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
                       <h4 className="text-xl">Donacion - {index + 1}</h4>
-                      <DeleteModal deleteInfo={()=> handleRemove(donacion.donacion_id)}>
+                      <DeleteModal deleteInfo={()=> handleRemove(index)}>
                         Eliminar
                       </DeleteModal>
                     </div>
@@ -148,7 +148,7 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
 
   const handleClick = ()=> addInfo('financieros')
   
-  const handleRemove = (id)=> removeInfo('financieros', id)
+  const handleRemove = (value)=> removeInfo('financieros', value)
 
   return (
     <>
@@ -158,10 +158,10 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
           <div className="flex flex-col gap-5">
             {
               data.map((financiero, index) => (
-                <div key={financiero.financiero_id} className="flex flex-col gap-4">
+                <div key={financiero.id} className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <h4 className="text-xl">Financiero - {index + 1}</h4>
-                    <DeleteModal deleteInfo={()=> handleRemove(financiero.financiero_id)}>
+                    <DeleteModal deleteInfo={()=> handleRemove(index)}>
                       Eliminar
                     </DeleteModal>
                   </div>
@@ -195,7 +195,7 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
 
   const handleClick = ()=> addInfo('observaciones')
 
-  const handleRemove = (id)=> removeInfo('observaciones', id)
+  const handleRemove = (value)=> removeInfo('observaciones', value)
 
   return (
     <>
@@ -205,10 +205,10 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
           <div className="flex flex-col gap-5">
             {
               data.map((observacion, index) => (
-                <div key={observacion.observacion_id} className="flex flex-col gap-4">
+                <div key={observacion.id} className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <h4 className="text-xl">Observacion - {index + 1}</h4>
-                    <DeleteModal deleteInfo={()=> handleRemove(observacion.observacion_id)}>
+                    <DeleteModal deleteInfo={()=> handleRemove(index)}>
                       Eliminar
                     </DeleteModal>
                   </div>
