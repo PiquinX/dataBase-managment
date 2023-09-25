@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import { DeleteModal } from '../DeleteModal'
 
 export function DataUserSection ({ isDisplayed, updateInfo, data }) {
   // changing the value depending on the field and value
@@ -55,9 +56,9 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo, rem
                     <div key={index} className="flex flex-col gap-4">
                       <div className="flex items-center justify-between">
                         <h4 className="text-xl">Direccion {index + 1}</h4>
-                        <DeleteButton handleClick={()=> handleRemove(index)}>
+                        <DeleteModal deleteInfo={()=> handleRemove(index)}>
                           Eliminar
-                        </DeleteButton>
+                        </DeleteModal>
                       </div>
                       <div className='flex flex-col gap-3 text-black'>
                         <InfoInputs value={direccion.calle} placeHolder={'Calle'} onChange={(e)=> handleChange(e.target.value, index, 'calle')} />
@@ -101,9 +102,9 @@ export function DataDonationsSection ({ isDisplayed, updateInfo, data, addInfo, 
                 <div key={index} className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <h4 className="text-xl">Donacion {index + 1}</h4>
-                    <DeleteButton handleClick={()=> handleRemove(index)}>
+                    <DeleteModal deleteInfo={()=> handleRemove(index)}>
                       Eliminar
-                    </DeleteButton>
+                    </DeleteModal>
                   </div>
                   <div className='flex flex-col gap-3 text-black'>
                     <InfoInputs value={`${donacion.cantidad}`} placeHolder={'Cantidad'} onChange={(e)=> handleChange(e.target.value, index, 'cantidad')} />
@@ -146,9 +147,9 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
                     <div key={index} className="flex flex-col gap-4">
                       <div className="flex items-center justify-between">
                         <h4 className="text-xl">Financiero {index + 1}</h4>
-                        <DeleteButton handleClick={()=> handleRemove(index)}>
+                        <DeleteModal deleteInfo={()=> handleRemove(index)}>
                           Eliminar
-                        </DeleteButton>
+                        </DeleteModal>
                       </div>
                       <div className='flex flex-col gap-3 text-black'>
                         <InfoInputs value={financiero.banco} placeHolder={'Banco'} onChange={(e)=> handleChange(e.target.value, index, 'banco')} />
@@ -193,9 +194,9 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
                     <div key={index} className="flex flex-col gap-4">
                       <div className="flex items-center justify-between">
                         <h4 className="text-xl">Observacion {index + 1}</h4>
-                        <DeleteButton handleClick={()=> handleRemove(index)}>
+                        <DeleteModal deleteInfo={()=> handleRemove(index)}>
                           Eliminar
-                        </DeleteButton>
+                        </DeleteModal>
                       </div>
                       <div className='flex flex-col gap-3 text-black'>
                         <textarea 
@@ -231,13 +232,5 @@ function Button({ children, handleClick }){
     <div className="w-full py-2">
       <button onClick={handleClick} className="w-full py-2 font-bold text-white border-2 border-green-500 rounded hover:bg-green-500">{children}</button>
     </div>
-  )
-}
-
-function DeleteButton({ children, handleClick }){
-  return(
-    <>
-      <button onClick={handleClick} className="px-2 py-1 text-sm font-bold text-white border-2 border-red-500 rounded hover:bg-red-500">{children}</button>
-    </>
   )
 }
