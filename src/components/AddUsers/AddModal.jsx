@@ -19,8 +19,8 @@ export function SaveModal ({ handleClose, isInfoChanged, addUser }) {
       <button disabled={!isInfoChanged} onClick={handleModal} className="px-3 py-1 text-lg bg-green-400 rounded-lg disabled:opacity-30" >Guardar</button>
       {
         modal &&
-        <div className='absolute grid place-items-center w-[100%] h-[100%] z-[1000] top-0 left-0 backdrop-blur bg-[#0000004f]' >
-          <div className='w-2/5 bg-[#375786] rounded flex flex-col items-center gap-5 py-5'>
+        <div className='fixed grid place-items-center w-[100%] h-[100%] z-[1000] top-0 left-0 backdrop-blur bg-[#0000004f]' >
+          <div className='w-1/5 bg-[#375786] rounded flex flex-col items-center gap-5 py-5'>
               <h3 className='text-xl'>Estas seguro de los cambios?</h3>
               <div className="flex justify-around w-full">
                 <button onClick={handleModal} className="px-3 py-1 text-lg bg-red-500 rounded-lg" >Cancelar</button>
