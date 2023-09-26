@@ -123,22 +123,22 @@ def delete_data():
         try:
             for value in values['donaciones']:
                 print(type(value))
-                cursor.execute(query_donaciones, (value))
+                cursor.execute(query_donaciones, (value,))
                 conn.commit()
 
             for value in values['direcciones']:
                 print(type(value))
-                cursor.execute(query_direcciones, (value))
+                cursor.execute(query_direcciones, (value,))
                 conn.commit()
 
             for value in values['financieros']:
                 print(type(value))
-                cursor.execute(query_financieros, (value))
+                cursor.execute(query_financieros, (value,))
                 conn.commit()
 
             for value in values['observaciones']:
                 print(type(value))
-                cursor.execute(query_observaciones, (value))
+                cursor.execute(query_observaciones, (value,))
                 conn.commit()
 
 
@@ -146,7 +146,7 @@ def delete_data():
         except Exception as e:
             return jsonify({"message": f" {e}"})
         
-        return jsonify({"message": "creado correctamente"})
+        return jsonify({"message": "eliminado correctamente"})
     
     
 
