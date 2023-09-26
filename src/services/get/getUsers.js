@@ -3,8 +3,6 @@ export const getUsers = async () => {
     const res = await fetch('http://127.0.0.1:5000/get_all_users')
     const users = await res.json()
 
-    console.log(users)
-
     return users[0]?.map(user => ({
       'id': user.USUARIO_ID,
       'estado': user.ESTADO_DE_USUARIO,
