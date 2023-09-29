@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import { EditUserModal } from './EditUsers/EditUserModal'
 import { Campo } from './Campo'
+import { FaltaSubirloModal } from './FaltaSubirloModal'
 
-export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupcacion, fechaDeAlta, firma }) {
+export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupcacion, fechaDeAlta, firma, faltaSubirlo }) {
+  console.log(faltaSubirlo)
   const [modal, setModal] = useState(false)
+
+  const userClass = faltaSubirlo ? "bg-[#551919] hover:bg-[#7e3434]" : 'bg-[#172335] hover:bg-[#1c2b41]'
 
   const handleClick = () => {
     setModal(!modal)
@@ -11,9 +15,9 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
 
   return (
     <>
-      <li className='grid duration-75 grid-cols-responsive'>
-        <div onClick={handleClick} className='bg-[#172335] grid p-1 cursor-pointer border place-items-center hover:bg-[#3f577c] group'><i className='grid w-full h-full rounded-lg place-items-center group-hover:text-green-400 fa-regular fa-pen-to-square' /></div>
-        <Campo styles='col-start-2'>{id}</Campo>
+      <div onClick={handleClick} className={`${userClass} grid duration-75 cursor-pointer grid-cols-responsive`} >
+        <FaltaSubirloModal />        
+        <Campo>{id}</Campo>
         <Campo>{estado}</Campo>
         <Campo>{tipo}</Campo>
         <Campo>{dni}</Campo>
@@ -28,7 +32,7 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
         <Campo>{ocupcacion}</Campo>
         <Campo>{fechaDeAlta}</Campo>
         <Campo>{firma}</Campo>
-      </li>
+      </div>
       {
         // remember to implement this code to the rest of the modals
         modal &&

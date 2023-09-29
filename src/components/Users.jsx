@@ -10,7 +10,8 @@ export function Users ({ users }) {
           ? (
             <ul className='grid w-full max-w-max max-h-[80%] h-max overflow-auto'>
               <li className='grid gap-0 grid-cols-responsive duration-75 bg-[#172335]'>
-                <Campo styles='col-start-2'>ID</Campo>
+                <Campo>Falta subirlo</Campo>
+                <Campo>ID</Campo>
                 <Campo>Estado</Campo>
                 <Campo>Tipo</Campo>
                 <Campo>N° Documento</Campo>
