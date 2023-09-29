@@ -4,8 +4,12 @@ export function FaltaSubirloModal ({ faltaSubirlo, changeFaltaSubirlo }) {
   // the state of the modal.
   const [modal, setModal] = useState(false)
 
+  console.log(faltaSubirlo)
+
   // To open and close the modal.
-  const handleModal = () => setModal(!modal)
+  const handleModal = () => {
+    setModal(!modal)
+  }
 
   // This function close all the modals and also saves the changes.
   const handleAdd = () => {
@@ -15,7 +19,7 @@ export function FaltaSubirloModal ({ faltaSubirlo, changeFaltaSubirlo }) {
 
   return (
     <>
-      <button disabled={!faltaSubirlo} onClick={handleModal} className='grid p-1 z-[900] border place-items-center hover:bg-[#3f577c] group' >
+      <button disabled={!faltaSubirlo} onClick={handleModal} className='grid cursor-pointer w-[7em] p-1 z-[900] border place-items-center hover:bg-[#3f577c] group' >
         <i className='grid w-full h-full rounded-lg place-items-center group-hover:text-green-400 fa-regular fa-pen-to-square' />
       </button>
       {

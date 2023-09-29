@@ -4,7 +4,6 @@ import { Campo } from './Campo'
 import { FaltaSubirloModal } from './FaltaSubirloModal'
 
 export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupcacion, fechaDeAlta, firma, faltaSubirlo }) {
-  console.log(faltaSubirlo)
   const [modal, setModal] = useState(false)
 
   const userClass = faltaSubirlo ? "bg-[#551919] hover:bg-[#7e3434]" : 'bg-[#172335] hover:bg-[#1c2b41]'
@@ -15,23 +14,25 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
 
   return (
     <>
-      <div onClick={handleClick} className={`${userClass} grid duration-75 cursor-pointer grid-cols-responsive`} >
-        <FaltaSubirloModal />        
-        <Campo>{id}</Campo>
-        <Campo>{estado}</Campo>
-        <Campo>{tipo}</Campo>
-        <Campo>{dni}</Campo>
-        <Campo>{nacimiento}</Campo>
-        <Campo>{apellido}</Campo>
-        <Campo>{nombre}</Campo>
-        <Campo>{mail}</Campo>
-        <Campo>{cuil}</Campo>
-        <Campo>{movil}</Campo>
-        <Campo>{fijo}</Campo>
-        <Campo>{referente}</Campo>
-        <Campo>{ocupcacion}</Campo>
-        <Campo>{fechaDeAlta}</Campo>
-        <Campo>{firma}</Campo>
+      <div className={`${userClass} flex`} >
+        <FaltaSubirloModal faltaSubirlo={faltaSubirlo} />
+        <div onClick={handleClick} className='grid duration-75 cursor-pointer grid-cols-responsive'>    
+          <Campo>{id}</Campo>
+          <Campo>{estado}</Campo>
+          <Campo>{tipo}</Campo>
+          <Campo>{dni}</Campo>
+          <Campo>{nacimiento}</Campo>
+          <Campo>{apellido}</Campo>
+          <Campo>{nombre}</Campo>
+          <Campo>{mail}</Campo>
+          <Campo>{cuil}</Campo>
+          <Campo>{movil}</Campo>
+          <Campo>{fijo}</Campo>
+          <Campo>{referente}</Campo>
+          <Campo>{ocupcacion}</Campo>
+          <Campo>{fechaDeAlta}</Campo>
+          <Campo>{firma}</Campo>
+        </div>    
       </div>
       {
         // remember to implement this code to the rest of the modals
