@@ -21,7 +21,7 @@ export const userInfoEmptyState = {
         'calle': '',
         'codigoPostal': '',
         'depto': '',
-        'direccion_id': '',
+        'id': '',
         'localidad': '',
         'numero': '',
         'piso': '',
@@ -29,7 +29,7 @@ export const userInfoEmptyState = {
     }],
     'donaciones':[{
         'cantidad': '',
-        'donacion_id': '',
+        'id': '',
         'estado_donacion': '',
         'fecha': '',
         'metodoDePago': '',
@@ -38,7 +38,7 @@ export const userInfoEmptyState = {
     'financieros':[{
         'banco': '',
         'codigoSeguridad': '',
-        'financiero_id': '',
+        'id': '',
         'debito': '',
         'estado_financiero': '',
         'sucursal': '',
@@ -47,6 +47,6 @@ export const userInfoEmptyState = {
     }],
     'observaciones':[{
         'observacion': '',
-        'observacion_id': ''
+        'id': ''
     }]
 }

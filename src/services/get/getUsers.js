@@ -3,8 +3,6 @@ export const getUsers = async () => {
     const res = await fetch('http://127.0.0.1:5000/get_all_users')
     const users = await res.json()
 
-    console.log(users)
-
     return users[0]?.map(user => ({
       'id': user.USUARIO_ID,
       'estado': user.ESTADO_DE_USUARIO,
@@ -20,7 +18,8 @@ export const getUsers = async () => {
       'referente': user.REFERENTE,
       'ocupcacion': user.OCUPACION,
       'fechaDeAlta': user.DIA_DE_ALTA,
-      'firma': user.FIRMA
+      'firma': user.FIRMA,
+      'faltaSubirlo': user.FALTA_SUBIRLO === "Si" || user.FALTA_SUBIRLO === 1
     }))
   } catch (e) {
     throw new Error(e)
