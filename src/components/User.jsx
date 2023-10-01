@@ -2,9 +2,11 @@ import { useState } from 'react'
 import { EditUserModal } from './EditUsers/EditUserModal'
 import { Campo } from './Campo'
 import { FaltaSubirloModal } from './FaltaSubirloModal'
+import { useFaltaSubirlo } from '../hooks/useFaltaSubirlo'
 
 export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupcacion, fechaDeAlta, firma, faltaSubirlo }) {
   const [modal, setModal] = useState(false)
+  const { changeFaltaSubirlo } = useFaltaSubirlo(id)
 
   const userClass = faltaSubirlo ? "bg-[#551919] hover:bg-[#7e3434]" : 'bg-[#172335] hover:bg-[#1c2b41]'
 
@@ -15,7 +17,7 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
   return (
     <>
       <div className={`${userClass} flex`} >
-        <FaltaSubirloModal faltaSubirlo={faltaSubirlo} />
+        <FaltaSubirloModal faltaSubirlo={faltaSubirlo} changeFaltaSubirlo={changeFaltaSubirlo} />
         <div onClick={handleClick} className='grid duration-75 cursor-pointer grid-cols-responsive'>    
           <Campo>{id}</Campo>
           <Campo>{estado}</Campo>

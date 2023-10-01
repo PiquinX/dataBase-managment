@@ -200,7 +200,8 @@ def update_data(id):
                             TELEFONO_FIJO = ?,
                             REFERENTE = ?,
                             OCUPACION = ?,
-                            FIRMA = ?
+                            FIRMA = ?,
+                            FALTA_SUBIRLO = ?
                             WHERE USUARIO_ID = ?"""
             # Resto de tus consultas
 
@@ -260,6 +261,7 @@ def update_data(id):
                 values['usuario']['referente'],
                 values['usuario']['ocupacion'],
                 values['usuario']['firma'],
+                'Si',
                 id  # El ID debería estar aquí
             ))
             conn.commit()
@@ -337,7 +339,30 @@ def update_data(id):
             return jsonify({"message": f" {e}"})
         
         return jsonify({"message": "Datos actualizados correctamente"})    
+
+    
+    
+@app.route('/change_falta_subirlo/<int:id>', methods=['PUT'])
+#selecciona los datos que tengan la id de todas las tablas
+def change_falta_subirlo(id):
+     with sqlite3.connect('data_base.db') as conn:
+        cursor = conn.cursor()
+        query = """UPDATE usuarios SET 
+                            FALTA_SUBIRLO = ?
+                            WHERE USUARIO_ID = ?"""
+        
+
+        try:
+            cursor.execute(query,(
+                'No',
+                id
+            ))
+            conn.commit()
+
+        except Exception as e:
+            return jsonify({"message": f" {e}"})
+        
+        return jsonify({"message": "Datos actualizados correctamente"})
+
 if __name__ == "__main__":
     app.run()
-    
-    

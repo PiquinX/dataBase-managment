@@ -31,8 +31,8 @@ function App () {
   const xmarkClass = search.length > 0 ? 'block' : 'hidden'
 
   return (
-    <div className='h-full text-white'>
-      <header className='sticky top-0 flex justify-center w-full py-5 bg-[#202a37] z-50'>
+    <div className='h-screen text-white'>
+      <header className='sticky top-0 flex justify-center w-full py-3 md:py-5 bg-[#202a37] z-50'>
         <div className='flex gap-2 w-[236px] justify-end relative '>
           <div className='relative group'>
             <input id='search' onChange={handleChange} tabIndex={1} value={search} placeholder='Buscar' className={`${inputClass} outline-0 px-3 py-1 duration-100 bg-transparent border-2 border-white rounded focus:w-44 focus:border-[#4381e6] focus:pl-10`} />
@@ -46,7 +46,7 @@ function App () {
         </div>
       </header>
 
-      <main className='flex flex-col bg-[#545c6c] text-xs sm:text-sm md:text-base items-center w-full h-full gap-4 py-4 px-8'>
+      <main className='flex flex-col bg-[#545c6c] text-xs sm:text-sm md:text-base items-center w-full h-full gap-1 py-1 md:gap-4 md:py-4 px-8'>
         <AddUsers />
         <Users users={filteredUsers} />
       </main>
