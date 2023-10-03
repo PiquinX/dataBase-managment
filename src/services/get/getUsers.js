@@ -16,7 +16,7 @@ export const getUsers = async () => {
       'movil': user.TELEFONO_MOVIL,
       'fijo': user.TELEFONO_FIJO,
       'referente': user.REFERENTE,
-      'ocupcacion': user.OCUPACION,
+      'ocupacion': user.OCUPACION,
       'fechaDeAlta': user.DIA_DE_ALTA,
       'firma': user.FIRMA,
       'faltaSubirlo': user.FALTA_SUBIRLO === "Si" || user.FALTA_SUBIRLO === 1

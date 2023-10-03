@@ -4,7 +4,7 @@ import { Campo } from './Campo'
 import { FaltaSubirloModal } from './FaltaSubirloModal'
 import { useFaltaSubirlo } from '../hooks/useFaltaSubirlo'
 
-export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupcacion, fechaDeAlta, firma, faltaSubirlo }) {
+export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mail, cuil, movil, fijo, referente, ocupacion, fechaDeAlta, firma, faltaSubirlo }) {
   const [modal, setModal] = useState(false)
   const { changeFaltaSubirlo } = useFaltaSubirlo(id)
 
@@ -31,7 +31,7 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
           <Campo>{movil}</Campo>
           <Campo>{fijo}</Campo>
           <Campo>{referente}</Campo>
-          <Campo>{ocupcacion}</Campo>
+          <Campo>{ocupacion}</Campo>
           <Campo>{fechaDeAlta}</Campo>
           <Campo>{firma}</Campo>
         </div>    
