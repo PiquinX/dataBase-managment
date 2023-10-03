@@ -18,3 +18,11 @@
 	background-color: #2f4a72e3;
     border-radius: 10px;
 }
+
+.cursor-grabbing {
+    cursor: grabbing;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}

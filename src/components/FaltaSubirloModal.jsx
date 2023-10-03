@@ -17,7 +17,7 @@ export function FaltaSubirloModal ({ faltaSubirlo, changeFaltaSubirlo }) {
 
   return (
     <>
-      <button disabled={!faltaSubirlo} onClick={handleModal} className='grid cursor-pointer w-[7em] p-1 border place-items-center hover:bg-[#3f577c] group' >
+      <button disabled={!faltaSubirlo} onDoubleClick={handleModal} className='grid w-[7em] p-1 border place-items-center hover:bg-[#3f577c] group' >
         <i className='grid w-full h-full rounded-lg place-items-center group-hover:text-green-400 fa-regular fa-pen-to-square' />
       </button>
       {

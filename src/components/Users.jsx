@@ -9,6 +9,8 @@ export function Users ({ users }) {
   const [startY, setStartY] = useState()
   const [scrollTop, setScrollTop] = useState()
 
+  const cursor = isDown ? 'cursor-grabbing' : 'cursor-pointer'
+
   const handleMouseDown = (e) => {
     const users = e.target.parentElement.parentElement.parentElement
     setIsDown(true)
@@ -50,7 +52,7 @@ export function Users ({ users }) {
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
               onMouseMove={handleMouseMove}
-              className='grid w-full max-w-max max-h-[50%] sm:max-h-[80%] h-max overflow-auto'
+              className={`${cursor} grid w-full max-w-max max-h-[50%] sm:max-h-[80%] h-max overflow-auto`}
               >
               <div className='flex bg-[#172335] z-[900] sticky top-0' >
                 <Campo styles={'w-[7em]'}>Falta subirlo</Campo>
