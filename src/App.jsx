@@ -48,7 +48,11 @@ function App () {
 
       <main className='flex flex-col bg-[#545c6c] text-xs sm:text-sm md:text-base items-center w-full h-full gap-1 py-1 md:gap-4 md:py-4 px-8'>
         <AddUsers />
-        <Users users={filteredUsers} />
+        {
+          filteredUsers 
+          ? <Users users={filteredUsers} />
+          : <h3 className='text-xl font-bold'>No se encontro ningun usuario</h3>
+        }
       </main>
     </div>
   )
