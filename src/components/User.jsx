@@ -18,7 +18,7 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
     <>
       <div className={`${userClass} flex`} >
         <FaltaSubirloModal faltaSubirlo={faltaSubirlo} changeFaltaSubirlo={changeFaltaSubirlo} />
-        <div onClick={handleClick} className='grid duration-75 cursor-pointer grid-cols-responsive'>    
+        <div onDoubleClick={handleClick} className='grid duration-75 cursor-pointer grid-cols-responsive'>    
           <Campo>{id}</Campo>
           <Campo>{estado}</Campo>
           <Campo>{tipo}</Campo>
