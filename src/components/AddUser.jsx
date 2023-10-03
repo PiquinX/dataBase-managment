@@ -10,11 +10,9 @@ export function AddUsers (){
     
     return(
         <>
-            <div className='flex flex-row items-center justify-end w-full max-w-[1770px] h-8'>
-                <button onClick={handleClick}>
-                    <i className="p-2 bg-green-400 rounded fa-solid fa-plus"></i>
-                </button>
-            </div>
+            <button onClick={handleClick}>
+                <i className="p-2 bg-green-400 rounded fa-solid fa-plus"></i>
+            </button>
             {
                 // remember to implement this code to the rest of the modals
                 modal &&

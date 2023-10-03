@@ -41,13 +41,17 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
 export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo, removeInfo }) {
   const direccionesCompletas = useRef([])
 
-  for(let i = 0; i < data.length; i++){
-    const adress = data[i].calle && data[i].numero 
-    ? `${data[i].calle} ${data[i].numero}` 
-    : 'Sin direccion'
-    
-    direccionesCompletas.current.push(adress)
-  }
+  useEffect(()=>{
+    direccionesCompletas.current = []
+    for(let i = 0; i < data.length; i++){
+      const adress = data[i].calle && data[i].numero 
+      ? `${data[i].calle} ${data[i].numero}` 
+      : 'Sin direccion'
+      
+      direccionesCompletas.current.push(adress)
+    }
+  },[data.length])
+  
 
 
   // changing the value depending on the field and value
@@ -67,9 +71,9 @@ export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo, rem
             <div className="flex flex-col gap-5">
               {
                 data.map((direccion, index) => (
-                  <div key={direccion.id} className="flex flex-col gap-4">
+                  <div key={direccion.id ? direccion.id : index} className="flex flex-col gap-4">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xl">{direccionesCompletas.current[index]} - {index + 1}</h4>
+                      <h4 className="text-xl">{data[index].calle && data[index].numero ? direccionesCompletas.current[index] : 'Sin direccion'} - {index + 1}</h4>
                       <DeleteModal deleteInfo={()=> handleRemove(index)}>
                         Eliminar
                       </DeleteModal>

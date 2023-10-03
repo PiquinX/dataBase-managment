@@ -4,16 +4,23 @@ import { Users } from './components/Users'
 import { useUsers } from './hooks/useUsers'
 import { filterUsers } from './services/filterUsers'
 import { AddUsers } from './components/AddUser'
+import { useSort } from './hooks/useSort'
+import { Select } from './components/Select'
+import { sortOptions } from './constants/sortOptions'
 
 function App () {
   // This state contains the search.
   const [search, setSearch] = useState('')
+
+  const { setSort, sortUsers, sort } = useSort()
 
   // This custom Hook returns an array with all the users (fetch).
   const { users } = useUsers()
 
   // This function filters the user with the search as a parameter.
   const filteredUsers = filterUsers({ users, search })
+
+  const sortedUsers = sortUsers(filteredUsers)
 
   const handleChange = (event) => {
     const newSearch = event.target.value
@@ -47,10 +54,19 @@ function App () {
       </header>
 
       <main className='flex flex-col bg-[#545c6c] text-xs sm:text-sm md:text-base items-center w-full h-full gap-1 py-1 md:gap-4 md:py-4 px-8'>
-        <AddUsers />
+        <div className='flex flex-row items-center justify-between w-full max-w-[1842px] h-8'>
+          <div className='flex items-center gap-3'>
+            Ordernar por: 
+            <Select 
+              changeValue={setSort} 
+              options={[sortOptions.FALTA_SUBIRLO, sortOptions.ESTADO, sortOptions.ID, sortOptions.APELLIDO, sortOptions.NOBMRE]} 
+              value={sort} />
+          </div>
+          <AddUsers />
+        </div>
         {
-          filteredUsers 
-          ? <Users users={filteredUsers} />
+          sortedUsers 
+          ? <Users users={sortedUsers} />
           : <h3 className='text-xl font-bold'>No se encontro ningun usuario</h3>
         }
       </main>
