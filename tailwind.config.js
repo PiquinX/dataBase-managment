@@ -13,10 +13,14 @@ export default {
       boxShadow: {
         movies: '0 0 2px #172335, 0 0 5px #172335, 0 0 10px #172335, 0 0 20px #172335',
         select: '1px 1px 2px #172335, 1px 1px 5px #172335'
-      }
+      },
+      screens: {
+        'superShort': { 'raw': '(min-height: 300px)' },
+        'short': { 'raw': '(min-height: 500px)' },
+      },
     },
     screens: {
-      xs: { min: '380px' },
+      xs: { min: '400px' },
       sm: { min: '600px' },
       md: { min: '1000px' },
       lg: { min: '1150px' },

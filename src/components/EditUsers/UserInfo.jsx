@@ -240,7 +240,7 @@ function InfoInputs({ placeHolder, defaultValue, onChange }){
   return(
     <div className="relative w-64 h-10" >
       <label className="absolute bg-[#375786] text-white left-2 -top-3 px-1">{placeHolder}</label>
-      <input defaultValue={defaultValue} onChange={onChange} className="w-full h-full pl-2 font-bold text-white bg-transparent border-2 rounded outline-none" />
+      <input defaultValue={defaultValue} onChange={onChange} className="w-full h-full px-2 overflow-visible font-bold text-white bg-transparent border-2 rounded outline-none" />
     </div>
   )
 }

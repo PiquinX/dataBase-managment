@@ -56,7 +56,7 @@ function App () {
       <main className='flex flex-col bg-[#545c6c] text-xs sm:text-sm md:text-base items-center w-full h-full gap-1 py-1 md:gap-4 md:py-4 px-8'>
         <div className='flex flex-row items-center justify-between w-full max-w-[1842px] h-8'>
           <div className='flex items-center gap-3'>
-            Ordernar por: 
+            <span className='hidden xs:block'>Ordernar por:</span> 
             <Select 
               changeValue={setSort} 
               options={[sortOptions.FALTA_SUBIRLO, sortOptions.ESTADO, sortOptions.ID, sortOptions.APELLIDO, sortOptions.NOBMRE]} 
