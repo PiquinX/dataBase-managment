@@ -3,10 +3,11 @@ import { SaveModal } from './AddModal'
 import { CancelModal } from './CancelModal'
 import { useAddUser } from '../../hooks/useAddUser'
 import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancialSection, DataObservationsSection } from './UserInfo'
+import { ResetModal } from './ResetModal'
 
 export function AddUserModal ({ handleClick }) {
   const { newUser, changeInfo, changeInfoUsuario, isInfoChanged, addInfo, clearNewUser, addUser, removeInfo } = useAddUser()
-  
+
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 
@@ -34,16 +35,16 @@ export function AddUserModal ({ handleClick }) {
         </div>
         <div className='flex items-center justify-end flex-grow px-5'><i onClick={handleClick} className='text-lg font-bold cursor-pointer hover:text-red-500 fa-solid fa-x' /></div>
       </header>
-            <button className='absolute z-40 flex items-center gap-1 px-2 py-1 font-bold duration-75 border-2 rounded left-5 top-20 hover:bg-red-500' onClick={handleClear}>
-              Reset <i className="fa-solid fa-trash"></i>
-            </button>
-            <main className='grid place-items-center relative min-h-max h-[80%] overflow-y-scroll pt-3 pb-6 bar'>
-              <DataUserSection isDisplayed={whichData === 0}  updateInfo={changeInfoUsuario} data={newUser.usuario} />
-              <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} data={newUser.direcciones} addInfo={addInfo} removeInfo={removeInfo} />
-              <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} data={newUser.donaciones} addInfo={addInfo} removeInfo={removeInfo} />
-              <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} data={newUser.financieros} addInfo={addInfo} removeInfo={removeInfo} />
-              <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} data={newUser.observaciones} addInfo={addInfo} removeInfo={removeInfo} />
-            </main>
+      <div className='absolute z-40 left-5 top-20'>
+        <ResetModal handleClear={handleClear} isInfoChanged={isInfoChanged} />
+      </div>
+      <main className='grid place-items-center relative min-h-max h-[80%] overflow-y-scroll pt-3 pb-6 bar'>
+        <DataUserSection isDisplayed={whichData === 0} updateInfo={changeInfoUsuario} data={newUser.usuario} />
+        <DataAdressSection isDisplayed={whichData === 1} updateInfo={changeInfo} data={newUser.direcciones} addInfo={addInfo} removeInfo={removeInfo} />
+        <DataDonationsSection isDisplayed={whichData === 2} updateInfo={changeInfo} data={newUser.donaciones} addInfo={addInfo} removeInfo={removeInfo} />
+        <DataFinancialSection isDisplayed={whichData === 3} updateInfo={changeInfo} data={newUser.financieros} addInfo={addInfo} removeInfo={removeInfo} />
+        <DataObservationsSection isDisplayed={whichData === 4} updateInfo={changeInfo} data={newUser.observaciones} addInfo={addInfo} removeInfo={removeInfo} />
+      </main>
       <footer className='flex justify-around items-center max-h-[20%] flex-grow border-t-2 border-[#2f4a72]'>
         <CancelModal handleClose={handleClick} />
         <SaveModal handleClose={handleClick} isInfoChanged={isInfoChanged} addUser={addUser} />

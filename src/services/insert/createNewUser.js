@@ -1,15 +1,13 @@
 export const createNewUser = async (newUser) => {
   try {
-    const res = await fetch(`http://127.0.0.1:5000/insert_full_data`, {
-        method: 'POST',
+    const res = await fetch('http://127.0.0.1:5000/insert_full_data', {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newUser),
+      body: JSON.stringify(newUser)
     })
     const resul = await res.json()
-    
-    console.log(resul.message)
 
     return resul
   } catch (e) {

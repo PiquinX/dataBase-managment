@@ -3,16 +3,15 @@ import { createNewUser } from '../services/insert/createNewUser'
 import { userInfoEmptyState } from '../constants/userInfoEmptyState'
 import { useUsers } from '../hooks/useUsers'
 
-
 export function useAddUser () {
   const { refreshUsers } = useUsers()
-  const [newUser, setNewUser] = useState(()=> JSON.parse(localStorage.getItem('newUser')) || userInfoEmptyState )
+  const [newUser, setNewUser] = useState(() => JSON.parse(localStorage.getItem('newUser')) || userInfoEmptyState)
 
   // This changes the value of the user, depending on the Field passed.
   const changeInfoUsuario = ({ newValue, whichField }) => {
     const newUserCopy = structuredClone(newUser)
 
-    newUserCopy['usuario'][whichField] = newValue
+    newUserCopy.usuario[whichField] = newValue
     setNewUser(newUserCopy)
   }
 
@@ -22,7 +21,6 @@ export function useAddUser () {
     localStorage.removeItem('newUser')
   }
 
-  
   // This changes the value of the user, depending on the Field, and table passed.
   const changeInfo = ({ newValue, whichTable, index, whichField }) => {
     const newUserCopy = structuredClone(newUser)
@@ -49,15 +47,15 @@ export function useAddUser () {
   }
 
   // This save changes and also refresh the Users to be displayed on the table.
-   const addUser = async () => {
-     await createNewUser(newUser)
-     refreshUsers()
-     clearNewUser()
-   }
+  const addUser = async () => {
+    await createNewUser(newUser)
+    refreshUsers()
+    clearNewUser()
+  }
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem('newUser', JSON.stringify(newUser))
-  },[newUser])
+  }, [newUser])
 
   const isInfoChanged = userInfoEmptyState !== newUser
 

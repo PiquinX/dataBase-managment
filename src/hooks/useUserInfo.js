@@ -10,15 +10,15 @@ export function useUserInfo (ID) {
   const [userInfo, setUserInfo] = useState()
   const originalUserInfo = useRef(userInfo)
   const [valuesToRemove, setValuesToRemove] = useState({
-    'donaciones': [],
-    'direcciones': [],
-    'financieros': [],
-    'observaciones': []
+    donaciones: [],
+    direcciones: [],
+    financieros: [],
+    observaciones: []
   })
 
   const refreshUserInfo = () => getUserInfo(ID).then(newUserInfo => {
-      setUserInfo(newUserInfo)
-      originalUserInfo.current = newUserInfo
+    setUserInfo(newUserInfo)
+    originalUserInfo.current = newUserInfo
   })
 
   useEffect(() => {
@@ -30,10 +30,10 @@ export function useUserInfo (ID) {
   const changeInfoUsuario = ({ newValue, whichField }) => {
     const newUserInfo = structuredClone(userInfo)
 
-    newUserInfo['usuario'][whichField] = newValue
+    newUserInfo.usuario[whichField] = newValue
     setUserInfo(newUserInfo)
   }
-  
+
   // This changes the value of the user, depending on the Field, and table passed.
   const changeInfo = ({ newValue, whichTable, index, whichField }) => {
     const newUserInfo = structuredClone(userInfo)
@@ -61,7 +61,7 @@ export function useUserInfo (ID) {
   // }
   const removeInfo = (whichField, index) => {
     console.log(userInfo[whichField])
-    if(userInfo[whichField][index].id){
+    if (userInfo[whichField][index].id) {
       const valuesToRemoveCopy = structuredClone(valuesToRemove)
 
       valuesToRemoveCopy[whichField].push(userInfo[whichField][index].id)

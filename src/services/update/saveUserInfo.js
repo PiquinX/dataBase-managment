@@ -3,14 +3,12 @@ export const saveUserInfo = async (userInfo) => {
     const res = await fetch(`http://127.0.0.1:5000/update_data/${userInfo.usuario.id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(userInfo)
     })
 
     const resul = await res.json()
-    
-    console.log(resul.message)
 
     return resul
   } catch (e) {

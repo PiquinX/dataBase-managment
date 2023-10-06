@@ -8,7 +8,7 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
   const [modal, setModal] = useState(false)
   const { changeFaltaSubirlo } = useFaltaSubirlo(id)
 
-  const userClass = faltaSubirlo ? "bg-[#551919] hover:bg-[#7e3434]" : 'bg-[#172335] hover:bg-[#1c2b41]'
+  const userClass = faltaSubirlo ? 'bg-[#551919] hover:bg-[#7e3434]' : 'bg-[#172335] hover:bg-[#1c2b41]'
 
   const handleClick = () => {
     setModal(!modal)
@@ -16,9 +16,9 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
 
   return (
     <>
-      <div className={`${userClass} flex`} >
+      <div className={`${userClass} flex`}>
         <FaltaSubirloModal faltaSubirlo={faltaSubirlo} changeFaltaSubirlo={changeFaltaSubirlo} />
-        <div onClick={handleClick} className='grid duration-75 grid-cols-responsive'>    
+        <div onClick={handleClick} className='grid duration-75 grid-cols-responsive'>
           <Campo>{id}</Campo>
           <Campo>{estado}</Campo>
           <Campo>{tipo}</Campo>
@@ -34,7 +34,7 @@ export function User ({ id, estado, tipo, dni, nacimiento, apellido, nombre, mai
           <Campo>{ocupacion}</Campo>
           <Campo>{fechaDeAlta}</Campo>
           <Campo>{firma}</Campo>
-        </div>    
+        </div>
       </div>
       {
         // remember to implement this code to the rest of the modals

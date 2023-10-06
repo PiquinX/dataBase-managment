@@ -11,7 +11,7 @@ export function UsersProvider ({ children }) {
   // This gets the all the users.
   const refreshUsers = async () => getUsers().then(newUsers => setUsers(newUsers))
 
-  useEffect(()=>{
+  useEffect(() => {
     getUsers().then(newUsers => setUsers(newUsers))
   }, [])
 

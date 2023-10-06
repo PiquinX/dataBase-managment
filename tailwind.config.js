@@ -15,9 +15,9 @@ export default {
         select: '1px 1px 2px #172335, 1px 1px 5px #172335'
       },
       screens: {
-        'superShort': { 'raw': '(min-height: 300px)' },
-        'short': { 'raw': '(min-height: 500px)' },
-      },
+        superShort: { raw: '(min-height: 300px)' },
+        short: { raw: '(min-height: 500px)' }
+      }
     },
     screens: {
       xs: { min: '400px' },
@@ -26,7 +26,7 @@ export default {
       lg: { min: '1150px' },
       xl: { min: '1350px' },
       '2xl': { min: '1700px' }
-    },
+    }
   },
   plugins: []
 }

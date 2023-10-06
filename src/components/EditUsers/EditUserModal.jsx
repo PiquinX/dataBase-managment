@@ -6,7 +6,7 @@ import { DataUserSection, DataAdressSection, DataDonationsSection, DataFinancial
 
 export function EditUserModal ({ handleClick, ID }) {
   const { userInfo, changeInfo, isInfoChanged, changeInfoUsuario, saveInfo, addInfo, removeInfo } = useUserInfo(ID)
-  
+
   // This contains which data have to be displayed.
   const [whichData, setWhichData] = useState(0)
 

@@ -9,7 +9,7 @@ export function useSort () {
     if (users === null || users === undefined) return null
 
     // ordena los usuarios segun el criterio.
-    if (sort === sortOptions.FALTA_SUBIRLO) return users.filter( user => user.faltaSubirlo )
+    if (sort === sortOptions.FALTA_SUBIRLO) return users.filter(user => user.faltaSubirlo)
     else if (sort === sortOptions.ESTADO) return users.sort((a, b) => a.estado.localeCompare(b.estado))
     else if (sort === sortOptions.ID) return users.sort((a, b) => a - b)
     else if (sort === sortOptions.APELLIDO) return users.sort((a, b) => a.apellido.localeCompare(b.apellido))
