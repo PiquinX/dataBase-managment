@@ -38,6 +38,7 @@ export function useAddUser () {
     setNewUser(newUserCopy)
   }
 
+  // This function removes a field from the state
   const removeInfo = (whichField, index) => {
     const newUserCopy = structuredClone(newUser)
 
@@ -53,6 +54,7 @@ export function useAddUser () {
     clearNewUser()
   }
 
+  // To save it in the localStorage
   useEffect(() => {
     localStorage.setItem('newUser', JSON.stringify(newUser))
   }, [newUser])

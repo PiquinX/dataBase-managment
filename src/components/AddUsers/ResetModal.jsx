@@ -7,7 +7,6 @@ export function ResetModal ({ isInfoChanged, handleClear }) {
   // To open and close the modal.
   const handleModal = () => setModal(!modal)
 
-  // This function close all the modals and also saves the changes.
   const handleConfirm = () => {
     handleClear()
     handleModal()

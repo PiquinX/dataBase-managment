@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react'
 import { DeleteModal } from '../DeleteModal'
 
 export function DataUserSection ({ isDisplayed, updateInfo, data }) {
-  // this ref contains the full name of the user in case, the we change it.
+  // This ref contains the full name of the user in case, the we change it.
   const userName = useRef(`${data.nombre} ${data.apellido}`)
 
-  // changing the value depending on the field and value
+  // Changing the value depending on the field and value
   const handleChange = (value, field) => {
     updateInfo({ newValue: value, whichField: field })
   }
@@ -41,6 +41,7 @@ export function DataUserSection ({ isDisplayed, updateInfo, data }) {
 export function DataAdressSection ({ isDisplayed, updateInfo, data, addInfo, removeInfo }) {
   const direccionesCompletas = useRef([])
 
+  // This effect pushes all the directions of the data to a reference.
   useEffect(() => {
     direccionesCompletas.current = []
     for (let i = 0; i < data.length; i++) {

@@ -42,11 +42,7 @@ export function useUserInfo (ID) {
     setUserInfo(newUserInfo)
   }
 
-  // This functions add an array to the selected table and refreshes the userInfo.
-  // const addInfo = async (whichField) => {
-  //   await addUserInfo(whichField, userInfo.usuario.id)
-  //   refreshUserInfo()
-  // }
+  // This function adds a field to the user state.
   const addInfo = (whichField) => {
     const userInfoCopy = structuredClone(userInfo)
 
@@ -55,12 +51,9 @@ export function useUserInfo (ID) {
     setUserInfo(userInfoCopy)
   }
 
-  // const removeInfo = async (whichField, id) => {
-  //   await removeUserInfo(whichField, id)
-  //   refreshUserInfo()
-  // }
+
+  // This function removes the field from the userInfo state and, if the field was already in the original state it adds it to the valuesToRemove state.
   const removeInfo = (whichField, index) => {
-    console.log(userInfo[whichField])
     if (userInfo[whichField][index].id) {
       const valuesToRemoveCopy = structuredClone(valuesToRemove)
 

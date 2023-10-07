@@ -5,10 +5,10 @@ export function useSort () {
   const [sort, setSort] = useState('ID')
 
   const sortUsers = (users) => {
-    // Si no hay usuarios devuelve null
+    // If there is no users it returns null
     if (users === null || users === undefined) return null
 
-    // ordena los usuarios segun el criterio.
+    // Sort the users depending on a parameter.
     if (sort === sortOptions.FALTA_SUBIRLO) return users.filter(user => user.faltaSubirlo)
     else if (sort === sortOptions.ESTADO) return users.sort((a, b) => a.estado.localeCompare(b.estado))
     else if (sort === sortOptions.ID) return users.sort((a, b) => a - b)

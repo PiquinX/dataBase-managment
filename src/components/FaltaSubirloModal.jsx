@@ -9,7 +9,6 @@ export function FaltaSubirloModal ({ faltaSubirlo, changeFaltaSubirlo }) {
     setModal(!modal)
   }
 
-  // This function close all the modals and also saves the changes.
   const handleFaltaSubirlo = () => {
     changeFaltaSubirlo()
     handleModal()

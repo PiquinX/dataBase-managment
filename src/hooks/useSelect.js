@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 
 export function useSelect () {
-  // estado que contiene si el select se muesta o no.
+  // This state contains if the selectMenu is displayed or not.
   const [isShowing, setIsShowing] = useState(false)
 
-  // Efecto que agrega el event listener para que el select tenga funcionalidad
+  // This effect adds the event listener which contains the functionality of the custom select.
   useEffect(() => {
     document.addEventListener('click', functinalitySelect)
 
@@ -13,7 +13,7 @@ export function useSelect () {
     }
   }, [])
 
-  // funcion que chequea que estes tocando el select.
+  // This function checks if you are clicking the select button.
   const functinalitySelect = (e) => {
     const isSelectButton = e.target.matches('[data-dropdown-button]')
 

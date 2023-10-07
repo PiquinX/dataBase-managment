@@ -8,7 +8,7 @@ export const UsersContext = createContext()
 export function UsersProvider ({ children }) {
   const [users, setUsers] = useState()
 
-  // This gets the all the users.
+  // This function gets the all the users.
   const refreshUsers = async () => getUsers().then(newUsers => setUsers(newUsers))
 
   useEffect(() => {
