@@ -1,7 +1,9 @@
 export const sortOptions = {
-  FALTA_SUBIRLO: 'Falta subirlo',
-  ID: 'ID',
+  MODIFICACIONES: 'Modificaciones',
+  ID: 'ID (Default)',
   ESTADO: 'Estado',
   APELLIDO: 'Apellido',
-  NOBMRE: 'Nombre'
+  NOBMRE: 'Nombre',
+  TIPO: 'Tipo',
+  OCUPACION: 'Ocupacion'
 }

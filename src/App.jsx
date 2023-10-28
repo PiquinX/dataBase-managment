@@ -61,7 +61,7 @@ function App () {
             <span className='hidden xs:block'>Ordernar por:</span>
             <Select
               changeValue={setSort}
-              options={[sortOptions.FALTA_SUBIRLO, sortOptions.ESTADO, sortOptions.ID, sortOptions.APELLIDO, sortOptions.NOBMRE]}
+              options={[sortOptions.ID, sortOptions.MODIFICACIONES, sortOptions.ESTADO, sortOptions.APELLIDO, sortOptions.NOBMRE, sortOptions.OCUPACION, sortOptions.TIPO]}
               value={sort}
             />
           </div>

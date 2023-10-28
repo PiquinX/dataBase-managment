@@ -169,10 +169,10 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
                     </DeleteModal>
                   </div>
                   <div className='flex flex-col gap-3 text-black'>
+                    <InfoInputs defaultValue={financiero.estado_financiero} placeHolder='Estado' onChange={(e) => handleChange(e.target.value, index, 'estado_financiero')} />
                     <InfoInputs defaultValue={financiero.banco} placeHolder='Banco' onChange={(e) => handleChange(e.target.value, index, 'banco')} />
                     <InfoInputs defaultValue={financiero.codigoSeguridad} placeHolder='Codigo de seguridad' onChange={(e) => handleChange(e.target.value, index, 'codigoSeguridad')} />
                     <InfoInputs defaultValue={financiero.debito} placeHolder='Debito' onChange={(e) => handleChange(e.target.value, index, 'debito')} />
-                    <InfoInputs defaultValue={financiero.estado_financiero} placeHolder='Estado' onChange={(e) => handleChange(e.target.value, index, 'estado_financiero')} />
                     <InfoInputs defaultValue={financiero.sucursal} placeHolder='Sucursal' onChange={(e) => handleChange(e.target.value, index, 'sucursal')} />
                     <InfoInputs defaultValue={financiero.tipoCTA} placeHolder='Tipo CTA' onChange={(e) => handleChange(e.target.value, index, 'tipoCTA')} />
                     <InfoInputs defaultValue={financiero.vto} placeHolder='VTO' onChange={(e) => handleChange(e.target.value, index, 'vto')} />
@@ -219,7 +219,7 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
                     <textarea
                       defaultValue={observacion.observacion}
                       onChange={(e) => handleChange(e.target.value, index, 'observacion')}
-                      className='w-64 resize-none'
+                      className='w-64 px-2 py-1 font-bold text-white bg-transparent border-2 rounded outline-none resize-none'
                     />
                   </div>
                 </div>

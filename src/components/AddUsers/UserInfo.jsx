@@ -152,10 +152,10 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
                         </DeleteModal>
                       </div>
                       <div className='flex flex-col gap-3 text-black'>
+                        <InfoInputs value={financiero.estado_financiero} placeHolder='Estado' onChange={(e) => handleChange(e.target.value, index, 'estado_financiero')} />
                         <InfoInputs value={financiero.banco} placeHolder='Banco' onChange={(e) => handleChange(e.target.value, index, 'banco')} />
                         <InfoInputs value={financiero.codigoSeguridad} placeHolder='Codigo de seguridad' onChange={(e) => handleChange(e.target.value, index, 'codigoSeguridad')} />
                         <InfoInputs value={financiero.debito} placeHolder='Debito' onChange={(e) => handleChange(e.target.value, index, 'debito')} />
-                        <InfoInputs value={financiero.estado_financiero} placeHolder='Estado' onChange={(e) => handleChange(e.target.value, index, 'estado_financiero')} />
                         <InfoInputs value={financiero.sucursal} placeHolder='Sucursal' onChange={(e) => handleChange(e.target.value, index, 'sucursal')} />
                         <InfoInputs value={financiero.tipoCTA} placeHolder='Tipo CTA' onChange={(e) => handleChange(e.target.value, index, 'tipoCTA')} />
                         <InfoInputs value={financiero.vto} placeHolder='VTO' onChange={(e) => handleChange(e.target.value, index, 'vto')} />
@@ -202,7 +202,7 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
                         <textarea
                           value={observacion.observacion}
                           onChange={(e) => handleChange(e.target.value, index, 'observacion')}
-                          className='w-64 resize-none'
+                          className='w-64 px-2 py-1 font-bold text-white bg-transparent border-2 rounded outline-none resize-none'
                         />
                       </div>
                     </div>
