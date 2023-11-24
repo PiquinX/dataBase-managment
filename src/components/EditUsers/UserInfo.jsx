@@ -173,6 +173,7 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
                     <InfoInputs defaultValue={financiero.banco} placeHolder='Banco' onChange={(e) => handleChange(e.target.value, index, 'banco')} />
                     <InfoInputs defaultValue={financiero.codigoSeguridad} placeHolder='Codigo de seguridad' onChange={(e) => handleChange(e.target.value, index, 'codigoSeguridad')} />
                     <InfoInputs defaultValue={financiero.debito} placeHolder='Debito' onChange={(e) => handleChange(e.target.value, index, 'debito')} />
+                    <InfoInputs defaultValue={financiero.num_cuenta} placeHolder='Numero de cuenta' onChange={(e) => handleChange(e.target.value, index, 'num_cuenta')} />
                     <InfoInputs defaultValue={financiero.sucursal} placeHolder='Sucursal' onChange={(e) => handleChange(e.target.value, index, 'sucursal')} />
                     <InfoInputs defaultValue={financiero.tipoCTA} placeHolder='Tipo CTA' onChange={(e) => handleChange(e.target.value, index, 'tipoCTA')} />
                     <InfoInputs defaultValue={financiero.vto} placeHolder='VTO' onChange={(e) => handleChange(e.target.value, index, 'vto')} />

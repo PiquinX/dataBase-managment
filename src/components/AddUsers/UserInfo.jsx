@@ -154,8 +154,9 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
                       <div className='flex flex-col gap-3 text-black'>
                         <InfoInputs value={financiero.estado_financiero} placeHolder='Estado' onChange={(e) => handleChange(e.target.value, index, 'estado_financiero')} />
                         <InfoInputs value={financiero.banco} placeHolder='Banco' onChange={(e) => handleChange(e.target.value, index, 'banco')} />
-                        <InfoInputs value={financiero.codigoSeguridad} placeHolder='Codigo de seguridad' onChange={(e) => handleChange(e.target.value, index, 'codigoSeguridad')} />
                         <InfoInputs value={financiero.debito} placeHolder='Debito' onChange={(e) => handleChange(e.target.value, index, 'debito')} />
+                        <InfoInputs value={financiero.codigoSeguridad} placeHolder='Codigo de seguridad' onChange={(e) => handleChange(e.target.value, index, 'codigoSeguridad')} />
+                        <InfoInputs value={financiero.num_cuenta} placeHolder='Numero de cuenta' onChange={(e) => handleChange(e.target.value, index, 'num_cuenta')} />
                         <InfoInputs value={financiero.sucursal} placeHolder='Sucursal' onChange={(e) => handleChange(e.target.value, index, 'sucursal')} />
                         <InfoInputs value={financiero.tipoCTA} placeHolder='Tipo CTA' onChange={(e) => handleChange(e.target.value, index, 'tipoCTA')} />
                         <InfoInputs value={financiero.vto} placeHolder='VTO' onChange={(e) => handleChange(e.target.value, index, 'vto')} />

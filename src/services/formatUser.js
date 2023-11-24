@@ -41,7 +41,7 @@ export function formatUser (user) {
   }))
 
   formatedUser['financieros'] = user.financieros.map(financiero => ({
-    'cuenta': financiero.NUM_CUENTA,
+    'num_cuenta': financiero.NUM_CUENTA,
     'banco': financiero.BANCO,
     'codigoSeguridad': financiero.COD_SEG,
     'id': financiero.DATOS_FINANCIEROS_ID,
