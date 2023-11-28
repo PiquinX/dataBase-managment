@@ -70,12 +70,12 @@ def insert_full_data():
                 conn.commit()
 
             query_financieros = """INSERT INTO datos_financieros (USUARIO_ID, DBTO, VTO, COD_SEG, BANCO, SUCURSAL,
-                                                                TIPO_CTA, ESTADO)
-                                                            VALUES(?,?,?,?,?,?,?,?)"""
+                                                                TIPO_CTA, ESTADO, NUM_CUENTA)
+                                                            VALUES(?,?,?,?,?,?,?,?,?)"""
             
             for dato in datos['financieros']:
                 cursor.execute(query_financieros, (id[0], dato['debito'], dato['vto'], dato['codigoSeguridad'],
-                                                dato['banco'], dato['sucursal'], dato['tipoCTA'], dato['estado_financiero']))
+                                                dato['banco'], dato['sucursal'], dato['tipoCTA'], dato['estado_financiero'], dato['num_cuenta']))
                 conn.commit()
             
             return jsonify({"message": "Datos insertados correctamente"})
@@ -99,8 +99,8 @@ def insert_data(table,id):
                                                         VALUES({id},'','','','','')"""
         elif table == 'financieros':
             query = f"""INSERT INTO datos_financieros (USUARIO_ID, DBTO, VTO, COD_SEG, BANCO, SUCURSAL,
-                                                                    TIPO_CTA, ESTADO)
-                                                                VALUES({id},'','','','','','','')"""
+                                                                    TIPO_CTA, ESTADO, NUM_CUENTA)
+                                                                VALUES({id},'','','','','','','','')"""
         elif table == 'observaciones':
             query = f"""INSERT INTO observaciones (USUARIO_ID, OBSERVACIONES)
                                                             VALUES ({id},'')"""
@@ -231,6 +231,7 @@ def update_data(id):
                                 CODIGO_POSTAL = ?,
                                 PROVINCIA = ?
                                 WHERE USUARIO_ID = ? AND DIRECCION_ID = ?"""
+
         query_direcciones_insert = """INSERT INTO direccion (USUARIO_ID, CALLE, NUM, PISO, DEPTO, LOCALIDAD, CODIGO_POSTAL, PROVINCIA)
                                                 VALUES(?,?,?,?,?,?,?,?)"""
 
@@ -241,11 +242,13 @@ def update_data(id):
                                 BANCO = ?,
                                 SUCURSAL = ?,
                                 TIPO_CTA = ?,
-                                ESTADO = ?
+                                ESTADO = ?,
+                                NUM_CUENTA = ?
                                 WHERE USUARIO_ID = ? AND DATOS_FINANCIEROS_ID = ?"""
+
         query_financieros_insert = """INSERT INTO datos_financieros (USUARIO_ID, DBTO, VTO, COD_SEG, BANCO, SUCURSAL,
-                                                                TIPO_CTA, ESTADO)
-                                                            VALUES(?,?,?,?,?,?,?,?)"""
+                                                                TIPO_CTA, ESTADO, NUM_CUENTA)
+                                                            VALUES(?,?,?,?,?,?,?,?,?)"""
 
         try:
             cursor.execute(query_usuario, (
@@ -324,13 +327,14 @@ def update_data(id):
                         value['sucursal'],
                         value['tipoCTA'],
                         value['estado_financiero'],
+                        value['num_cuenta'],
                         id,
                         value['id']
                     ))
                     conn.commit()
                 else:
                     cursor.execute(query_financieros_insert, (id, value['debito'], value['vto'], value['codigoSeguridad'],
-                                                value['banco'], value['sucursal'], value['tipoCTA'], value['estado_financiero']))
+                                                value['banco'], value['sucursal'], value['tipoCTA'], value['estado_financiero'], value['num_cuenta']))
                     conn.commit()
 
         
