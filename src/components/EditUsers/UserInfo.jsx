@@ -171,8 +171,9 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
                   <div className='flex flex-col gap-3 text-black'>
                     <InfoInputs defaultValue={financiero.estado_financiero} placeHolder='Estado' onChange={(e) => handleChange(e.target.value, index, 'estado_financiero')} />
                     <InfoInputs defaultValue={financiero.banco} placeHolder='Banco' onChange={(e) => handleChange(e.target.value, index, 'banco')} />
-                    <InfoInputs defaultValue={financiero.codigoSeguridad} placeHolder='Codigo de seguridad' onChange={(e) => handleChange(e.target.value, index, 'codigoSeguridad')} />
                     <InfoInputs defaultValue={financiero.debito} placeHolder='Debito' onChange={(e) => handleChange(e.target.value, index, 'debito')} />
+                    <InfoInputs defaultValue={financiero.codigoSeguridad} placeHolder='Codigo de seguridad' onChange={(e) => handleChange(e.target.value, index, 'codigoSeguridad')} />
+                    <InfoInputs defaultValue={financiero.cuenta} placeHolder='N° de cuenta' onChange={(e) => handleChange(e.target.value, index, 'cuenta')} />
                     <InfoInputs defaultValue={financiero.sucursal} placeHolder='Sucursal' onChange={(e) => handleChange(e.target.value, index, 'sucursal')} />
                     <InfoInputs defaultValue={financiero.tipoCTA} placeHolder='Tipo CTA' onChange={(e) => handleChange(e.target.value, index, 'tipoCTA')} />
                     <InfoInputs defaultValue={financiero.vto} placeHolder='VTO' onChange={(e) => handleChange(e.target.value, index, 'vto')} />
@@ -191,6 +192,8 @@ export function DataFinancialSection ({ isDisplayed, updateInfo, data, addInfo, 
 }
 
 export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInfo, removeInfo }) {
+  const textArea = useRef()
+  const initialSize = 
   // changing the value depending on the field and value
   const handleChange = (value, index, field) => {
     updateInfo({ newValue: value, whichTable: 'observaciones', index, whichField: field })
@@ -199,6 +202,10 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
   const handleClick = () => addInfo('observaciones')
 
   const handleRemove = (value) => removeInfo('observaciones', value)
+
+  const handleResize = () => {
+
+  }
 
   return (
     <>
@@ -217,6 +224,7 @@ export function DataObservationsSection ({ isDisplayed, updateInfo, data, addInf
                   </div>
                   <div className='flex flex-col gap-3 text-black'>
                     <textarea
+                      ref={textArea}
                       defaultValue={observacion.observacion}
                       onChange={(e) => handleChange(e.target.value, index, 'observacion')}
                       className='w-64 px-2 py-1 font-bold text-white bg-transparent border-2 rounded outline-none resize-none'

@@ -36,6 +36,7 @@ export const userInfoEmptyState = {
         'tipo': ''
     }],
     'financieros':[{
+        'cuenta': '',
         'banco': '',
         'codigoSeguridad': '',
         'id': '',
